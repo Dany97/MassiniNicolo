@@ -1,0 +1,70 @@
+\documentclass[titlepage]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+
+
+\author{Luca Massini \and Daniele Nicolò}
+
+\title{Requirement analysis and specification document
+Safestreets}
+
+\date{release data to be defined}
+\begin{document}
+\maketitle
+\section{Introduction}
+The purpose of this document is to represent the Requirement Analysis and Specification Document (RASD).
+This document shows what are the goals and the requirements of the software.
+It has to represent how the application can be useful for the users that will use it and why they are fundamental to improve the quality of the service offered. Secondly, this document can be also used as a support for the testing of the system, for the verification activities and also the validation ones. The RASD can be used to also guide the changes in a already existing system.
+\subsection{Purpose}
+
+\subsubsection{Descripton of the given problem:}
+
+SafeStreets is a software useful to help people to be safer when they are on the street.\\
+The users can send to the municipality pictures of violation occurring in public streets: the reporting can concern violation on the road, in a parking and so on.\\
+The software allows the users to send detailed information about the violation, such as the hour, the date, the type of violation and the position (they can be captured with GPS).\\
+Furthermore, the service can provide other information about the streets in which the user is around,
+such as the number of violations per street and consequently the level of danger of the street.\\
+In addition, the user can have a different service based on the category to which he/she belongs.\\
+The user can also find on the application the most “dangerous” vehicles, that are the ones with the highest number of reports from the users.\\
+The service must be different in base of the type of user, such as motorists, motorcyclists, bikers, pedestrians, disabled people, etc, so it must be easy to use.\\
+Finally, the users must be able to receive recommendations from the system to avoid using streets, parking lots that are risky in general or at a specific hour or date.
+
+\subsubsection{Goals:}
+\begin{itemize}
+\item $[goal 1]$:  Users can be identiﬁed either as Single Users or as Third Parties. 
+\begin{itemize}
+
+	\item $[goal 1.1]$: The user can send a picture of the 			violation.
+	
+	\item $[goal 1.2]$: The user can specify the date and the 	hour when the violation has happened
+	and the type of violation.
+	
+	\item $[goal 1.2]$: ) The system can catch the position 		of the violation using GPS signal.
+\end{itemize}
+\item $[goal 2]$: The service allows the users to have detailed information about the violations and the street safety
+      \begin{itemize}
+      	\item $[goal 2.1]$: The users can know which are the 			most reported streets, areas or parking 
+      	
+      	\item $goal 2.2]$: The users can see which are the 				vehicles that commit the highest number
+		Of traffic violations.
+		
+		\item $[goal 2.3]$: The users, in base of his/her 				position, can be recommended to use the safest 					streets/areas, etc or avoid the dangerous ones, that 			are highlighted in different ways on the map. In this 		way the user can 
+
+      \end{itemize}
+\item $[goal 3]$: The service offers different types of 						  interfaces and accessibility in according 					  to the type of user (biker, pedestrian, 						  rider, driver, disabled person).
+
+\item $[goal 4]$: The service allows the user to be 							  registered 	in the system with a username 				  and a password.
+
+\item $[goal 5]$: A user can specify the category to which 						  he/she belongs (motorcyclist, biker, 							  pedestrian, car driver, disabled person).In 				  order to improve the service quality.
+
+\item $[goal 6]$: A driver or a motorcyclist can add to his 					  personal profile the license plate of his 					  vehicle.
+
+\end{itemize}
+
+\subsubsection{Scope:}
+In this section is introduced the so called "world and machine fenomena".\\
+We distinguish the world and the machine. The world is related to every phenomena that take place outside of the region of events that a given system to be developed (called machine) is able to control or eventually observe. Instead, the machine is related to phenomena which happen inside the machine. Some of the totality of the phenomena can be observed by the machine but they're controlled by the world.  and viceversa. These are called shared phenomena.
+
+
+\end{document}
