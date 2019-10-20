@@ -9,7 +9,7 @@
 \title{Requirement analysis and specification document
 \\ Safestreets}
 
-\date{release data to be defined}
+\date{release date to be defined}
 \begin{document}
 \maketitle
 
@@ -23,12 +23,12 @@ It has to represent how the application can be useful for the users that will us
 SafeStreets is a software useful to help people to be safer when they are on the street.\\
 The users can send to the municipality pictures of violation occurring in public streets: the reporting can concern violation on the road, in a parking and so on.\\
 The software allows the users to send detailed information about the violation, such as the hour, the date, the type of violation and the position (they can be captured with GPS).\\
-Furthermore, the service can provide other information about the streets in which the user is around,
+Furthermore, the service can provide, both to the user and to the municipality,information about the streets in which the user is around,
 such as the number of violations per street and consequently the level of danger of the street.\\
 In addition, the user can have a different service based on the category to which he/she belongs.\\
-The user can also find on the application the most “dangerous” vehicles, that are the ones with the highest number of reports from the users.\\
-The service must be different in base of the type of user, such as motorists, motorcyclists, bikers, pedestrians, disabled people, etc, so it must be easy to use.\\
-Finally, the users must be able to receive recommendations from the system to avoid using streets, parking lots that are risky in general or at a specific hour or date.
+The user and the municipality can also find on the application the most “dangerous” vehicles, that are the ones with the highest number of reports from the users.\\
+The service must be different in base of the type of user, such  authorities, motorists, motorcyclists, bikers, pedestrians, disabled people, etc, so it must be easy to use.\\
+Finally, the users must be able to receive recommendations from the system to avoid using streets, parking lots that are risky in general or at a specific hour or date.\\
 
 \subsubsection{Goals:}
 \begin{itemize}
@@ -82,6 +82,37 @@ Finally, the users must be able to receive recommendations from the system to av
 
 \subsubsection{Scope:}
 In this section is introduced the so called "world and machine fenomena".\\
-We distinguish the world and the machine. The world is related to every phenomena that take place outside of the region of events that the system to be developed (called machine) is able to control or eventually observe. Instead, the machine is related to phenomena which happen inside the machine and so they're completely controllable. Some of the totality of the phenomena can be observed by the machine but they're controlled by the world.  and viceversa. These are called shared phenomena.
+We distinguish the world and the machine. The world is related to every phenomena that take place outside of the region of events that the system to be developed (called machine) is able to control or eventually observe. Instead, the machine is related to phenomena which happen inside the machine and so they're completely controllable. Some of the totality of the phenomena can be observed by the machine but they're controlled by the world.  and viceversa. These are called shared phenomena. In this section there will be described only the world phenomena and the shared one.The machine phenomena will be described later on in the next chapters.
+
+\paragraph{World phenomena: }
+\subparagraph{From the user point of view: }
+\begin{itemize}	
+	\item The user sees one or more violations.
+	\item The user wants to report a violation to the 					  municipality.
+	\item The user wants to know the area/streets where the 
+	     major violations occur.
+	\item The user wants to know where is safer to park his/			  her car/bike/motorcycle.
+	\item The user wants to know what are the vehicles that       		  commit the major number of violations.
+
+\end{itemize}
+\subparagraph{From the municipality point of view: }
+
+\begin{itemize}
+	\item The municipality wants to know what to do to 				improve the safety of the streets.
+	\item The municipality wants to discover what're the most
+	dangerous zones of the city.\\
+\end{itemize}
+ 
+\paragraph{Shared phenomena: }
+\subparagraph{From the user point of view}
+ \begin{itemize}
+ 	\item The user sends to the system a picture of a            	violation and all the other data relating to it.
+ 	\item The user sends some data request to the system.
+ \end{itemize}
+\subparagraph{From the municipality point of view: }
+\begin{itemize}
+	\item The municipality sends a data request to the system 		  in order to obtain suggestion to improve the safety 		  of the streets.
+	\item The municipality sends a data request to know what 			  are the vehicles that have commited the major 				  number of accidents.
+\end{itemize}
 
 \end{document}
