@@ -46,7 +46,7 @@ Finally, the users must be able to receive recommendations from the system to av
 	
 	\item $[goal 1.4]$: The date and also the hour can be           		  taken in an automatic way or they can be written          		  manually by the user. It's a user choice.
 	
-	\item $[goal 1.3 ]$: The municipality must be able to     	receive the reports  \\
+	\item $[goal 1.5 ]$: The municipality must be able to     	receive the reports  \\
 	
 \end{itemize}
 
@@ -66,25 +66,26 @@ Finally, the users must be able to receive recommendations from the system to av
 						based on the safest streets around 								him/her.\\
 	\end{itemize}
 
-\item $[goal 4]$: The service allows the user to be 							  registered in the system with a username 				  		  and a password.\\
 
-\item $[goal 5]$: A user can specify the category to which 						  he/she belongs (motorcyclist, biker, 							  pedestrian, car driver, disabled person).In 				  order to improve the service quality.\\
+\item $[goal 4]$: A user can specify the category to which 						  he/she belongs (motorcyclist, biker, 							  pedestrian, car driver, disabled person).In 				  order to improve the service quality.\\
 
-\item $[goal 6]$: A driver or a motorcyclist can add to his 					  personal profile the license plate of his 					  vehicle.\\
+\item $[goal 5]$: A driver or a motorcyclist can add to his 					  personal profile the license plate of his 					  vehicle.\\
 
-\item $[goal 7]$: Safestreet can send to the municipality 						  suggestions of what to do in order to 						  improve the safety on the streets for every 
+\item $[goal 6]$: Safestreet can send to the municipality 						  suggestions of what to do in order to 						  improve the safety on the streets for every 
 				  type of Safestreets user.
 	\begin{itemize}
-	\item $[goal 7.1]$: The municipality must receive every 
+	\item $[goal 6.1]$: The municipality must receive every 
 					    suggestion sent by Safestreets.\\
 					   
 	
 	\end{itemize}
-
+\item $[goal 7]$: The user must be able to sign in into the safestreets platform
+\item $[goal 8]$: The user must be able to log-in into the system after having done the sign-on.
+\item $[goal 9]$: The user must be able to log-out of the system if logged-in.
 \end{itemize}
 
-\subsubsection{Scope:}
-In this section is introduced the so called "world and machine fenomena".\\
+\subsection{Scope:}
+In this section is introduced the so called "world and machine phenomena".\\
 We distinguish the world and the machine. The world is related to every phenomena that take place outside of the region of events that the system to be developed (called machine) is able to control or eventually observe. Instead, the machine is related to phenomena which happen inside the machine and so they're completely controllable. Some of the totality of the phenomena can be observed by the machine but they're controlled by the world.  and viceversa. These are called shared phenomena. In this section there will be described only the world phenomena and the shared one.The machine phenomena will be described later on in the next chapters.
 
 \paragraph{World phenomena: }
@@ -109,6 +110,9 @@ We distinguish the world and the machine. The world is related to every phenomen
 \paragraph{Shared phenomena: }
 \subparagraph{Shared phenomena controlled by the world and observed by the machine: }
 \begin{itemize}
+    \item The user sign-in into the platform.
+    \item The user log-in into the platform.
+    \item The user log-out of the platform.
  	\item The user sends to the system a picture of a            	violation and all the other data relating to it.
  	\item The user sends some data request to the system.
 	\item The municipality sends a data request to the system 		  in order to receive suggestion to improve the 				  safety 	of the streets.
@@ -116,6 +120,75 @@ We distinguish the world and the machine. The world is related to every phenomen
 \end{itemize}
 \subparagraph{Shared phenomena controlled by the machine and  			observed by the world: }
 \begin{itemize}
-	\item the user receive data related to what he/she has     	asked
+	\item The user receives ,by the system,all the data 			related to the safest and most dangerous streets .
+	\item The user receices, by the system, all the data related to the vehicles that have committed the major number of violations.
+	\item The municipality receives suggestion to a better 			safety on the streets.
+	\item The municipality receives the list of the most 			dangerous vehicles .
+	
 \end{itemize}
+\subparagraph{Machine phenomena: }
+\begin{itemize}
+	\item The system stores the user data.
+	\item The system stores all the data about the violation.
+	\item The system analyze the received picture in order to 	retrieve the car plate.
+	\item The system checks if the street in which the 				violation occur is an exsisting street
+\end{itemize}
+
+\subsection{Deﬁnitions, Acronyms, Abbreviations}
+da aggiornare mentre si fa il progetto
+\subsubsection{Acronymis:}
+da fare durante il progetto.
+\subsubsection{Definitions:}
+da fare durante il progetto.
+\subsubsection{Abbreviations:}
+da fare durante il progetto.
+\subsection{Revision History: }
+da fare durante il progetto.
+\subsection{Reference Documents:}
+da fare durante il progetto.
+\subsection{Document Structure: }
+\newpage
+
+\section{Overall Description}
+This section is necessary to do a better and deeper description of the shared and world phenomena. In this section, the system will be described also with the help of the class diagrams and state diagrams.
+\subsection{Product Perspective:}
+\paragraph{The user sees one or more violations:}
+It's the situation in which the user sees a violation which can be traffic or parking. The user knows what happened and also where and when. Such violations could be for example: a car/motorcycle parked in a red zone or a car/motorcycle parked on a Fire lane or on a sidewalk area or any other violation or also any kind of traffic violation.
+\paragraph{The user wants to report a violation to the 					  municipality.}
+In this case the user would like to have the possibility of report a violation of which he/she is aware. 
+\paragraph{The user wants to know the area/streets where the 
+	      major violations occur.}
+In this type of phenomena the user would like to know what are the most dangerous areas in his city/town in terms of traffic violations or parking violations. 
+\paragraph{The user wants to know where is safer to park his/			  her car/bike/motorcycle:}
+In this case we analyze the case in which the user has a vehicle that needs to be parked. He/she would want to know what are the most safety streets in order to decide in which street to park. He/she want to know the most safety street whose distance is minor or equal to a given distance (given by the user) with respect to a given geographical point (also given by the user).
+\paragraph{The user wants to know what are the vehicles that       		  commit the major number of violations:}
+The user would like to know because of his/her curiosity the vehicles that commit the major number of violations. Obviusly, the user it's not an authorities and so a sort of privacy policy need to be applied.
+\paragraph{The municipality wants to know what to do to 				improve the safety of the streets: }
+In this case the municipality recognise that in a certain area or single street there is a problem in the number of violation which are too many. In this case the municipality would like to have some suggestions in order to be helped in solve the city's problems.
+\paragraph{The municipality wants to discover what're the most dangerous zones of the city.}
+The municipality would like to know what're the most dangerous streets in order to do something in order to resolve problems. This could be useful if the municipality want to do some improvment in its service.
+\paragraph{The user sign-in into the platform: }
+In this case the user compile all the mandatory fields which are: name,surname,username,e-mail,password. The driving license is not mandatory because of the fact that this system is designed for people who drive vehicles that do not need a license to drive (for example for bicycles).
+\paragraph{The user log-in into the platform: }
+The user can log-in into the system by entering username and passworld.
+\paragraph{The user log-out of the platform:}
+In this case the user can go out of the platform if he/she does a log-out. The user will not be able to receive any service by the platform until he/she does a new log-in.
+\paragraph{The user sends to the system a picture of a            	violation and all the other data relating to it: }
+In this case the user sends a report of a park violation or a traffic violation to the authorities (the municipality in this case). The user can take a picture of that violation and add the mandatory information which are needed which are: the hour and the date. The street can be detected in an automatic (way) or in a manual way (it's a user choice).
+\paragraph{The user sends some data request to the system: }
+In this case the user could want to retrieve some information from the system. Such information, could be the most dangerous zones and the users that commit the major number of violations, the most safety streets where to park and other more. The system will provide such information in different forms, such as a list of the users or a maps with the highlighted streets.
+\paragraph{The municipality sends a data request to the 				   system  in order to receive suggestion to improve 			   the 	safety 	of the streets: }
+The municipality sends a data request to the system in order to have suggestions in order to have safety improvment. Such suggestions are simple phrases which describes what it's possible to do to overcome problems.
+\paragraph{The municipality sends a data request to know what 		   are the vehicles that have commited the major 	         		  number of accidents: }
+In this case a user would like to understand what are the safestreets user who commit the major number of violations, so he/she send a data request for retrieve them. The municipality must specify the types of user (the category of which the user belongs), the maximum number of users that it wants to get.
+\paragraph{The user receives ,by the system,all the data 			related to the safest and most dangerous streets : }
+In this case the user receives all the data about the streets that are considered more dangerous than all the other. He receives a map with the highlighted streets which are at a given distance from a fixe point specified by the user.
+\paragraph{The user receices, by the system, all the data related to the vehicles that have committed the major number of violations:}
+In this case the user receives the list of license plates that have committed the major number of violations. He receives a number of license plate which doesn't exceed the maximum number of them that the user has specified.
+\paragraph{The municipality receives suggestion to a better 			safety on the streets: }
+The municipality receives a list of pair of phrases. On one side we have the problem and on the other we've the suggestion to overcome this problem.
+\paragraph{The municipality receives the list of the most 			dangerous vehicles: }
+The municipality receives all the license plate of the vehicles that have committed the major number of violations. The number of license plate that is shown is not more than a number given by the municipality.
+
+
 \end{document}
