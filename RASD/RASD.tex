@@ -126,6 +126,7 @@ We distinguish the world and the machine. The world is related to every phenomen
 \subparagraph{Machine phenomena: }
 \begin{itemize}
 	\item The system stores the user's data.
+	\item The system stores all the data about the 					municipality.
 	\item The system stores all the data about the violation.
 	\item The system analyze the received picture in order to 	retrieve the car plate.
 	\item The system checks if the street in which the 				violation occur is an exsisting street.
@@ -144,6 +145,15 @@ da fare durante il progetto.
 \subsection{Reference Documents:}
 da fare durante il progetto.
 \subsection{Document Structure: }
+This document is organized in the followind way:
+\begin{itemize}
+	\item \textbf{Overall Description:} This section contains a deeper analysis of the world and machine phenomena already described in the scope. It also contains class diagrams which describes the relationship about actors, state chart diagrams used to describe the state of a component of the system from a dynamic point of view, the description of the stakeholders and their needs and finally the key functional requirements and the domain assumption.
+	
+	\item \textbf{Specific requirements:} In this section there is a more detailed description of the requirements already described in the previous section. This is thought to help the develop team to understand what the system must ensure.In particular in this part there's a description of the external interface requirements,of the functional requirements, of the performance requirements, of the design constraints and finally of the software system attributes.
+	
+	\item \textbf{Formal analysis:} This section contain the formal analysis done written in alloy. Alloy is a formal notation used to specify model of systems and software. Thanks to alloy it is possible to write a formal models with their own requirement, domain assumptions and goals and then check the correctness of the model.\\
+There is another very important important aspect that is the fact that alloy gives the possibility to avoid the intrinsically ambiguity of natural languages used to described all the aspect of the other sections.
+\end{itemize}
 \newpage
 
 \section{Overall Description}
@@ -186,6 +196,15 @@ In this case the user receives the list of license plates that have committed th
 The municipality receives list where each element is composed on one side by the problem and on the other by the suggestion to overcome it.
 \paragraph{The municipality receives the list of the most 			dangerous vehicles: }
 The municipality receives all the license plates belonging to the vehicles that have committed the highest number of violations. The system will provide a number of plates less than or equal to those indicated by the authorities.
-
+\paragraph{The system stores the user's data:}
+The system will store permanently and safely all the user data. They will be stored in the system's databases in such a way as to make data corruption almost impossible (the impossibility doesn't exsists in real world).
+\paragraph{The system stores all the data about the 					municipality:}
+The system will store also all the data of the municipality in its databses. These data are both given from the municipality to the system and also used to manage the overall service.
+\paragraph{The system stores all the data about the violation: }
+The system will store all the information concerning the violation. Such information are the picture, the data, the hour, the license plate of the vehicle, and an unique identifier to distinguish identical violations reported from at least 2 different user.
+\paragraph{The system analyze the received picture in order to 	retrieve the car plate: }
+The system after having received a picture of the violation will run an algorithm to recognize the license plate of the vehicle that committed the violation. In such a way the vehicle is uniquely identified.
+\paragraph{The system checks if the street in which the 				violation occur is an exsisting street: }
+if the place of the violation is manually entered by the user there exists the possibility that such place doen't exsist in the real world. In this case the system must automatically search the reported streets and report an error to the user. Viceversa,in the case in which the street exsists the system will store it in the database together with all the other information related to the violation.
 
 \end{document}
