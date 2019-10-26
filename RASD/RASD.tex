@@ -206,35 +206,5 @@ The system will store all the information concerning the violation. Such informa
 The system after having received a picture of the violation will run an algorithm to recognize the license plate of the vehicle that committed the violation. In such a way the vehicle is uniquely identified.
 \paragraph{The system checks if the street in which the 				violation occur is an exsisting street: }
 if the place of the violation is manually entered by the user there exists the possibility that such place doen't exsist in the real world. In this case the system must automatically search the reported streets and report an error to the user. Viceversa,in the case in which the street exsists the system will store it in the database together with all the other information related to the violation.
-<<<<<<< HEAD
-=======
-\subsection{Product functions: }
-\subsection{User characteristics: }
-\subsection{Assumptions, dependencies and constraints: }
-\subsubsection{Domain assumptions: }
-\begin{itemize}
-	\item $[\textbf{D1}]$: The user is supposed to submit correct e-mail, and data matching his/her fiscal code.
-	\item $[\textbf{D2}]$: The user creates one and only one account.
-	\item $[\textbf{D3}]$: Every municipality which has an account on the system certifies its own account as valid.
-	\item $[\textbf{D4}]$: The GPS signal has a relative error of 10 meters.
-	\item $[\textbf{D5}]$: The memory where the data is stored is persistent.
-	\item$[\textbf{D6}]$: The user allows the app to have access to his/her position and the camera of his/her device.
-	\item $[\textbf{D7}]$: The internet connection has to be enabled when the app needs it.
-	
-\end{itemize}
-\subsubsection{Constraints: }
-\begin{itemize}
-	\item  The system must treat the users' personal data in according to the GDPR regulation.
-	\item The system will be designed and implemented for smartphones.
-	\item Since the system uses the fiscal code to identify the user it is supposed that it will be used only in Italy, so the application will have to be available only in the italian app stores.
-	\item The pictures must be taken only through the app camera and not imported from the device gallery in order to take photoes in real time.
-\end{itemize}
-
-\subsubsection{Dependencies: }
-\begin{itemize}
-	\item The system will use the GPS services provided by the smartphones.
-	\item The system will use the internet service offered by the smartphones.
-\end{itemize}
->>>>>>> 43fc724bbfa377324f989e1074b9b72e6871d4b3
 
 \end{document}
