@@ -206,8 +206,6 @@ The system will store all the information concerning the violation. Such informa
 The system after having received a picture of the violation will run an algorithm to recognize the license plate of the vehicle that committed the violation. In such a way the vehicle is uniquely identified.
 \paragraph{The system checks if the street in which the 				violation occur is an exsisting street: }
 if the place of the violation is manually entered by the user there exists the possibility that such place doen't exsist in the real world. In this case the system must automatically search the reported streets and report an error to the user. Viceversa,in the case in which the street exsists the system will store it in the database together with all the other information related to the violation.
-<<<<<<< HEAD
-=======
 \subsection{Product functions: }
 In this section there is a description of the principal functions that the system will make available to the final user.\\
 These functions are the following:
@@ -224,18 +222,27 @@ Who is making the request has also to give the area of the streets he/she wants 
 	This function allows the user to explictly ask the system to suggest places where park a vehicle in a secure way. 
 The user must specify what type of vehicle he/she has and how far he/she wants to park from his/her position or from a position given in input. The system will not guarantee the fact that in the proposed place there will be at least one parking lot but it only will suggest which roads are considered as more secure than others to do so.
 	\item \textbf{The user will receive the suggested streets where to park:}
-	After having requested the safest streets where to park the system will provide them to the user in a map form. In this map there will be highlighted the streets considered more secure than the others in the specified area given by the user as input. The procedure in which the area is given to the system as input is identical to the explainations given in the previous points.
+	After having requested the safest streets where to park the system will provide them to the user in a map form. In this map there will be highlighted the streets considered more secure than the others in the specified area given by the user as input. The procedure in which the area is given to the system as input is identical to the explanations given in the previous points.
 
 \end{itemize}
 \subsection{User characteristics: }
-In this subsection there is a description of the application's users and an analysis of their needs.\\
-\textbf{\\Description of the users of the app:}
+In this subsection there is a description of the application's users and an analysis of their needs. We will categorize the people who can use the app in order to understand their needs in a better way.\\
+\textbf{\\Description of the users of the app:\\}
+The user of the app can be divided in a first categorization which is the following:
 \begin{itemize}
-	\item People.
-	\item Municipalities.
+	\item Private user.
+	\item Municipality or authority.\\
 \end{itemize}
-Here we will talking about the categorization of the people. People that use the app can be divided into the following categories.\\ \\
-TO FINISH
+\textbf{Description of the private users: }\\ 
+It is possible to divide again the private users in other classes. For every class there will be a different concept of dangerousness.
+\begin{itemize}
+	\item Pedestrians.
+	\item Car Drivers.
+	\item Motorcyclists.
+	\item Cyclists.
+\end{itemize}
+A private user can be a disabled person belonging to the pedestrians category or to the car drivers one. Because of this fact these type of users will require a different type of service and a different concept of dangerousness.
+All the private users are supposed to have downloaded the app from the store,to have done the sign in entering all the mandatory data and finally to have accepted all the permissions.
 \subsection{Assumptions, dependencies and constraints: }
 \subsubsection{Domain assumptions: }
 \begin{itemize}
