@@ -145,14 +145,14 @@ da fare durante il progetto.
 \subsection{Reference Documents:}
 da fare durante il progetto.
 \subsection{Document Structure: }
-This document is organized in the followind way:
+This document is organized in the following way:
 \begin{itemize}
-	\item \textbf{Overall Description:} This section contains a deeper analysis of the world and machine phenomena already described in the scope. It also contains class diagrams which describes the relationship about actors, state chart diagrams used to describe the state of a component of the system from a dynamic point of view, the description of the stakeholders and their needs and finally the key functional requirements and the domain assumption.
+	\item \textbf{Overall Description:} This section contains a deeper analysis of the world and machine phenomena already described in the scope. It also contains class diagrams which describes the relationship between actors, state chart diagrams used to describe the state of at least one component of the system from a dynamic point of view, the description of the stakeholders and their needs and finally the key functional requirements and the domain assumption.
 	
-	\item \textbf{Specific requirements:} In this section there is a more detailed description of the requirements already described in the previous section. This is thought to help the develop team to understand what the system must ensure.In particular in this part there's a description of the external interface requirements,of the functional requirements, of the performance requirements, of the design constraints and finally of the software system attributes.
+	\item \textbf{Specific requirements:} In this section there is a more detailed description of the requirements already described in the previous section. This is thought to help the develop team to understand what the system must ensure.In particular in this part there is a description of the external interfaces requirements,of the functional requirements, of the performance requirements, of the design constraints and finally of the software system attributes.
 	
 	\item \textbf{Formal analysis:} This section contain the formal analysis done written in alloy. Alloy is a formal notation used to specify model of systems and software. Thanks to alloy it is possible to write a formal models with their own requirement, domain assumptions and goals and then check the correctness of the model.\\
-There is another very important important aspect that is the fact that alloy gives the possibility to avoid the intrinsically ambiguity of natural languages used to described all the aspect of the other sections.
+There is another very important important aspect concerning this section. Such aspect is the fact that alloy gives the possibility to clarify aspects that could be ambiguos. The ambiguity is usually and intrinsically due to natural language. 
 \end{itemize}
 \newpage
 
@@ -209,7 +209,33 @@ if the place of the violation is manually entered by the user there exists the p
 <<<<<<< HEAD
 =======
 \subsection{Product functions: }
+In this section there is a description of the principal functions that the system will make available to the final user.\\
+These functions are the following:
+\begin{itemize}
+	\item \textbf{Report of violation:} Safestreets allows the user to report a violation. To do that he/she has to take a picture, indicate the hour and if the user wants, also the location where the violation occurred. The place where the violation occured is taken in an automated manner in case the user does not want to insert it manually. After that the violation will be reported to the municipality that will take action based on the problem.
+	\item \textbf{Request of the list of vehicles that have committed the highest number of violations:}
+	The users and the authorities can make a request and ask what are the vehicles that have committed the highest number of violations. This request (if no exception happen) will have the effect of show a list of license plates to who have made such request. The request can be personalized by express: a maximum number of vehicles that must be exhibited. If the number is not given as input the system will show a fixed number of results.
+	\item \textbf{Get the list of most dangerous streets: }
+	The most dangerous streets are the ones with the highest violations and the can be retrieved specying the maximum number of vehicles that the request has to show. \\
+Who is making the request has also to give the area of the streets he/she wants to analyze. This is done by specifying the GPS coordinates of a fixed point and a maximum distance from that point. In this way, the user specifies a set of streets that he/she wants to analyze. The result of that request will be a map with the most dangerous roads highlighted.
+	\item \textbf{Send a request to obtain suggestions to make the streets safer:}
+	This function is only designed for the municipalities. In this case the municipality has to insert the place where it wants to have suggestions. The system will return a list containing in one side the problem and on the other side a possible solution to overcome it. Obviously, the list is not static but it will be updated over time thanks to the reported violations.
+	\item \textbf{The user send a request to the obtain where to park his/her vehicle:}
+	This function allows the user to explictly ask the system to suggest places where park a vehicle in a secure way. 
+The user must specify what type of vehicle he/she has and how far he/she wants to park from his/her position or from a position given in input. The system will not guarantee the fact that in the proposed place there will be at least one parking lot but it only will suggest which roads are considered as more secure than others to do so.
+	\item \textbf{The user will receive the suggested streets where to park:}
+	After having requested the safest streets where to park the system will provide them to the user in a map form. In this map there will be highlighted the streets considered more secure than the others in the specified area given by the user as input. The procedure in which the area is given to the system as input is identical to the explainations given in the previous points.
+
+\end{itemize}
 \subsection{User characteristics: }
+In this subsection there is a description of the application's users and an analysis of their needs.\\
+\textbf{\\Description of the users of the app:}
+\begin{itemize}
+	\item People.
+	\item Municipalities.
+\end{itemize}
+Here we will talking about the categorization of the people. People that use the app can be divided into the following categories.\\ \\
+TO FINISH
 \subsection{Assumptions, dependencies and constraints: }
 \subsubsection{Domain assumptions: }
 \begin{itemize}
@@ -233,7 +259,9 @@ if the place of the violation is manually entered by the user there exists the p
 \subsubsection{Dependencies: }
 \begin{itemize}
 	\item The system will use the GPS services provided by the smartphones.
-	\item The system will use the internet service offered by the smartphones.
+	\item The system will use the internet services offered by the smartphones.
 \end{itemize}
+
+
 
 \end{document}
