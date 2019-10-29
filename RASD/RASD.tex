@@ -76,8 +76,8 @@ Finally, the users must be able to receive recommendations from the system to av
 					   
 	
 	\end{itemize}
-\item $[goal 7]$: The user must be able to sign in into the safestreets platform.
-\item $[goal 8]$: The user must be able to log-in into the system after having done the sign-in.
+\item $[goal 7]$: The user must be able to sign-up into the safestreets platform.
+\item $[goal 8]$: The user must be able to log-in into the system after having done the sign-up.
 \item $[goal 9]$: The user must be able to log-out of the system if logged-in.
 \end{itemize}
 
@@ -107,7 +107,7 @@ We distinguish the world and the machine. The world is related to every phenomen
 \paragraph{Shared phenomena: }
 \subparagraph{Shared phenomena controlled by the world and observed by the machine: }
 \begin{itemize}
-    \item The user signs-in to the platform.
+    \item The user signs-up into the platform.
     \item The user logs-in to the platform.
     \item The user logs-out from the platform.
  	\item The user sends to the system a picture of a            	violation and all the other data related to it.
@@ -144,7 +144,7 @@ We distinguish the world and the machine. The world is related to every phenomen
 
 \textbf{S2B}	& System to be 	&				 			 \\
 \textbf{GDPR}	& General Data Protection Regulation &	     \\
-\textbf{FC}     & Fiscal Code    		&	 				 \\
+\textbf{FC}     & Fiscal Code    	sign-up	&	 				 \\
 \textbf{WP}     & World Phenomena       &	 				 \\
 \textbf{MP}     & Machine Phenomena     &	 				 \\
 \textbf{SP}     & Shared Phenomena      &     				 \\
@@ -154,7 +154,17 @@ We distinguish the world and the machine. The world is related to every phenomen
 \end{tabular}
 
 \subsubsection{Definitions:}
-da fare durante il progetto.
+\begin{itemize}
+	\item \textbf{Violation =} Any kind of infringement of the highway code. Here we distinguish violations concerning the traffic and violation concerning parking.\\
+	\item \textbf{Personal data =} Data belonging to the user, needed in the moment of the signing-up. They are name, surname, date of birth, e-mail and FC.
+	\item \textbf{S2B =} System to be developed. It will contain all the services provided by SafeStreets.
+	\item \textbf{Private user request =} A user can ask for information about the safety of an area or a parking lot around him/her. He/She can also request data about the most dangerous vehicles in that area.
+	\item \textbf{Report of a violation =} A user can use SafeStreets to report an infringement he has seen. In particular he can add the type of violation, the date and the hour, the street (that can also be retrieved automatically) and he can also add a picture of the violation.
+	\item \textbf{Municipality request =} The municipality can ask for the same things aforementioned for the user. They will receive more accurate information rather than a private user, including for example data about the violators. They can also request suggestions (written by the users) to improve the quality of their service.
+	\item \textbf{Fiscal code =} It's a 16-characters code identifying an Italian citizen.
+	\item \textbf{Credentials =} username and password used by a user to log-in to the system.
+	
+\end{itemize}
 \subsubsection{Abbreviations:}
 
 \begin{itemize}
@@ -180,7 +190,9 @@ da fare durante il progetto.
 \end{itemize}
 
 \subsection{Reference Documents:}
-da fare durante il progetto.
+\begin{itemize}
+	\item RASD Slides by professor Matteo Rossi (Polimi);
+\end{itemize}
 \subsection{Document Structure: }
 This document is organized in the following way:
 \begin{itemize}
@@ -211,7 +223,7 @@ The user would like to know the vehicles that commit the highest number of viola
 In this case the municipality recognizes that in a certain area or street there is a problem with the too high number of violations. In this case the municipality would like to have some suggestions in order to provide a solution to make the number of violations decrease.
 \paragraph{The municipality wants to discover what're the most dangerous zones of the city.}
 The municipality would like to know which are the most dangerous streets in order to monitor them with more attention. This could be useful for the municipality if it wants to improve its service quality.
-\paragraph{The user signs-in to the platform: }
+\paragraph{The user signs-up to the platform: }
 In this case the user compiles all the mandatory fields which are: name,surname,username,e-mail,password and FC. Driving license data are not mandatory because this system is designed for people who use the app also to ride a bike or walk.
 \paragraph{The user logs-in to the platform: }
 The user can log-in to the system by entering username and password.
@@ -279,15 +291,15 @@ It is possible to divide again the private users in other classes. For every cla
 	\item Cyclists.
 \end{itemize}
 A private user can be also a disabled person belonging to the pedestrians category or to the car drivers one. Because of this fact these type of users will require a different type of service and a different concept of dangerousness. For example they will have information about cars parked in a handicap parking or on ramps for disabled people.\\
-All the private users are supposed to have downloaded the app from the store,to have done the sign-in entering all the mandatory data and finally to have accepted all the permissions.\\
+All the private users are supposed to have downloaded the app from the store,to have done the sign-up entering all the mandatory data and finally to have accepted all the permissions.\\
 The private user, according to his category, will take advantage of a different type of service.\\
 A car driver, for example, will have information about parking lots or parking violation, that is not required in a biker service.\\
 A cyclist will have informations about bicycle paths, while pedestrians will have detailed data about sidewalks or pedestrian crossing, with all the possible violations related to them. \\
 
 Furthermore, the application can encounter:
 \begin{itemize}
-	\item Users that have downloaded the app but that haven't already signed-in the system;
-	\item Users that have already signed-in the system but that haven't logged-in yet. Users logged-out from the system belong to this category;
+	\item Users that have downloaded the app but that haven't already signed-up in the system;
+	\item Users that have already signed-up the system but that haven't logged-in yet. Users logged-out from the system belong to this category;
 	\item Users also logged-in the system.\\
 	
 \end{itemize}
