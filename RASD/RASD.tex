@@ -5,6 +5,9 @@
 \usepackage{graphicx}
 \usepackage{graphicx}
 \usepackage{grffile}
+\usepackage{float}
+\usepackage{placeins}
+
 
 
 \author{Luca Massini \and Daniele Nicolò}
@@ -271,6 +274,8 @@ This is the user class diagram:
 	\centering
 	\caption{User class diagram}
 \end{figure}
+\FloatBarrier
+
 
 This is the violation class diagram:
 \begin{figure}[htbp
@@ -279,23 +284,25 @@ This is the violation class diagram:
 	\centering
 	\caption{Violation class diagram}
 \end{figure}
+\FloatBarrier
 
 \subsubsection{State charts: }
 Here you can find a state chart diagram of the system:
 
-\begin{figure}[htbp
+\begin{figure}[h!
 ]
-	\includegraphics[scale=0.3]{State_chart.png}
+    \includegraphics[scale=0.3]{State_chart.png}
 	\centering
 	\caption{System State chart diagram}
 \end{figure}
+\FloatBarrier
 
 
 \subsection{Product functions: }
 In this section there is a description of the main functions that the system will make available to the final user.\\
 These functions are the following:
 \begin{itemize}
-	\item \textbf{Report of a violation:} Safestreets allows the user to report a violation. To do that he/she has to take a picture, indicate the hour and, eventually, the location where the violation occurred. The place where the violation occurred is taken automatically in case the user does not want to insert it himself, using the smartphone GPS signal. After that the violation will be reported to the municipality that will handle the problem.
+	\item \textbf{Report of a violation:} Safestreets allows the user to report a violation. To do that he/she has to take a picture, indicate the hour and, eventually, the location where the violation occurred. The place where the violation occurred is taken automatically in case the user does not want to insert it himself, using the smart-phone GPS signal. After that the violation will be reported to the municipality that will handle the problem.
 	\item \textbf{Request of the list of vehicles that have committed the highest number of violations:}
 	The users and the authorities can make a request and ask what are the vehicles that have committed the highest number of violations. This request (if no exception happen) will show a list of license plates to the user. The request can be personalized by expressing: a maximum number of vehicles that must be showed. If the number is not given as input the system will show a fixed number of results.
 	\item \textbf{Get the list of most dangerous streets: }
@@ -359,15 +366,15 @@ Furthermore, the application can encounter:
 \subsubsection{Constraints: }
 \begin{itemize}
 	\item  The system must treat the users' personal data in according to the GDPR regulation.
-	\item The system will be designed and implemented for smartphones.
+	\item The system will be designed and implemented for smart-phones.
 	\item Since the system uses the fiscal code to identify the user it is supposed that it will be used only in Italy, so the application will have to be available only in the Italian app stores.
 	\item The pictures must be taken only through the app camera and not imported from the device gallery in order to take photos in real time.
 \end{itemize}
 
 \subsubsection{Dependencies: }
 \begin{itemize}
-	\item The system will use the GPS services provided by the smartphones.
-	\item The system will use the internet services offered by the smartphones.\\
+	\item The system will use the GPS services provided by the smart-phones.
+	\item The system will use the internet services offered by the smart-phones.\\
 \end{itemize}
 
 
@@ -386,6 +393,8 @@ Furthermore, the application can encounter:
 	\centering
 	\caption{SafeStreets Logo}
 \end{figure}
+\FloatBarrier
+
 
 	\newpage
 
@@ -396,16 +405,28 @@ Furthermore, the application can encounter:
 	\centering
 	\caption{SafeStreets Loading}
 	\end{figure}
+	\FloatBarrier
+
 		
 		
 	\end{itemize}
 	
+\subsubsection{Hardware Interfaces: }
+The system doesn't offer any kind of hardware interface to the user. In fact the user can use the application simply thanks to his/her phone.
+\subsubsection{Software interfaces: }
+The system offers his service through the use of the following software interfaces:\\ \\
+\textbf{Operating systems:\\ }
+The system will have to be designed for the most common smart-phones operating system: 
 	
-	
-	
-	
+\begin{itemize}
+	\item Android 
+	\item IOS
+\end{itemize}	
+The choice of that decision is the fact that these operating systems are the most common use ones.
 	
 \end{itemize}
+\subsection{Communication interfaces: }
+Each smart-phone that will use Safestreets will communicate thanks to the HTTPS protocol. We've chosen this protocol because thanks to it, it is possible to obtain a secure connection between nodes. Furthermore it is a very very common use protocol for the connections over internet. Because of this it is very probable to not have any problem related to the protocol from several points of view.
 
 \end{document}
 
