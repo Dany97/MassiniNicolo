@@ -1,7 +1,8 @@
 \documentclass[titlepage]{article}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
-\usepackage[italian]{babel}
+\usepackage[english]{babel}
+\usepackage{graphicx}
 
 
 \author{Luca Massini \and Daniele Nicolò}
@@ -119,7 +120,7 @@ We distinguish the world and the machine. The world is related to every phenomen
 \begin{itemize}
 	\item The user receives ,by the system,all the data 			related to the safest and most dangerous streets .
 	\item The user receives, by the system, all the data related to the vehicles that have committed the major number of violations.
-	\item The municipality receives suggestion to provide a better 			safety on the streets.
+	\item The municipality receives suggestions from SafeStreets to provide a better 			safety on the streets.
 	\item The municipality receives the list of the most 			dangerous vehicles .
 	
 \end{itemize}
@@ -130,6 +131,7 @@ We distinguish the world and the machine. The world is related to every phenomen
 	\item The system stores all the data about the violation.
 	\item The system analyses the received picture in order to 	retrieve the car plate.
 	\item The system checks if the street in which the 				violation occur is an existing street.
+	\item The system runs an algorithm to retrieve suggestions from users' reports in order to provide them to the municipality.
 \end{itemize}
 
 \subsection{Definitions, Acronyms, Abbreviations}
@@ -160,7 +162,7 @@ We distinguish the world and the machine. The world is related to every phenomen
 	\item \textbf{S2B =} System to be developed. It will contain all the services provided by SafeStreets.
 	\item \textbf{Private user request =} A user can ask for information about the safety of an area or a parking lot around him/her. He/She can also request data about the most dangerous vehicles in that area.
 	\item \textbf{Report of a violation =} A user can use SafeStreets to report an infringement he has seen. In particular he can add the type of violation, the date and the hour, the street (that can also be retrieved automatically) and he can also add a picture of the violation.
-	\item \textbf{Municipality request =} The municipality can ask for the same things aforementioned for the user. They will receive more accurate information rather than a private user, including for example data about the violators. They can also request suggestions (written by the users) to improve the quality of their service.
+	\item \textbf{Municipality request =} The municipality can ask for the same things aforementioned for the user. They will receive more accurate information rather than a private user, including for example data about the violators. They can also request suggestions (provided by SafeStreets) to improve the quality of their service.
 	\item \textbf{Fiscal code =} It's a 16-characters code identifying an Italian citizen.
 	\item \textbf{Credentials =} username and password used by a user to log-in to the system.
 	
@@ -223,13 +225,10 @@ The user would like to know the vehicles that commit the highest number of viola
 In this case the municipality recognizes that in a certain area or street there is a problem with the too high number of violations. In this case the municipality would like to have some suggestions in order to provide a solution to make the number of violations decrease.
 \paragraph{The municipality wants to discover what're the most dangerous zones of the city.}
 The municipality would like to know which are the most dangerous streets in order to monitor them with more attention. This could be useful for the municipality if it wants to improve its service quality.
-<<<<<<< HEAD
 \paragraph{The user signs-in to the platform: }
 In this case the user compiles all the mandatory fields which are: name,surname,username,password,fiscal code. Driving license data are not mandatory because this system is designed for people who use the app also to ride a bike or walk.
-=======
 \paragraph{The user signs-up to the platform: }
 In this case the user compiles all the mandatory fields which are: name,surname,username,e-mail,password and FC. Driving license data are not mandatory because this system is designed for people who use the app also to ride a bike or walk.
->>>>>>> 6715da023e6d8ae6122afe063a143905a934b86a
 \paragraph{The user logs-in to the platform: }
 The user can log-in to the system by entering username and password.
 \paragraph{The user logs-out from the platform:}
@@ -246,6 +245,8 @@ In this case the authorities would like to understand which are the ones who com
 In this case the user receives all the data about the streets that are considered the most dangerous or the safest. He/She receives a map with the highlighted streets which are at a certain distance from a point specified by the user.
 \paragraph{The user receives from the system all the data related to the vehicles that have committed the major number of violations:}
 In this case the user receives the list of license plates that have committed the highest number of violations. The user receives a number of license plates less than or equal the number he/she has specified as input.
+\paragraph{SafeStreets provides the suggestion in order to give them to the authorities: }
+SafeStreets runs an algorithm to retrieve information and suggestions about the future improvement of the streets safety from the users' reports. These data will be sent to the municipality so that they will be able to use them to enhance the safety.
 \paragraph{The municipality receives suggestions to keep the streets safer: }
 The municipality receives list where each element is composed on one side by the problem and on the other by the suggestion to overcome it.
 \paragraph{The municipality receives the list of the most 			dangerous vehicles: }
@@ -336,9 +337,35 @@ Furthermore, the application can encounter:
 \subsubsection{Dependencies: }
 \begin{itemize}
 	\item The system will use the GPS services provided by the smartphones.
-	\item The system will use the internet services offered by the smartphones.
+	\item The system will use the internet services offered by the smartphones.\\
 \end{itemize}
 
 
 
+\section{Specific Requirements}
+\subsection{External Interface Requirements}
+\subsubsection{User Interfaces}
+\begin{itemize}
+	\item\textbf{SafeStreet Interfaces}
+	\begin{itemize}
+		\item \textbf{SafeStreets Logo:}\\
+		SafeStreets has a simple but explicative logo. It represents a street, because the main theme of the application concerns public roads. It also have a green tick, that represents the correct functioning and the safety of the streets.
+		
+		
+	\end{itemize}
+	
+	\begin{figure}[htbp
+]
+	\includegraphics[scale=0.8]{Mockups/LogoSafeStreets.png}
+	\centering
+	\caption{SafeStreets Logo}
+\end{figure}	
+	
+	
+	
+	
+\end{itemize}
+
 \end{document}
+
+
