@@ -3,6 +3,8 @@
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
 \usepackage{graphicx}
+\usepackage{graphicx}
+\usepackage{grffile}
 
 
 \author{Luca Massini \and Daniele Nicolò}
@@ -261,6 +263,23 @@ The system will store all the information concerning the violation. Such informa
 The system, after having received a picture of the violation, will run an algorithm to recognize the license plate of the vehicle that committed the violation so that it is uniquely identified. The algorithm takes the picture sent by the user as an input and works on it to retrieve the license plate. If it is recognizable from the picture, the system saves the data about it in its database. Otherwise it only keeps the information about the violation.
 \paragraph{The system checks if the street in which the 				violation occur is an existing street: }
 if the place of the violation is manually entered by the user there is the possibility that such place doesn't exist. In this case the system must automatically report an error to the user. Otherwise the system will store the street in the database together with all the other information related to the violation.
+\subsubsection{Class diagrams:}
+This is the user class diagram:
+\begin{figure}[htbp
+]
+	\includegraphics[scale=0.3]{UML users v1.0.png}
+	\centering
+	\caption{User class diagram}
+\end{figure}
+
+This is the violation class diagram:
+\begin{figure}[htbp
+]
+	\includegraphics[scale=0.3]{UML violation v1.1.png}
+	\centering
+	\caption{Violation class diagram}
+\end{figure}
+
 \subsection{Product functions: }
 In this section there is a description of the main functions that the system will make available to the final user.\\
 These functions are the following:
