@@ -137,6 +137,8 @@ We distinguish the world and the machine. The world is related to every phenomen
 	\item The system analyses the received picture in order to 	retrieve the car plate.
 	\item The system checks if the street in which the 				violation occur is an existing street.
 	\item The system runs an algorithm to retrieve suggestions from users' reports in order to provide them to the municipality.
+	\item The system refuse a request by the user because of 
+	insufficient data.
 \end{itemize}
 
 \subsection{Definitions, Acronyms, Abbreviations}
@@ -266,6 +268,10 @@ The system will store all the information concerning the violation. Such informa
 The system, after having received a picture of the violation, will run an algorithm to recognize the license plate of the vehicle that committed the violation so that it is uniquely identified. The algorithm takes the picture sent by the user as an input and works on it to retrieve the license plate. If it is recognizable from the picture, the system saves the data about it in its database. Otherwise it only keeps the information about the violation.
 \paragraph{The system checks if the street in which the 				violation occur is an existing street: }
 if the place of the violation is manually entered by the user there is the possibility that such place doesn't exist. In this case the system must automatically report an error to the user. Otherwise the system will store the street in the database together with all the other information related to the violation.
+\paragraph{The system refuse a request by the user because of 
+	insufficient data:}
+	In the case that the data on the databases in insufficient the system abort and will report the fail to the 
+	user.
 \subsubsection{Class diagrams:}
 This is the user class diagram:
 \begin{figure}[h
@@ -386,7 +392,7 @@ Furthermore, the application can encounter:
 	\item\textbf{SafeStreet Interfaces}
 	\begin{itemize}
 		\item \textbf{SafeStreets Logo:}\\
-		SafeStreets has a simple but explicative logo. It represents a street, because the main theme of the application concerns public roads. It also have a green tick, that represents the correct functioning and the safety of the streets.\\ \\ \\ \\ \\
+		SafeStreets has a simple but explicative logo. It represents a street, because the main theme of the application concerns public roads. It also have a green tick, that represents the correct functioning and the safety of the streets.\\ 
 		
 	\begin{figure}[h]
 	\includegraphics[scale=0.8]{Mockups/LogoSafeStreets.png}
@@ -427,7 +433,8 @@ The choice of that decision is the fact that these operating systems are the mos
 \end{itemize}
 \subsubsection{Communication interfaces: }
 Each smart-phone that will use Safestreets will communicate thanks to the HTTPS protocol. We've chosen this protocol because thanks to it, it is possible to obtain a secure connection between nodes. Furthermore it is a very very common use protocol for the connections over internet. Because of this it is very probable to not have any problem related to the protocol from several points of view.
-
+\subsection{Use case diagrams: }
+In this subsection you will find the use case diagram. It is very important because it allows the reader to understand the flow of events between actors and the system itself.
 \end{document}
 
 
