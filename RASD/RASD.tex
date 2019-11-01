@@ -268,10 +268,6 @@ The system will store all the information concerning the violation. Such informa
 The system, after having received a picture of the violation, will run an algorithm to recognize the license plate of the vehicle that committed the violation so that it is uniquely identified. The algorithm takes the picture sent by the user as an input and works on it to retrieve the license plate. If it is recognizable from the picture, the system saves the data about it in its database. Otherwise it only keeps the information about the violation.
 \paragraph{The system checks if the street in which the 				violation occur is an existing street: }
 if the place of the violation is manually entered by the user there is the possibility that such place doesn't exist. In this case the system must automatically report an error to the user. Otherwise the system will store the street in the database together with all the other information related to the violation.
-\paragraph{The system refuse a request by the user because of 
-	insufficient data:}
-	In the case that the data on the databases in insufficient the system abort and will report the fail to the 
-	user.
 \subsubsection{Class diagrams:}
 This is the user class diagram:
 \begin{figure}[h
@@ -393,15 +389,13 @@ Furthermore, the application can encounter:
 	\item\textbf{SafeStreet Interfaces}
 	\begin{itemize}
 		\item \textbf{SafeStreets Logo:}\\
-		SafeStreets has a simple but explicative logo. It represents a street, because the main theme of the application concerns public roads. It also have a green tick, that represents the correct functioning and the safety of the streets.\\ 
+		SafeStreets has a simple but explicative logo. It represents a street, because the main theme of the application concerns public roads. It also have a green tick, that represents the correct functioning and the safety of the streets.\\ \\ \\ \\ \\
 		
 	\begin{figure}[h]
 	\includegraphics[scale=0.8]{Mockups/LogoSafeStreets.png}
 	\centering
 	\caption{SafeStreets Logo}
 \end{figure}
-\FloatBarrier
-
 
 \FloatBarrier
 \newpage
@@ -655,13 +649,6 @@ The system offers his service through the use of the following software interfac
 The system will have to be designed for the most common smart-phones operating system: 
 	
 =======
-\subsubsection{Hardware Interfaces: }
-The system doesn't offer any kind of hardware interface to the user. In fact the user can use the application simply thanks to his/her phone.
-\subsubsection{Software interfaces: }
-The system offers his service through the use of the following software interfaces:\\ \\
-\textbf{Operating systems:\\ }
-The system will have to be designed for the most common smart-phones operating system: 
-	
 >>>>>>> dd1ff820e9bdcf24cb341ab3a4c04e4222becd10
 \begin{itemize}
 	\item Android 
@@ -675,8 +662,6 @@ Each smart-phone that will use Safestreets will communicate thanks to the HTTPS 
 <<<<<<< HEAD
 
 =======
-\subsection{Use case diagrams: }
-In this subsection you will find the use case diagram. It is very important because it allows the reader to understand the flow of events between actors and the system itself.
 >>>>>>> dd1ff820e9bdcf24cb341ab3a4c04e4222becd10
 \end{document}
 
