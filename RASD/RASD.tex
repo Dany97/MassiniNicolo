@@ -268,10 +268,6 @@ The system will store all the information concerning the violation. Such informa
 The system, after having received a picture of the violation, will run an algorithm to recognize the license plate of the vehicle that committed the violation so that it is uniquely identified. The algorithm takes the picture sent by the user as an input and works on it to retrieve the license plate. If it is recognizable from the picture, the system saves the data about it in its database. Otherwise it only keeps the information about the violation.
 \paragraph{The system checks if the street in which the 				violation occur is an existing street: }
 if the place of the violation is manually entered by the user there is the possibility that such place doesn't exist. In this case the system must automatically report an error to the user. Otherwise the system will store the street in the database together with all the other information related to the violation.
-\paragraph{The system refuse a request by the user because of 
-	insufficient data:}
-	In the case that the data on the databases in insufficient the system abort and will report the fail to the 
-	user.
 \subsubsection{Class diagrams:}
 This is the user class diagram:
 \begin{figure}[h
@@ -383,6 +379,7 @@ Furthermore, the application can encounter:
 	\item The system will use the internet services offered by the smart-phones.\\
 \end{itemize}
 
+\newpage
 
 
 \section{Specific Requirements}
@@ -392,18 +389,20 @@ Furthermore, the application can encounter:
 	\item\textbf{SafeStreet Interfaces}
 	\begin{itemize}
 		\item \textbf{SafeStreets Logo:}\\
-		SafeStreets has a simple but explicative logo. It represents a street, because the main theme of the application concerns public roads. It also have a green tick, that represents the correct functioning and the safety of the streets.\\ 
+		SafeStreets has a simple but explicative logo. It represents a street, because the main theme of the application concerns public roads. It also have a green tick, that represents the correct functioning and the safety of the streets.\\ \\ \\ \\ \\
 		
 	\begin{figure}[h]
 	\includegraphics[scale=0.8]{Mockups/LogoSafeStreets.png}
 	\centering
 	\caption{SafeStreets Logo}
 \end{figure}
+
 \FloatBarrier
+\newpage
 
 
-	\newpage
-
+	
+	
 	\item \textbf{SafeStreets loading page:}\\
 	
 	\begin{figure}[h]
@@ -412,7 +411,232 @@ Furthermore, the application can encounter:
 	\caption{SafeStreets Loading}
 	\end{figure}
 	\FloatBarrier
+<<<<<<< HEAD
+	
+	\newpage
+	
+	\item \textbf{SafeStreets log-in page:}\\
+	This is the page a user sees when he downloads the app and opens it for the first time or when he has done a log-out. In this page there is the possibility to log-in (inserting username and password) or to sign-up. The user can also recover his credential using the funcion below the log-in button. When logged-in, the user will be redirected to the Home Page, that will be different for private users and authorities.
+	\begin{figure}[h]
+	\includegraphics[scale=0.7]{Mockups/log in.png}
+	\centering
+	\caption{SafeStreets Log-in}
+	\end{figure}
+	\FloatBarrier
+	
+	
+	\newpage
+	
+	\item \textbf{SafeStreets sign-up account choice:}\\
+	
+	Here the user can choose the type of account he wants to create. There is the account reserved to the municipality and the one available to a private user. By choosing one or the other, the user will be redirected to the second step of the sign-up.
+	
+	\begin{figure}[h]
+	\includegraphics[scale=0.7]{Mockups/Account choice.png}
+	\centering
+	\caption{SafeStreets Account Choice}
+	\end{figure}
+	\FloatBarrier
+	
+	
+	\newpage
+	
+	\item \textbf{SafeStreets private user sign-up:}\\
+	
+	This is the first part of the private user's  sign-up. Here the user has to put his first name, his last name, the username he will use in SafeStreets (that will also identify him uniquely) and the password, that has to comply the security policy. Then he can continue to the second part of the registration.
+	\begin{figure}[h]
+	\includegraphics[scale=0.8]{Mockups/first sign up.png}
+	\centering
+	\caption{SafeStreets private user sign-up, first part}
+	\end{figure}
+	\FloatBarrier
+	
+	\newpage
+	
+	
+	
+	\item \textbf{SafeStreets private user sign-up (second part):}\\
+	
+	This is the second and last part of the private user's sign-up in the SafeStreets platform. Here the user has to fill the fields with his personal e-mail and his FC. Furthermore he has to choose  which category he belongs to and he can also indicate if this account will be created for a disable person or not. Finally, he has to insert his date of birth and optionally he can add the id of his drive license if he drives a vehicle that needs it. After doing that the sign-up is complete and the user will be redirected to the log-in page.
+	
+	\begin{figure}[h]
+	\includegraphics[scale=0.8]{Mockups/second sign up.png}
+	\centering
+	\caption{SafeStreets private user sign-up, second part}
+	\end{figure}
+	\FloatBarrier
+	
+	\newpage	
+	
+	
+	
+	
+	\item \textbf{SafeStreets municipality sign-up:}\\
+	If the user has chosen the municipality sign-up he will be redirected here. The authorities must indicate the city of their competence and must insert an ID code to prove that they have the authorization to represent the municipality. Then they have to insert a username and a password, in the same way as explained for private users. Then they will be redirected to the log-in page.
+	
+	\begin{figure}[h]
+	\includegraphics[scale=0.8]{Mockups/Municipality sign-up.png}
+	\centering
+	\caption{SafeStreets Municipality sign-up}
+	\end{figure}
+	\FloatBarrier
+	
+	\newpage
+	
+	
+	
+	
+	
+	\item \textbf{SafeStreets Private User's Home Page:}\\
+=======
 
+>>>>>>> dd1ff820e9bdcf24cb341ab3a4c04e4222becd10
+		
+	This is the Home Page reserved to private users. It's a very basic interface, because we want that SafeStreet will be used by as many types of people as possible. Its functions are very easy to understand and they are the possibility to report a violation to the system, the chance to see which are the most reported streets in a selected area, the possibility to see the condition (in terms of safety) of a selected street, parking lot or area and the chance to check which are the vehicles that are reported the most. Finally there is also the log-out button.
+
+	
+	
+	\begin{figure}[h]
+	\includegraphics[scale=0.8]{Mockups/main functionalities.png}
+	\centering
+	\caption{SafeStreets Private Users' Home Page}
+	\end{figure}
+	\FloatBarrier
+	
+	\newpage	
+	
+	
+	\item \textbf{SafeStreets Private User's Home Page:}\\
+
+	This is the first function presented in the Home Page. Here the user can report a violation that he has seen. The first field to fill is the one that allows the user to describe the violation, indicating the type of violation that he has seen (for example motorcycle parking areas occupied by cars, or traffic accidents, and so on). Then he has to indicate the date and the hour of the violation. Furthermore a user has to indicate (manually or with GPS signal) the street and the city of the violation and finally he can take a photograph of the violation (but this is mandatory).
+	
+	\begin{figure}[h]
+	\includegraphics[scale=0.8]{Mockups/Report a violation.png}
+	\centering
+	\caption{SafeStreets Violation Reporting interface}
+	\end{figure}
+	\FloatBarrier
+	
+	\newpage
+	
+	
+	
+	
+	
+	
+	\item \textbf{SafeStreets Most reported streets interface :}\\
+		
+	This interface allows the user to check which are the most reported streets in a city. The city can be inserted manually by the user or retrieved automatically by the system using the GPS signal of the user's smartphone. The user has to specify how many streets the list should be made up. Then he has to submit the request and he will receive the list.
+	
+	
+	\begin{figure}[h]
+	\includegraphics[scale=0.8]{Mockups/Most reported streets.png}
+	\centering
+	\caption{SafeStreets Most reported streets interface}
+	\end{figure}
+	\FloatBarrier
+	
+	\newpage		
+	
+	
+	
+
+	
+	
+	\item \textbf{SafeStreets safest streets interface :}\\
+		
+	Here the user can check which is the condition of a selected street. He can specify the street manually, inserting its name and the name of the city. The street can also be retrieved automatically by the system with the GPS signal of the user's smartphone. Then the user has to insert a radius (expressed in KM) within which the system will provide the condition of the contained streets, highlighting the safest and the most dangerous ones.
+	\begin{figure}[h]
+	\includegraphics[scale=0.8]{Mockups/safest streets.png}
+	\centering
+	\caption{SafeStreets safest streets interface}
+	\end{figure}
+	\FloatBarrier
+	
+<<<<<<< HEAD
+	\newpage		
+	
+	
+	
+	
+	\item \textbf{SafeStreets safest parking areas :}\\
+		
+	The user can use this functionality to find the safest place where to park his vehicle. He has to specify his position, that can be done manually (inserting the name of the city and the street) or, as in the other functionalities, automatically (using the GPS signal of the smartphone). Then the user has to insert the maximum distance (expressed in kilometres) from the selected position to which he is willing to get. After have inserted all the needed information, the user will see the safest parking area where to go, highlighted differently from the less safe ones.
+	\begin{figure}[h]
+	\includegraphics[scale=0.8]{Mockups/Park safely.png}
+	\centering
+	\caption{SafeStreets safest parking area interface}
+	\end{figure}
+	\FloatBarrier
+	
+	\newpage
+	
+	
+	
+	
+	
+	\item \textbf{SafeStreets Most dangerous vehicles :}\\
+	
+	Here the user can check which are the most reported vehicles in a selected street. The street can be inserted as in the previous functionalities, manually or automatically and it's also mandatory to indicate the maximum number of vehicles that will make up the chart. Then the user will have the list of the selected vehicles so that, for example, he will avoid to park near them, and so on.	
+	
+	\begin{figure}[h]
+	\includegraphics[scale=0.8]{Mockups/Vehicles major violations.png}
+	\centering
+	\caption{SafeStreets Most dangerous vehicles}
+	\end{figure}
+	\FloatBarrier
+	
+	\newpage
+	
+	
+	
+	
+	
+	\item \textbf{SafeStreets Municipality Home Page :}\\
+	
+	This is the Home Page reserved to the authorities. Here the municipality has the possibility to choose between four functionalities:
+	three are structured in the same way of the ones designed for the private users, and are the possibility to check the most reported streets and  the most reported vehicles in the city. The interfaces for the requests are the same than the ones for the users. The municipality also has the possibility to do a request to obtain suggestions in order to improve the quality of their service and, so, the safety of the city. 
+	
+	\begin{figure}[h]
+	\includegraphics[scale=0.8]{Mockups/Municipality main functionalities.png}
+	\centering
+	\caption{SafeStreets Municipality Home Page}
+	\end{figure}
+	\FloatBarrier
+	
+	\newpage
+	
+	
+	
+	
+	
+	\item \textbf{SafeStreets Municipality suggestions request :}\\
+	
+	Here the municipality can make a request in order to discover which are the suggestions provided by SafeStreets to enhance the safety of the city. The authorities have to insert the name of the city, or providing it using the GPS signal of their device.
+	
+	\begin{figure}[h]
+	\includegraphics[scale=0.8]{Mockups/Request for safety improvements.png}
+	\centering
+	\caption{SafeStreets Municipality Suggestions Request}
+	\end{figure}
+	\FloatBarrier
+	
+	\newpage
+	
+	
+	
+	After having submitted the information, the municipality will receive the suggestions provided by SafeStreets concerning the indicated city. The data is retrieved by SafeStreets mining the information received by the users with their reports.
+	
+	
+	\begin{figure}[h]
+	\includegraphics[scale=0.95]{Mockups/List of suggestions.png}
+	\centering
+	\caption{SafeStreets Municipality Suggestions List}
+	\end{figure}
+	\FloatBarrier
+	
+	\newpage
+	
 		
 		
 	\end{itemize}
@@ -424,6 +648,8 @@ The system offers his service through the use of the following software interfac
 \textbf{Operating systems:\\ }
 The system will have to be designed for the most common smart-phones operating system: 
 	
+=======
+>>>>>>> dd1ff820e9bdcf24cb341ab3a4c04e4222becd10
 \begin{itemize}
 	\item Android 
 	\item IOS
@@ -433,6 +659,7 @@ The choice of that decision is the fact that these operating systems are the mos
 \end{itemize}
 \subsubsection{Communication interfaces: }
 Each smart-phone that will use Safestreets will communicate thanks to the HTTPS protocol. We've chosen this protocol because thanks to it, it is possible to obtain a secure connection between nodes. Furthermore it is a very very common use protocol for the connections over internet. Because of this it is very probable to not have any problem related to the protocol from several points of view.
+<<<<<<< HEAD
 \subsection{Functional Requirements:}
 \subsubsection{Use case diagrams: }
 In this subsection you will find the use case diagram. It is very important because it allows the reader to understand the flow of events between actors and the system itself. We have done two different use case diagrams to make them more explanatory and less confusing.
@@ -460,6 +687,12 @@ Thanks to this mobile application he is now able to save time in reporting viola
 \paragraph{Scenario 2:}Giovanni lives very close to the place where he works but he usually goes to work by car even if he would like to go there by bicycle. The problem is that the zone is very traffic and unfortunately accidents involving cyclists happen very often. Because of this, he does not feel like taking the risk.
 
 
+=======
+<<<<<<< HEAD
+
+=======
+>>>>>>> dd1ff820e9bdcf24cb341ab3a4c04e4222becd10
+>>>>>>> 3e1dda4feea82038b8ddf5e888828f619d1b4fda
 \end{document}
 
 
