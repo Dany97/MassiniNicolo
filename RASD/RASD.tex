@@ -32,12 +32,13 @@ It has to represent how the application can be useful for the users that will us
 SafeStreets is a software useful to help people to be safer when they are on the street.\\
 The users can send to the municipality pictures of violation occurring in public streets: the reporting can concern violation on the road, in a parking and so on.\\
 The software allows the users to send detailed information about the violation, such as the hour, the date, the type of violation and the position (they can be captured with GPS).\\
-Furthermore, the service can provide, both to the user and to the municipality,information about the streets in which the user is around,
+Furthermore, the service can provide to the user information about the streets in which he/she is around,
 such as the number of violations per street and consequently the level of danger of the street.\\
 In addition, the user can have a different service based on the category to which he/she belongs.\\
 The user and the municipality can also find on the application the most “dangerous” vehicles, that are the ones with the highest number of reports from the users.\\
-The service must be different in base of the type of user, such  authorities, motorists, motorcyclists, bikers, pedestrians, disabled people, etc, so it must be easy to use.\\
+The service must be different in base of the type of user, such as municipalities, motorists, motorcyclists, bikers, pedestrians, disabled people etc.//
 Finally, the users must be able to receive recommendations from the system to avoid using streets, parking lots that are risky in general or at a specific hour or date.\\
+The authorities will be informed of the violations through the municipality.
 
 \subsubsection{Goals:}
 \begin{itemize}
@@ -49,42 +50,39 @@ Finally, the users must be able to receive recommendations from the system to av
 	\item $[goal 1.2]$: The user can specify the date and the 						hour when the violation has happened 							and the type of violation.
 	
 
-	\item $[goal 1.3 ]$: The municipality must be able to     	receive the reports  \\
+	\item $[goal 1.3 ]$: The municipality must be able to     	receive the reports.  \\
 	
 \end{itemize}
 
 \item $[goal 2]$: The service allows the users to have detailed information about the violations and the street safety.
       \begin{itemize}
-      	\item $[goal 2.1]$: The users can know which are the 			most reported streets, areas or parking.
+      	\item $[goal 2.1]$: The users can know which are the 			most reported streets, areas or parking lots.
       	
       	\item $[goal 2.2]$: The users can see which are the 				vehicles that commit the highest number
-		of traffic violations.
+		of traffic/parking violations.
 		
-		\item $[goal 2.3]$: The user, in base of his/her 				position, can be recommended to use the safest 					streets/areas, etc or avoid the dangerous ones, that 			are highlighted in different ways on the map.\\
+		\item $[goal 2.3]$: The user, in base of his/her 				position, can be recommended to use the safest 					streets/areas, etc or avoid the dangerous ones.\\
 
       \end{itemize}
-\item $[goal 3]$: The service offers different types of 						  interfaces and accessibility in according 					  to the type of user (biker, pedestrian, 						  rider, driver, disabled person).
+\item $[goal 3]$: The service offers a different service according 					  to the type of user (biker, pedestrian, 						  rider, driver, disabled person).
 	\begin{itemize}
-	\item $[goal 3.1]$: The user that want to park his/her  							car/motorbike can receive a                           						suggestion of where to do it 
-						based on the safest streets around 								him/her.\\
+	\item $[goal 3.1]$: The user that want to park his/her  							car/motorbike/bicycle can receive a                           						suggestion in order to park it in the safest area.\\
 	\end{itemize}
 
 
-\item $[goal 4]$: A user can specify the category to which 						  he/she belongs (motorcyclist, biker, 							  pedestrian, car driver, disabled person) in 				  order to improve the service quality.\\
 
-\item $[goal 5]$: A driver or a motorcyclist can add to his 					  personal profile the license plate of his 					  vehicle.\\
+\item $[goal 4]$: A driver or a motorcyclist can add to his 					  personal profile the driving license.\\
 
-\item $[goal 6]$: Safestreets can send to the municipality 						  suggestions of what to do in order to 						  improve the safety on the streets for every 
-				  type of Safestreets user.
+\item $[goal 5]$: Safestreets can send to the municipality 						  suggestions to improve the safety of the 					      streets for every type of person.
 	\begin{itemize}
-	\item $[goal 6.1]$: The municipality must receive every 
+	\item $[goal 5.1]$: The municipality must receive every 
 					    suggestion sent by Safestreets.\\
 					   
 	
 	\end{itemize}
-\item $[goal 7]$: The user must be able to sign-up into the safestreets platform.
-\item $[goal 8]$: The user must be able to log-in into the system after having done the sign-up.
-\item $[goal 9]$: The user must be able to log-out of the system if logged-in.
+\item $[goal 6]$: The user (both private user and the municipality) must be able to sign-up into the Safestreets platform.
+\item $[goal 7]$: The user (both private user and the municipality) must be able to log-in into the system after having done the sign-up.
+\item $[goal 8]$: The user (both private user and the municipality) must be able to log-out of the system if logged-in.
 \end{itemize}
 
 \subsection{Scope:}
@@ -95,7 +93,7 @@ We distinguish the world and the machine. The world is related to every phenomen
 \subparagraph{From the user point of view: }
 \begin{itemize}	
 	\item The user sees one or more violations.
-	\item The user wants to report a violation to the 					  municipality.
+	\item The user wants to report a violation to the 					  authorities.
 	\item The user wants to know the area/streets where the 
 	     major violations occur.
 	\item The user wants to know where is safer to park his/			  her car/bike/motorcycle.
@@ -684,15 +682,26 @@ Use case diagrams are very important because they allow the reader to understand
 \end{center}
 
 \paragraph{Scenario 1:}Luigi is a middle-aged man who lives in a very busy area of Milan. This district is very known to be a zone with a strong lack of parking. People usually park their vehicles in illegal zones.
-Because of this, he has found  cars parked in front of his home gate several times. He has called the municipality many times and now he is fed up about this situation. He usually calls the municipality with his phone but this process takes a lot of time because the telephone line is always busy. He would like the authorities to have a better communication channel.\\Luckily he has downloaded an application called Safestreets. He has read in the description the fact that the application allows a user to report a violation via smart-phone.\\
-Thanks to this mobile application he is now able to save time in reporting violations. Furthermore, he has observed that  the municipality has started to check more frequently even without any report (because of the Safestreets suggestions to the municipality).
+Because of this, he has found  cars parked in front of his home gate several times. He has called the municipality and the authorities many times and now he is fed up about this situation. He usually calls the authorities with his phone but this process takes a lot of time because the telephone line is always busy. He would like the authorities to have a better communication channel.\\Luckily he has downloaded an application called Safestreets. He has read in the description the fact that the application allows a user to report a violation via smart-phone.\\
+Thanks to this mobile application he is now able to save time in reporting violations. Furthermore, he has observed that  the authorities have started to check more frequently even without any report (because of the Safestreets suggestions to the municipality that have suggested to authorities to check more frequently).
 \paragraph{Scenario 2:}Giovanni lives very close to the place where he works but he usually goes to work by car even if he would like to go there by bicycle. The problem is that the zone is very busy and unfortunately accidents involving cyclists happen very often. Because of this, he does not feel like taking the risk.
 He notices an interesting application on the market called Safestreets. He is particularly interested in the function which suggest the safest streets around the user from a point of view of the category in which the user has signed-up. This interest is caused by the idea of ​​being able to choose a route that minimizes the danger of making an accident against a car taking in consideration the suggested streets given by the application.\\
 Now, he is finally able to go to work by bicycle in a secure way.
 \paragraph{Scenario 3:}Andrea is a disabled person who strolls very often in his district. Unfortunately not all the roads are equipped with facilities for disabled people and also a lot of people park their cars there.\\
-He has downloaded the application which suggest him the streets which are the most secure to be travelled for a person with his problem. The app allows Andrea to avoid roads where it is more probable to have cars parked on disabled facilities. He can compute himself the route from a place to another taking in consideration the suggestions given by the application. When he sees a violation he can report it to the municipality. Thanks to this feature Andrea is able to report violations, to do his strolls in the city almost in an autonomous way.
+He has downloaded the application which suggest him the streets which are the most secure to be travelled for a person with his problem. The app allows Andrea to avoid roads where it is more probable to have cars parked on disabled facilities. He can compute himself the route from a place to another taking in consideration the suggestions given by the application. When he sees a violation he can report it to the authorities. Thanks to this feature Andrea is able to report violations, to do his strolls in the city almost in an autonomous way.
 \paragraph{Scenario 4:} An employee of an insurance has the task of understanding which are the most dangerous areas of Milan in order to change the price of insurance. He does not know where to find the data necessary to do this task.Furthermore it has just been decided by the boss that funding a research would be too costly.\\
-Fortunately the insurance company has just downloaded the Safestreets applications which can be used to retrieve dangerous areas. Thanks to Safestreets the company saved a lot of money by doing a free data search.
+Fortunately the insurance company has just downloaded the Safestreets applications which can be used to retrieve dangerous areas. Thanks to Safestreets the company saved a lot of money by doing a free data search.\newpage
+\begin{center}
+	\textbf{From the municipality point of view:}
+\end{center}
+\paragraph{Scenario 5:} The municipality of Milan is worried about the safety of the streets in a particular zone. The zone that we are considering is full of pedestrian crossings and unfortunately a lot of cars break  the speed limit constantly making the street very dangerous for pedestrians. The municipality to improve the safety taking in consideration various projects.\\
+It has recently discovered that there exist the application Safestreets that helps the municipalities to do changes in the streets to improve the safety. The municipality has taken in account the suggestions and it has noticed that the projects now have improved and become more detailed.
+
+\begin{center}
+	\textbf{From the authorities point of view :}
+\end{center}
+
+\paragraph{Scenario 6:} The authorities 
 
 \end{document}
 
