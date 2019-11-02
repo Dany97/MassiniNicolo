@@ -369,7 +369,7 @@ Furthermore, the application can encounter:
 	\item $[\textbf{D5}]$: The memory where the data is stored is persistent.
 	\item$[\textbf{D6}]$: The user allows the app to have access to his/her position and the camera of his/her device.
 	\item $[\textbf{D7}]$: The internet connection has to be enabled when the app needs it.
-	\item $[\textbf{D8}]$; The municipalities will provide the reports (sent by the users) to the authorities automatically.
+	\item $[\textbf{D8}]$; The municipality must provide the reports (sent by the users) to the authorities automatically.
 	
 \end{itemize}
 \subsubsection{Constraints: }
@@ -703,9 +703,31 @@ Fortunately the insurance company has just downloaded the Safestreets applicatio
 It has recently discovered that there exist the application Safestreets that helps the municipalities to do changes in the streets to improve the safety. The municipality has taken in account the suggestions and it has noticed that the projects now have improved and become more detailed.
 \subsubsection{Goal mapping on requirements:}
 \begin{itemize}
- \item $[G1]:$ to update
+ \item $[G1]:$ The service allows the users to report a violation to the municipality:
  \begin{itemize}
- 	\item 
+ 	\item $[R1]:$ The system must allow the user to take a picture.
+ 	\item $[R2]:$ The system must allow the user to indicate the place where the violation occurred.
+ 	\item $[R3]:$ The system must allow the user to indicate the hour when the violation occurred.
+ 	\item $[R4]:$ The system must allow the user to insert a brief description of the violation.
+ 	\item $[R5]:$ The system must allow the user to insert the date when the violation occurred.
+ 	\item $[R6]:$ The system can localize his position automatically as alternative to the manual insertion.
+ 	\item $[R7]:$ The system must allow the user to finally submit the report.
+ 	\item $[R8]:$ The system must run an algorithm to retrieve the license plate from the violation picture.
+ 	\item $[D4]:$ The GPS signal has a relative error of 10 meters.
+ 	\item $[D6]:$ The user allows the application to have access to his/her position and to the camera of his/her device.
+ 	\item $[D7]:$ The internet connection has to be enabled when the app needs it.
+ 	\item $[D8]:$ The municipality must provide the reports (sent by the users) to the authorities automatically.
+ 	
+ \end{itemize}
+ \item $[G2]:$ The service allows the users to have detailed informations about the violations and the streets safety.
+ \begin{itemize}
+ 	\item $[R9]:$ The system must allow the user to insert the street around which he wants to check the safety.
+ 	\item $[R10]:$ The system must be able to localize the smartphone.
+ 	\item $[R11]:$ The system must allow the user to insert the city in which the violation occurred.
+ 	\item $[R12]:$ The system must allow the user to insert a number representing the radius within which the system must provide the condition of the streets.
+ 	\item $[R13]:$ The system must report the  safest streets in a map form. These streets must be highlighted on the map.
+ 	\item $[D4]:$ The GPS signal has a relative error of 10 meters.
+ 	\item $[D7]:$ The internet connection has to be enabled when the app needs it.
  \end{itemize}
 \end{itemize}
 
