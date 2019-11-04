@@ -1,98 +1,77 @@
-// this is the abstract general Category
-abstract sig Category{}
-
-//all the possible categories of user that extends Category
-sig CarDriver extends Category{}
-sig MotorCyclist extends Category{}
-sig Pedestrian extends Category{}
-sig Cyclist extends Category{}
-
-
-abstract sig bool{}
-
-one sig NotDisabled extends bool{}
-one sig Disabled extends bool{}
-
-sig string{}
+// signatures for the fields of the users of the application
+sig Date{}
+sig Name{}
+sig Surname{}
+sig Username{}
+sig Password{}
 sig fc{}
 sig Email{}
-sig date{}
+sig Drivelicense{}
+abstract sig boolDisabled{}
+sig Disabled extends boolDisabled{}
+sig Notdisabled extends boolDisabled{} 
 
-// this is the accout of a single user
-sig privateUser{
-	name: one string,
-	surname: one string,
-	username:one string,
-	password:one  string,
-	cardriverChoice:lone  CarDriver,
-	motorcyclistChoice: lone MotorCyclist,
-	pedestrianChoice: lone Pedestrian,
-	cyclistChoice:lone Cyclist,
-	emailChoice:one  Email,
-	fiscalcode:one  fc,
-	dateofBirth: one date,
-	drivelicensecode: lone string,
-	disabledChoice:one  bool
-}{
-	name!=none and surname!=none and username!=none and password!=none and 
-	cyclistChoice!=none  and emailChoice!=none and fiscalcode!=none and 	dateofBirth!=none and
-	disabledChoice !=none and motorcyclistChoice!=none and cardriverChoice!=none and pedestrianChoice!=none
-	and cyclistChoice!=none
+//this is the signature of the private user. It is abstract
+abstract sig privateUser{
+	name:one Name,
+	surname:one  Surname,
+	username:one Username,
+	password:one  Password,
+	fiscalcode:one fc,
+	email:one  Email,
+	dateofbirth: one Date
 }
 
-/*Here we want to ensure that every possible string in our system is a field of at least on user account*/
-fact everyStringLikenToUser{
-	(all s:string |(some u:privateUser |u.name=s or u.surname=s or u.username=s
-	or u.password=s))
+sig cardriver extends privateUser{
+	disabledChoice:one boolDisabled,
+	license:one Drivelicense
 }
 
-
-/*Here we want to ensure that every possible category instance is related to at leat one user*/
-fact allCtegoriesLinkedToUser{
-	(all c:CarDriver |(some u:privateUser |u.cardriverChoice=c ))and
-	(all m:MotorCyclist |(some u:privateUser |u.motorcyclistChoice=m ))and
-	(all p:Pedestrian |(some u:privateUser |u.pedestrianChoice=p )) and
-	(all c:Cyclist |(some u:privateUser |u.cyclistChoice=c ))
+sig pedestrian extends privateUser{
+	disabledChoice:one boolDisabled
 }
 
-/*Here we want to ensure that each fc instance will be linked to one user*/
-fact allFcLinkedToUser{
-	(all f:fc |(some u:privateUser |u.fiscalcode=f )) 
+sig motorcyclist extends privateUser{
+		license: one Drivelicense
 }
 
-/*here we want to ensure that every email instance in the model will be linked to at least one user*/
-fact allEmailLinkedToUser{
-	(all e:Email |(some u:privateUser |u.emailChoice=e )) 
+sig cyclist extends privateUser{}
+
+/* here wa want to ensure that an email identifies a user in an unique way. It is also like this for the 
+fiscal code  and the username*/
+fact userIdentifiers{
+   (no disj u1,u2:privateUser | u1.email=u2.email or u1.fiscalcode=u2.fiscalcode
+	or  u1.username=u2.username)
 }
 
-/*here we want to ensure that every possible date will be linked to at least one user*/
-fact allTheDataLinkedToUser{
-		(all d:date|(some u:privateUser |u.dateofBirth=d )) 
+// we ensure that the driving license can uniquely identify a motorcyclist or a carDriver
+fact uniqueDrivingLicense{
+	(no disj u1,u2:cardriver | u1.license=u2.license) and
+	(no disj u3,u4:motorcyclist | u3.license=u4.license) and
+    (no u5:cardriver,u6:motorcyclist | u5.license=u6.license)
 }
 
-/*Here we want to ensure that every category which can be disable or not is linked to at least one user*/
-fact disableChoicesLinkedToUser{
-	(all n:NotDisabled|(some u:privateUser |u.disabledChoice=n))and
-	(all d:Disabled|(some u:privateUser |u.disabledChoice=d )) 
+/*Here we want to ensure that every instance of Name,Surname,Username,Password,fc,Email,Date,
+Drivinglicense will be linked to at least one user.*/
+fact everythingLinkedToUser{
+	(all n:Name|(some u1:privateUser| u1.name=n))and
+	(all su: Surname|(some u2:privateUser| u2.surname=su)) and
+	(all us: Username|(some u3:privateUser |u3.username=us))and
+	(all pa: Password|(some u4:privateUser | u4.password=pa)) and
+	(all f: fc|(some u5:privateUser |u5.fiscalcode =f)) and
+	(all em: Email|(some u6:privateUser |u6.email=em ))and
+	(all d: Date|(some u7:privateUser | u7.dateofbirth=d)) and
+	(all dr:Drivelicense|(some m:motorcyclist,c:cardriver|m.license=dr or c.license=dr))
 }
 
-// ensure that 2 different account can't have the same username
-fact notSameUserNames{
-	no disj u1,u2:privateUser|u1.username=u2.username
+fact DisabledInstancesLinkedToUser{
+	(all d:Disabled|(some c:cardriver,p:pedestrian|c.disabledChoice=d or p.disabledChoice=d ))and
+	(all nd:Notdisabled|(some c1:cardriver,p1:pedestrian|c1.disabledChoice=nd 
+	or p1.disabledChoice=nd ))
 }
 
-
-// ensure that there are no account with the same fiscal code.
-fact notSameFiscalCode{
-	no disj u1,u2:privateUser | u1.fiscalcode=u2.fiscalcode
-}
-
-// ensure that there are not accounts with the same email.
-fact notSameMail{
-	no disj u1,u2: privateUser | u1.emailChoice=u2.emailChoice
-}
 
 pred show{}
 
-run show for 10
-	
+run show for 10 but 2 privateUser
+
