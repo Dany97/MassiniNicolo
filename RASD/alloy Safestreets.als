@@ -60,18 +60,20 @@ fact everythingLinkedToUser{
 	(all pa: Password|(some u4:privateUser | u4.password=pa)) and
 	(all f: fc|(some u5:privateUser |u5.fiscalcode =f)) and
 	(all em: Email|(some u6:privateUser |u6.email=em ))and
-	(all d: Date|(some u7:privateUser | u7.dateofbirth=d)) and
-	(all dr:Drivelicense|(some m:motorcyclist,c:cardriver|m.license=dr or c.license=dr))
+	(all d: Date|(some u7:privateUser | u7.dateofbirth=d)) 
 }
 
 fact DisabledInstancesLinkedToUser{
-	(all d:Disabled|(some c:cardriver,p:pedestrian|c.disabledChoice=d or p.disabledChoice=d ))and
-	(all nd:Notdisabled|(some c1:cardriver,p1:pedestrian|c1.disabledChoice=nd 
-	or p1.disabledChoice=nd ))
+	(all b:boolDisabled |(some c1:cardriver| c1.disabledChoice = b ))or
+	(all b1:boolDisabled |(some p1:pedestrian| p1.disabledChoice = b1 ))
 }
 
+fact drivingLicenseLinkedToUser{
+	((all dr:Drivelicense|(some m:motorcyclist|m.license=dr)) or
+	(all dr1:Drivelicense|(some cd:cardriver|cd.license=dr1)))
+}
 
 pred show{}
 
-run show for 10 but 2 privateUser
+run show for 10 but 1 privateUser
 
