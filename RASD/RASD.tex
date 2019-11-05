@@ -7,6 +7,7 @@
 \usepackage{grffile}
 \usepackage{float}
 \usepackage{placeins}
+\usepackage{longtable}
 
 
 
@@ -81,8 +82,8 @@ The authorities will be informed of the violations through the municipality.
 	
 	\end{itemize}
 \item $[goal 6]$: The user (both private user and the municipality) must be able to sign-up into the Safestreets platform.
-\item $[goal 7]$: The user (both private user and the municipality) must be able to log-in into the system after having done the sign-up.
-\item $[goal 8]$: The user (both private user and the municipality) must be able to log-out of the system if logged-in.
+\item $[goal 7]$: The user (both private user and the municipality) must be able to log-in to the system after having done the sign-up.
+\item $[goal 8]$: The user (both private user and the municipality) must be able to log-out from the system if logged-in.
 \end{itemize}
 
 \subsection{Scope:}
@@ -151,7 +152,7 @@ We distinguish the world and the machine. The world is related to every phenomen
 
 \textbf{S2B}	& System to be 	&				 			 \\
 \textbf{GDPR}	& General Data Protection Regulation &	     \\
-\textbf{FC}     & Fiscal Code    	sign-up	&	 				 \\
+\textbf{FC}     & Fiscal Code    	&	 				 \\
 \textbf{WP}     & World Phenomena       &	 				 \\
 \textbf{MP}     & Machine Phenomena     &	 				 \\
 \textbf{SP}     & Shared Phenomena      &     				 \\
@@ -701,6 +702,482 @@ Fortunately the insurance company has just downloaded the Safestreets applicatio
 \end{center}
 \paragraph{Scenario 5:} The municipality of Milan is worried about the safety of the streets in a particular zone. The zone that we are considering is full of pedestrian crossings and unfortunately a lot of cars break  the speed limit constantly making the street very dangerous for pedestrians. The municipality to improve the safety taking in consideration various projects.\\
 It has recently discovered that there exist the application Safestreets that helps the municipalities to do changes in the streets to improve the safety. The municipality has taken in account the suggestions and it has noticed that the projects now have improved and become more detailed.
+
+\subsubsection{Use Cases}
+
+\begin{longtable}{| p{3 cm} | p{10 cm} |} 
+\hline
+
+
+
+\textbf{ID code}   & Use Case 1\\ \hline
+\textbf{Name}	& Private user sign-up \\ \hline
+\textbf{Actor}     & Private user	 \\ \hline
+\textbf{Preconditions} & 
+\begin{itemize}
+	\item The private user has downloaded SafeStreets on his device. 
+	\item The private user has not already created an account on SafeStreets.
+\end{itemize} 
+     \\ \hline
+     
+\textbf{Events flow} & 
+\begin{enumerate}
+	\item The private user opens Safestreets;
+	\item The system shows the private user the log-in page;
+	\item The private user selects sign-up;
+	\item The system asks the user to choose between private account and municipality account;
+	\item The private user chooses private account;
+	\item The system shows the user the first page of the private account registration;
+	\item The private user inserts his name;
+	\item The private user inserts his surname;
+	\item The private user inserts a username;
+	\item The private user inserts a password;
+	\item The private user submits his data;
+	\item The system checks the correctness of this first part of the sign-up;
+	\item The system shows the user the second part of the registration;
+	\item The user inserts his personal e-mail;
+	\item The user inserts his FC;
+	\item The user indicates his category;
+	\item The user indicates if the account will be used by a disabled person;
+	\item If he is a car driver or a motorcyclist, the user can insert his driving license;
+	\item The user inserts his birth date;
+	\item The user submits these other data;
+	\item The system checks the new data;
+	\item The system sends the user an e-mail to confirm the registration;
+	\item The user confirms the sign-up;
+\end{enumerate} \\ \hline
+\textbf{Postconditions} & 
+\begin{itemize}
+\item The system stores the private user's account data in its database;
+\item The user has a personal account and can do the log-in, accessing the functionalities of SafeStreets.
+\end{itemize} \\ \hline
+
+\textbf{Exceptions} & 
+\begin{itemize}
+	\item The private user inserts an email that is already associated to an account;
+	\item The private user inputs a password that isn't valid because it doesn't comply the security policy;
+	\item The private user inserts a FC already associated to an account.;
+	\item The private user inserts personal data that don't match with the FC;
+	\item The user doesn't specify his category;
+\end{itemize} 
+							
+For all these exceptions: The system shows the user an error message and the events restart from the first page of private user registration (Event 6).
+
+
+\begin{itemize}
+\item The user selects the login button inserting not existing credentials.
+\end{itemize} 
+The system shows the user an error message and the user will be redirected in the log-in page (Event 2).
+
+\\ \hline
+							
+
+\end{longtable}
+
+\newpage
+
+\begin{longtable}{| p{3 cm} | p{10 cm} |} 
+\hline
+
+\textbf{ID code} & Use Case 2 \\ \hline
+\textbf{Name} & Municipality sign-up \\ \hline
+\textbf{Actor} & Municipality \\ \hline
+\textbf{Precondition} & 
+\begin{itemize}
+\item The municipality has downloaded Safestreet on a smartphone.
+\item The municipality doesn't already have an account on SafeStreets.
+\end{itemize} \\ \hline
+\textbf{Events flow} &
+\begin{enumerate}
+\item The municipality opens SafeStreets;
+\item The system shows the municipality the log-in page;
+\item The municipality selects sign-up;
+\item The system asks the municipality to choose between private account and municipality account;
+\item The municipality chooses municipality account;
+\item The system shows the municipality the account registration page;
+\item The municipality inserts the city of its competence;
+\item The municipality inserts its unique ID code;
+\item The municipality inserts a username;
+\item The municipality inserts a password;
+\item The municipality submits its data;
+\item The system checks the correctness of the data inserted by the municipality;
+\item The system automatically confirms the registration.
+\end{enumerate} \\ \hline
+\textbf{Postconditions} &
+\begin{itemize}
+\item The system stores the data about the new municipality account on its database;
+\item The municipality now has an account and can log-in, accessing the municipality functionalities of SafeStreets.
+\end{itemize} \\ \hline
+
+
+\textbf{Exceptions} & 
+\begin{itemize}
+	\item The municipality inserts a password that isn't valid because it doesn't comply the security policy;
+	\item The municipality inserts an ID code already associated to an account;
+	\item The municipality inserts a wrong ID code;
+	
+	\item The municipality inserts a city that has already an account associated to it;
+\end{itemize} 
+	
+							
+For all these exceptions: The system shows the user an error message and the events restart from the municipality registration page (Event 6).
+
+
+\begin{itemize}
+\item The municipality selects the login button inserting not existing credentials.
+\end{itemize} 
+The system shows the user an error message and the user will be redirected in the log-in page (Event 2).
+\\ \hline
+
+\end{longtable}
+
+\newpage
+
+\begin{longtable}{| p{3 cm} | p{10 cm} |} 
+\hline
+
+
+\textbf{ID code} & Use Case 3 \\ \hline
+\textbf{Name} & Log-in \\ \hline
+\textbf{Actor} & User (private or municipality) \\ \hline
+\textbf{Precondition} & 
+\begin{itemize}
+\item The user has downloaded the application;
+\item The user has already done the sign-up.
+\end{itemize} \\ \hline
+
+\textbf{Events flow} & 
+\begin{enumerate}
+\item The user opens SafeStreets;
+\item The system shows the user the log-in page
+\item The user fills the form inserting his personal credentials;
+\item The user submits the credentials tapping on the log-in button;
+\item The system checks the correctness of the credentials.
+\end{enumerate} \\ \hline
+
+\textbf{Postconditions} & 
+\begin{itemize}
+\item The user is logged-in, so he is redirected to the Home Page and is able to use SafeStreets with its functionalities, that are different for private and municipality accounts. 
+\end{itemize} \\ \hline
+
+\textbf{Exceptions} &
+\begin{itemize}
+\item The user inserts wrong or not existing credentials;
+\end{itemize}
+The system sends notifies the user with an error message and redirects him to the log-in page (Event 2).
+\\ \hline
+
+\end{longtable}
+
+\newpage
+
+
+\begin{longtable}{| p{3 cm} | p{10 cm} |} 
+\hline
+
+\textbf{ID code} & User Case 4 \\ \hline
+\textbf{Name} & Private User Violation Report \\ \hline
+\textbf{Actor} & Private user and Municipality\\ \hline
+\textbf{Preconditions} & 
+\begin{itemize}
+\item The user has logged into SafeStreets.
+\end{itemize} \\ \hline
+\textbf{Events flow} &
+\begin{enumerate}
+\item The private user selects "Report a violation" in his Home Page;
+\item The system shows the user the report page;
+\item The user takes a photo and uploads it;
+\item The user describes the violation, indicating in particular the type (parking, traffic, etc.);
+\item The user inserts the date and the hour of the violation.
+\item The user inserts manually the place where the violation has occurred or , alternatively, uses his GPS signal to provide it automatically.
+\item The user submits his report.
+\item The system checks the correctness of the report;
+\item The system retrieves the license plate with an algorithm from the photograph and then stores the data about the violation in its database;
+\item The system sends the report to the municipality;
+\item The municipality receives the report and forwards it to the authorities.
+\end{enumerate} \\ \hline
+\textbf{Postconditions} & 
+\begin{itemize}
+\item The system database now contains the information about the violation;
+\item The authorities now have the report.
+\end{itemize} \\ \hline
+\textbf{Exceptions} & 
+\begin{itemize}
+\item The system can't manage to retrieve the license plate from the picture;
+\item The user doesn't put complete data about the violation; 
+\end{itemize}
+In this cases the system sends an error message and redirect the user to the report page (Event 2). \\ \hline
+\end{longtable}
+
+\newpage
+
+\begin{longtable}{| p{3 cm} | p{10 cm} |} 
+\hline
+
+\textbf{ID code} & Use Case 5 \\ \hline
+\textbf{Name} & Most reported streets \\ \hline
+\textbf{Actor} & User (private or municipality) \\ \hline
+\textbf{Preconditions} & 
+\begin{itemize}
+\item The user has logged into SafeStreets.
+\end{itemize} \\ \hline
+\textbf{Events flow} & 
+\begin{enumerate}
+\item The user selects "Which are the most reported streets?" in his Home page;
+\item The system shows the user the most reported streets interface;
+\item The user inserts, manually or automatically (with GPS signal), the city he wants to check;
+\item The user has to specify how many streets the system has to provide him;
+\item The user submits his request;
+\item The system checks the correctness of the request;
+\item The system provides the list of the most reported streets.
+\end{enumerate} \\ \hline
+\textbf{Postconditions} & 
+\begin{itemize}
+\item The user will see the list of the most reported streets.
+\end{itemize} \\ \hline
+\textbf{Exceptions} &
+\begin{itemize}
+\item The user provides a non existing city name;
+\item The user provides a non valid number of streets he wants to receive;
+\end{itemize}
+The system sends an error message and redirects the user to the most reported streets request interface (Event 2). \\ \hline
+
+\end{longtable}
+
+\newpage
+
+\begin{longtable}{| p{3 cm} | p{10 cm} |} 
+\hline
+
+\textbf{ID code} & User Case 6 \\ \hline
+\textbf{Name} & Checking the safety of an area \\ \hline
+\textbf{Actor} & User (private or municipality) \\ \hline
+\textbf{Preconditions} & 
+\begin{itemize}
+\item The user is logged into SafeStreets.
+\end{itemize}\\ \hline
+
+\textbf{Events flow} &
+\begin{enumerate}
+\item The user selects "Check the safety of the streets" in the Home Page;
+\item The system show the user the interface to do a street check request;
+\item The user specifies the street and the city to check (manually or automatically with GPS signal);
+\item The user indicates how far from the indicated point the system has to provide the information about the safety of the area;
+\item The user submits the request to the system;
+\item The system checks the correctness of the request;
+\item The system provides the map with the requested area highlighted. 
+\end{enumerate} \\ \hline
+\textbf{Postconditions} & 
+\begin{itemize}
+\item The user will see a map of the indicated area with the safest and the most dangerous streets highlighted in a different way.
+\end{itemize} \\ \hline
+\textbf{Exceptions} &
+\begin{itemize}
+\item The user provides a non existing street or city;
+\item The user indicates a non valid radius;
+\end{itemize}
+The system sends an error message and redirects the user to the streets safety request interface (Event 2). \\ \hline
+
+
+
+\end{longtable}
+
+
+\newpage
+
+\begin{longtable}{| p{3 cm} | p{10 cm} |} 
+\hline
+
+\textbf{ID code} & Use Case 7 \\ \hline
+\textbf{Name} & Check the safety of a parking area \\ \hline
+\textbf{Actor} & Private user \\ \hline
+\textbf{Preconditions} &
+\begin{itemize}
+\item The user is logged into SafeStreets.
+\end{itemize} \\ \hline
+
+\textbf{Events flow} &
+\begin{enumerate}
+\item The user selects "Check for a safe parking area" in the Home Page;
+\item The system shows the user the page to do the request for safe parking areas;
+\item The user specifies the street and the city near which to check (manually or automatically with GPS signal);
+\item The user indicates how far from the indicated point the system has to provide parking areas;
+\item The user submits the request to the system;
+\item The system check the correctness of the request;
+\item The system provides the map with the requested parking areas highlighted. 
+
+\end{enumerate} \\ \hline
+
+\textbf{Postconditions} &
+\begin{itemize}
+\item The user will see a map, provided by the system, that contains the parking areas in the zone requested by him, with the safest and the most dangerous ones highlighted with different colours.
+\end{itemize} \\ \hline
+
+\textbf{Exceptions} &
+\begin{itemize}
+\item The user provides a non existing street or city;
+\item The user inserts a non valid distance from which to check;
+\end{itemize}
+For this exceptions the system sends to the user an error message and redirects him to the request page (Event 2). \\ \hline
+
+
+
+
+\end{longtable}
+
+\newpage
+
+\begin{longtable}{| p{3 cm} | p{10 cm} |} 
+\hline
+
+
+\textbf{ID code}  & Use Case 8 \\ \hline
+\textbf{Name} & Most reported vehicles \\ \hline
+\textbf{Actor} & User (private or municipality) \\ \hline
+\textbf{Preconditions}  &
+\begin{itemize}
+\item The user is logged into SafeStreets.
+\end{itemize} \\ \hline
+
+\textbf{Events flow} &
+\begin{enumerate}
+\item The user selects "Which are the vehicles that commit the highest number of infractions?";
+\item The system shows the user the interface to make the request;
+\item The user indicates the city and the street around which to check for the list of the "most dangerous" vehicles (manually or automatically with GPS signal);
+\item The user indicates the maximum number of vehicles he wants to receive with the list;
+\item The user submits the request;
+\item The system checks the validity of the request;
+\item The system provides the list of the most reported vehicles;
+
+
+\end{enumerate} \\ \hline
+
+\textbf{Postconditions} & 
+\begin{itemize}
+\item The user will receive a list of the vehicles that have committed the highest number of violation.
+\end{itemize} \\ \hline
+
+\textbf{Exceptions} &
+\begin{itemize}
+\item The user provides a non existing street or city;
+\item The user inserts a non valid maximum number of vehicles to receive;
+\end{itemize}
+The system, in this case, sends to the user an error message and redirects him to the page for the most reported vehicles request. \\ \hline
+
+
+\end{longtable}
+
+\newpage
+
+\begin{longtable}{| p{3 cm} | p{10 cm} |} 
+\hline
+
+\textbf{ID code} & Use Case 9 \\ \hline
+\textbf{Name} & Suggestions for municipality \\ \hline
+\textbf{Actor} & Municipality \\ \hline
+\textbf{Preconditions} &
+\begin{itemize}
+\item The municipality is logged into SafeStreets;
+\end{itemize} \\ \hline
+
+\textbf{Events flow} & 
+\begin{enumerate}
+\item The municipality user selects "See the suggestions for safety improvements" in the Home Page;
+\item The system shows the municipality user the page to make the suggestion request;
+\item The municipality user insert the city for which he wants to receive suggestions (with GPS signal or manually);
+\item The user submits the request for the city of competence of his municipality;
+\item The system checks the correctness of the request;
+\item The system, with a data mining algorithm, retrieves useful information from the users' reports regarding that city and adds it to the information that it has from the municipality side;
+\item The system sends the result of its research to the municipality user.
+\end{enumerate} \\ \hline
+
+\textbf{Postconditions} &
+\begin{itemize}
+\item The municipality will see a table showing the suggestion that the system has provided for their city. This table is structured to have on one side the problem reported by the users, and on the other side the solution provided by SafeStreets.
+\end{itemize} \\ \hline
+
+\textbf{Exceptions} &
+\begin{itemize}
+
+\item The municipality user provides a non existing city;
+\end{itemize}
+The system will send to the user an error message and will redirect him in the suggestions request page. \\ \hline
+
+\end{longtable}
+
+\newpage
+
+\begin{longtable}{| p{3 cm} | p{10 cm} |} 
+\hline
+
+\textbf{ID code} & Use Case 10 \\ \hline
+\textbf{Name} & Change of the user type \\ \hline
+\textbf{Actor} & Private user \\ \hline
+\textbf{Preconditions} &
+\begin{itemize}
+\item The user is logged into SafeStreets.
+\end{itemize}\\ \hline
+
+\textbf{Events flow} &
+\begin{enumerate}
+\item The user taps the accessibility button (represented with a hand) in the Home Page;
+\item The system shows the user the interface for selecting his new type;
+\item The user selects his new type and submits his selection by tapping it on the touch screen;
+\item The system stores the new data about the user in its database;
+\end{enumerate} \\ \hline
+
+\textbf{Postconditions} &
+\begin{itemize}
+\item The system has the new information about the user's type in its database.
+\end{itemize} \\ \hline
+
+\textbf{Exceptions} & \\ \hline
+
+
+
+
+\end{longtable}
+
+
+\newpage
+
+\begin{longtable}{| p{3 cm} | p{10 cm} |} 
+\hline
+
+
+\textbf{ID code} & Use Case 11 \\ \hline
+\textbf{Name} & Log-out \\ \hline
+\textbf{Actor} & User (private or municipality one) \\ \hline
+\textbf{Preconditions} & 
+\begin{itemize}
+\item The user is logged into SafeStreets.
+\end{itemize}  \\ \hline
+
+\textbf{Events flow} & 
+\begin{enumerate}
+\item The user taps the log-out button in the Home Page;
+\item The system asks the user for the confirm of the log-out;
+\item The user confirms the log-out.
+\end{enumerate} \\ \hline
+
+\textbf{Postconditions} & 
+\begin{itemize}
+\item The user will be logged out from SafeStreets and will be redirected to the log-in page.
+\end{itemize} \\ \hline
+
+\textbf{Exceptions} & \\ \hline
+
+
+
+\end{longtable}
+
+
+
+
+
+
+
+
 \subsubsection{Goal mapping on requirements:}
 \begin{itemize}
  \item $[G1]:$ The service allows the users to report a violation to the municipality:
@@ -728,6 +1205,61 @@ It has recently discovered that there exist the application Safestreets that hel
  	\item $[R13]:$ The system must report the  safest streets in a map form. These streets must be highlighted on the map.
  	\item $[D4]:$ The GPS signal has a relative error of 10 meters.
  	\item $[D7]:$ The internet connection has to be enabled when the app needs it.
+ \end{itemize}
+ 
+ \item $[G3]:$ The system offers a different service according to the type of user (biker, pedestrian, rider, driver, disabled person).
+ \begin{itemize}
+ \item $[R14]:$ The system must allow the user to specify his category (biker, car driver, rider, pedestrian) in the registration.
+ \item $[R15]:$ The system must allow the user to indicate if the account will be used by a disabled person.
+ \item $[R16]:$ The system must calculate the danger of a street according to different parameters in base of the type of the user (for example a street can be safe for a car but very dangerous for a disabled).
+ \item $[R17]:$ The system must add to its database the information about the user's category in order to provide to him a good quality service.
+ \item $[D5]:$ The memory where the data is stored is persistent.
+ \end{itemize}
+ 
+ \item $[G4]:$ A driver or a motorcyclist can add to his personal profile the driving license.
+ \begin{itemize}
+ \item $[R18]:$ The system has to store the licenses in its database.
+ \item $[R19]:$ The system must allow the user to insert the drive license in the sign-in page.
+ \item $[R20]:$ The system must allow the user to insert the drive license if and only if the user has selected as his category car driver or motorcyclist.
+ \item $[D5]:$ The memory where the data is stored is persistent.
+ \item $[D7]:$ The internet connection has to be enabled when the app needs it.
+ \end{itemize}
+ 
+ 
+ \item $[G5]:$ Safestreets can send to the municipality suggestions to improve the safety of the streets for every type of person.
+ \begin{itemize}
+ \item $[R21]:$ The system must retrieve the information about violations from the users' reports.
+ \item $[R22]:$ The system must use both data received by the users and by the municipality.
+ \item $[D5]:$ The memory where the data is stored is persistent.
+ \end{itemize}
+ 
+ 
+ \item $[G6]:$ The user (both private user and the municipality) must be able to sign-up into the Safestreets platform.
+ \begin{itemize}
+ \item $[R23]:$ The system must allow the user to choose between municipality account or private user one.
+ \item $[R24]:$ The system must allow the municipality to sign-up if and only if they insert a valid ID code.
+ \item $[R25]:$ The system must allow the user (both private user and the municipality) to sign-up if and only if he inserts a username that is not already used.
+ \item $[R26]:$ The system must allow the user (both private user and the municipality) to sign-up if and only if he inserts a password that complies the security policy.
+ \item $[D1]:$ The user is supposed to submit correct e-mail, and data matching his/her FC.
+ \item $[D2]:$ The user creates one and only one account.
+ \item $[D3]:$ Every municipality which has an account on the system certifies its own account as valid.
+ \item $[D5]:$ The memory where the data is stored is persistent.
+ \item $[D7]:$ The internet connection has to be enabled when the app needs it.
+ \end{itemize}
+ 
+ 
+ \item $[G7]:$ The user (both private user and the municipality) must be able to log-in to the system after having done the sign-up.
+ \begin{itemize}
+ \item $[R27]:$ The system must allow the user to recover his password if he/she has forgotten it.
+ \item $[R28]:$ The system must allow the municipality users and the private ones to access the corresponding Home Page after the log-in.
+ \item $[D7]:$ The internet connection has to be enabled when the app needs it.
+ \end{itemize}
+ 
+ 
+ \item $[G8]:$ The user (both private user and the municipality) must be able to log-out from the system if logged-in.
+ \begin{itemize}
+ \item $[R29]:$ The system must allow the user to log-out from the platform in every moment by the exit button placed in the Home Page.
+ \item $[D7]:$ The internet connection has to be enabled when the app needs it.
  \end{itemize}
 \end{itemize}
 
