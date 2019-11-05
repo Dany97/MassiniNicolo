@@ -8,8 +8,25 @@ sig fc{}
 sig Email{}
 sig Drivelicense{}
 abstract sig boolDisabled{}
+abstract sig bool{}
+sig logged extends bool{}
+sig notLogged extends bool{}
 sig Disabled extends boolDisabled{}
 sig Notdisabled extends boolDisabled{} 
+sig City{}
+sig MunicipalityIdCode{}
+
+
+sig street{
+	city: City,
+	latitude: one Int,
+	longitude: one  Int
+}{
+	latitude>=0 and latitude<=90 and longitude>=0 and longitude<=180
+}
+
+
+
 
 //this is the signature of the private user. It is abstract
 abstract sig privateUser{
@@ -19,7 +36,8 @@ abstract sig privateUser{
 	password:one  Password,
 	fiscalcode:one fc,
 	email:one  Email,
-	dateofbirth: one Date
+	dateofbirth: one Date,
+	islogged: one bool
 }
 
 sig cardriver extends privateUser{
@@ -35,7 +53,28 @@ sig motorcyclist extends privateUser{
 		license: one Drivelicense
 }
 
+sig MunicipalityUser{
+	city: one City,
+	municipalityIdCode: one MunicipalityIdCode,
+	password: one Password
+}
+
 sig cyclist extends privateUser{}
+
+/*Here we want to ensure that there is a 1 to 1 corrispondence between the city and the code related
+to the municipality*/
+fact linkBetweenCityAndCode{
+	(all mu1,mu2:MunicipalityUser|((mu1.city!=mu2.city)iff(mu1.municipalityIdCode!=mu2.municipalityIdCode)))
+}
+
+/*city: one City,
+municipalityIdCode: one MunicipalityIdCode,
+password: one Password*/
+fact everythingLinkedToMunUsr{
+	(all c:City|(some m1:MunicipalityUser| m1. city=c))and
+	(all m:MunicipalityIdCode|(some m2:MunicipalityUser|m2.municipalityIdCode=m))and
+	(all p:Password|(some m2:MunicipalityUser|m2.password=p))
+}
 
 /* here wa want to ensure that an email identifies a user in an unique way. It is also like this for the 
 fiscal code  and the username*/
@@ -60,7 +99,8 @@ fact everythingLinkedToUser{
 	(all pa: Password|(some u4:privateUser | u4.password=pa)) and
 	(all f: fc|(some u5:privateUser |u5.fiscalcode =f)) and
 	(all em: Email|(some u6:privateUser |u6.email=em ))and
-	(all d: Date|(some u7:privateUser | u7.dateofbirth=d)) 
+	(all d: Date|(some u7:privateUser | u7.dateofbirth=d))and
+	(all b:bool|(some u8:privateUser|u8.islogged=b))
 }
 
 fact DisabledInstancesLinkedToUser{
@@ -75,5 +115,4 @@ fact drivingLicenseLinkedToUser{
 
 pred show{}
 
-run show for 10 but 1 privateUser
-
+run show for 10 but 2 privateUser, 2 MunicipalityUser
