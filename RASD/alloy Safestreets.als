@@ -1,11 +1,11 @@
-// signatures for the fields of the users of the application
-// all the signature necessary to define the fundamentals ones with respect to the model
+/* signatures for the fields of the users of the application
+all the signature necessary to define the fundamentals ones with respect to the model*/
 sig Date{}
 sig Name{}
 sig Surname{}
 sig Username{}
 sig Password{}
-sig fc{}
+sig fc{} //signature of the fiscal code
 sig Email{}
 sig Drivelicense{}
 abstract sig boolDisabled{}
@@ -259,7 +259,29 @@ pred showStaticCompleteModel{
 /*Dynamical model*/
 
 
-//run showStaticViewOfUsers for 7
+/*pred AddViolation[r',r:  violationReport,u:Username]{
+	//precondition: the user related to the username must be logged and the new report must be different:
+	(all u1: privateUser |u1.username=u and u1.islogged=logged )
+
+	
+	(r'=r+r')
+	//if the precondition holds then:
+	#violationReport>=1
+	
+}
+
+pred showAddViolation[r',r:violationReport, u:Username]{
+	(some u1:Username |u1=u)
+	AddViolation[r',r,u]
+}*/
+
+
+run showStaticViewOfUsers for 7
 run showStaticCompleteModel for 4
+run showStaticViewOfViolationsAndStreets for 4
+/*run showAddViolation for 10 but 2 Street, 1 privateUser, 0 MunicipalityUser, 0 MunicipalityDataAccidents, 2 violationReport
+
+
+
 
 
