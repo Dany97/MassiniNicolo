@@ -25,6 +25,16 @@ sig HourViolation{}
 sig LicensePlate{}
 
 
+/*This represent the data given by the municipality. This data is used to mine them in order to retrieve 
+more detailed informations*/
+sig MunicipalityDataAccidents{
+	street:Street,
+	hour: HourViolation,
+	date: Date,
+	licenseplate: LicensePlate
+}
+
+
 //this is the signature of the private user. It is abstract
 abstract sig privateUser{
 	name:one Name,
@@ -36,6 +46,7 @@ abstract sig privateUser{
 	dateofbirth: one Date,
 	islogged: one bool
 }
+
 
 /*A category of user that is a car driver. This signature contains also a "flag" that indicate if the user is disable and the driving License*/
 sig cardriver extends privateUser{
@@ -94,8 +105,19 @@ sig DangerousStreetsInCity{
 	street: set Street,
 	city:one City
 }{
-	(all s1,s2:Street | s1.city=s2.city)and
-	(all s:Street | s.dangerousInGeneral=DangerousInGeneral)
+	(all s1,s2:Street | s1.city=s2.city and s1.city=city)and
+	street.dangerousInGeneral=DangerousInGeneral
+	#street>0
+}	
+
+fact dangerousStreetsGroupExsistence{
+	(all s:Street | (s.dangerousInGeneral=DangerousInGeneral) implies 
+	(some dsc:DangerousStreetsInCity | s in dsc.street ))
+}
+
+fact uniquenessOfDangerousStreetsInCity{
+	(no disj dsc1,dsc2: DangerousStreetsInCity | dsc1.city=dsc2.city) and
+	(all dsc1,dsc2:DangerousStreetsInCity | (dsc1!=dsc2)implies(dsc1.street & dsc2.street = none) )
 }
 
 // this implies that if 2 streets have the same longitude and latitude, then they are in the same city
@@ -124,7 +146,8 @@ fun IsStreetDangerous[s: Street]: one dangerousBool{
 /*For each street it establish if it is considered dangerous or not*/
 fact dangerousnessOfStreet{
 	(all s:Street |(s.dangerousInGeneral=IsStreetDangerous[s])) or
-    (all s1:Street | (some dc:DangerousStreetsInCity |dc.street=s1))
+    (all s1:Street | (some dc:DangerousStreetsInCity |dc.street=s1)or
+	(all s2:Street |(some mda:MunicipalityDataAccidents | mda.street=s2 )))
 }
 
 
@@ -177,15 +200,17 @@ fact everythingLinkedToUser{
 	(all f: fc|(some u5:privateUser |u5.fiscalcode =f)) and
 	(all em: Email|(some u6:privateUser |u6.email=em ))and
 	((all d: Date|(some u7:privateUser | u7.dateofbirth=d))or
-	((all d1: Date|(some v:violationReport | v.dateViolation=d1))))and
+	((all d1: Date|(some v:violationReport | v.dateViolation=d1)))or
+	(all d2:Date | (some md: MunicipalityDataAccidents |md.date=d2) ))and
 	(all b:bool|(some u8:privateUser|u8.islogged=b)) and
 	(all p:Place|(some s:Street|s.place=p))and
 	(all i:integer|(some p:Place|p.longitude=i or p.latitude=i))and
-	((all s:Street|(some v1:violationReport|v1.street=s)))and
-	(all h:HourViolation|(some v2:violationReport|v2.hour=h))and
+	(all h:HourViolation|(some v2:violationReport|v2.hour=h)or
+	(all h1:HourViolation|(some mda:MunicipalityDataAccidents | mda.hour=h1)))and
 	(all de:Violationdescription|(some v3:violationReport|v3.description=de))and
 	(all p:Picture|(some v4:violationReport|v4.picture=p))and
-	(all lp: LicensePlate|(some v5:violationReport| v5.licenseplate=lp))and
+	(all lp: LicensePlate|(some v5:violationReport| v5.licenseplate=lp)or
+	(all p1:LicensePlate |(some mda:MunicipalityDataAccidents | mda.licenseplate=p1)))and
 	(all dg:dangerousBool|(some std:Street|std.dangerousInGeneral=dg))
 }
 
@@ -202,6 +227,39 @@ fact drivingLicenseLinkedToUser{
 	(all dr1:Drivelicense|(some cd:cardriver|cd.license=dr1)))
 }
 
-pred show{}
+/*This are the predicates that allow to see some of the several possible static views of the alloy model. 
+These are some of the possible static worlds:*/
 
-run show for 15
+
+pred showStaticViewOfUsers{
+	#privateUser=2
+	#MunicipalityUser=1
+	#MunicipalityDataAccidents=0
+	#violationReport=0
+	#DangerousStreetsInCity=0
+}
+
+pred showStaticViewOfViolationsAndStreets{
+	#privateUser=0
+	#MunicipalityUser=0
+	#MunicipalityDataAccidents=2
+	#violationReport =1
+	#Street = 4
+}
+
+pred showStaticCompleteModel{
+	#MunicipalityDataAccidents=1
+	#violationReport =1
+	#Street = 2
+	#privateUser=1
+	#MunicipalityUser=1
+}
+
+
+/*Dynamical model*/
+
+
+//run showStaticViewOfUsers for 7
+run showStaticCompleteModel for 4
+
+
