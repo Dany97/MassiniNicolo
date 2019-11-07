@@ -1330,59 +1330,6 @@ The system will send to the user an error message and will redirect him in the s
  \end{itemize}
 \end{itemize}
 
-
-\subsection{Performance Requirements}
-
-In this part we will indicate the performance requirements of SafeStreets. From the static point of view, our application supports up to 10 millions accounts. The constraint is physical because it concerns the memory of our database. When the maximum is reached the system will use a FIFO policy so the first data inserted will be deleted.
-From the dynamic point of view we need that the information about streets, violations and vehicles is send and updated quite fast, so the violations are sent to the municipality in maximum 30 minutes from when they have been reported by a user, while the maps that show the safest area and parking areas have to be updated in maximum 1 hour. Same thing for the reported vehicles.
-The requests from municipality and private users have to be processed in less than 5 seconds, in order to provide a fast service.
-
-
-\subsection{Design Constraints}
-\subsubsection{Standard Compliance}
-\begin{itemize}
-\item The system will comply a standard that allows to test the software automatically from the requirements.
-\item For the distances we use the standard SI measurement unit, that is the meter.
-\item For the position in the map we use longitude and latitude.
-\end{itemize}
-
-\subsubsection{Hardware Limitations}
-A user, to be able to use SafeStreets with all its functionalities, must run the application on a smartphone that has at least:
-\begin{itemize}
-\item 200Mb of mass memory;
-\item 2Gb of RAM;
-\item an internet connection of 15 Mb/s.
-\end{itemize}
- 
- 
-\subsection{Software System Attributes}
-\subsubsection{Reliability}
-The Reliability of the system must be high, because the system has to provide to the users a service that has to be as much as possible fast and correct. So the fault tolerance and the tolerance when a component of the system goes down has to be very low. 
-
-
-\subsubsection{Availability}
-The system, in order to provide an efficient service, must be available at a very high level. We think that it must have the target value of 90\%, because we want that the app will be available to every type of people in any moment. 
-
-\subsubsection{Security}
-The security is fundamental in our system, as it contains the users' sensitive data. In particular:
-\begin{itemize}
-\item The system uses HTTPS in order to allow to communicate with users, municipality and the DBMS in safety;
-\item The sensitive data, such as passwords, has to be encrypted before being stored in the DB.
-\end{itemize}
-
-
-\subsubsection{Maintainability}
-The software will have to be developed in order to be maintained in future and, eventually, to add some new features.
-So it has to be programmed well, avoiding code duplication and using good design principles and design patterns.
-
-\subsubsection{Portability}
-
-The application is designed for IOS and Android, so it will have to be interchangeable from one OS to the other, preserving the accounts and the personal data.
-In the back-end part, it has to be designed in a way that it will be independent from the OS.
-
-
-
-
 \end{document}
 
 
