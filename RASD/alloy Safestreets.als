@@ -1,32 +1,31 @@
-/* signatures for the fields of the users of the application
-all the signature necessary to define the fundamentals ones with respect to the model*/
-sig Date{}
-sig Name{}
-sig Surname{}
-sig Username{}
-sig Password{}
+/*all the signature necessary to define the fundamentals ones with respect to the model*/
+sig Date{} // a simple date
+sig Name{} // a name of a person
+sig Surname{}// a surname of a person
+sig Username{}// a username of a person in the application
+sig Password{}// the password 
 sig fc{} //signature of the fiscal code
-sig Email{}
-sig Drivelicense{}
+sig Email{}// this is a signature of an Email
+sig Drivelicense{}// signature of the driving License
 abstract sig boolDisabled{}
 abstract sig bool{}
-sig logged extends bool{}
-sig notLogged extends bool{}
-sig Disabled extends boolDisabled{}
-sig Notdisabled extends boolDisabled{}
+sig logged extends bool{} // a signature which is associated to the fact that a user is logged into the system
+sig notLogged extends bool{}//a signature which is associated to the fact that a user is not logged into the system
+sig Disabled extends boolDisabled{} // signature associated to the fact that a person is disabled
+sig Notdisabled extends boolDisabled{}//signature associated to the fact that a person is not disabled
 abstract sig dangerousBool{}
-sig DangerousInGeneral extends dangerousBool{}
-sig NotDangerousInGeneral extends dangerousBool{}
-sig Picture{} 
-sig City{}
-sig MunicipalityIdCode{}
-sig Violationdescription{}
-sig HourViolation{}
-sig LicensePlate{}
+sig DangerousInGeneral extends dangerousBool{}//a signature that indicate that the street is considered as dangerous
+sig NotDangerousInGeneral extends dangerousBool{}//a signature that indicate that the street is not considered as dangerous
+sig Picture{} // a signature of a picture
+sig City{} // a signature of a city
+sig MunicipalityIdCode{} // this is a signature of a code associated to the identity of the municipality
+sig Violationdescription{}// a signature associated to the description of the violation
+sig HourViolation{}// a signature associated to the hour when the violation occurred.
+sig LicensePlate{}// a signature of a license plate of a vehicle
 
 
 /*This represent the data given by the municipality. This data is used to mine them in order to retrieve 
-more detailed informations*/
+more detailed informations. This data is mined by Safestreets*/
 sig MunicipalityDataAccidents{
 	street:Street,
 	hour: HourViolation,
@@ -35,7 +34,8 @@ sig MunicipalityDataAccidents{
 }
 
 
-//this is the signature of the private user. It is abstract
+/*this is the signature of the private user. It is abstract because the instances are the categories of the
+user*/
 abstract sig privateUser{
 	name:one Name,
 	surname:one  Surname,
@@ -48,30 +48,32 @@ abstract sig privateUser{
 }
 
 
-/*A category of user that is a car driver. This signature contains also a "flag" that indicate if the user is disable and the driving License*/
+/*A category of user that is a car driver. This signature contains also a "flag" that indicate if the user is 
+disabled and the driving License*/
 sig cardriver extends privateUser{
 	disabledChoice:one boolDisabled,
 	license:one Drivelicense
 }
 
-/*This is c category of user which is a pedestrian user*/
+/*This is a category of user which is a pedestrian user.He/she can also be a disabled person or not. */
 sig pedestrian extends privateUser{
 	disabledChoice:one boolDisabled
 }
 
-/*This is the motorcyclist user which his/her driving license*/
+/*This is the motorcyclist user. In this signature it is also included  his/her driving license*/
 sig motorcyclist extends privateUser{
 		license: one Drivelicense
 }
 
-/*This is the signature of the user of the municipality who have a code to identify the municipality and a password  to access his/her account. 
-It is also present the city of which the user belongs*/
+/*This is the signature of the user of the municipality who have a code to identify the municipality and 
+a password  to access his/her account. It is also present the city of which the user belongs*/
 sig MunicipalityUser{
 	city: one City,
 	municipalityIdCode: one MunicipalityIdCode,
 	password: one Password
 }
 
+/*Fake integer.It is necessary only to represent different numbers*/
 sig integer{}
 
 sig cyclist extends privateUser{}
@@ -89,7 +91,9 @@ sig Street{
 	dangerousInGeneral:one  dangerousBool
 }
 
-/*This signatire represents a violation report*/
+/*This signatire represents a violation report. It includes: the date, the hour and the street related to the violation.
+It also include the user who has reported the violation, the picture of the violation and the license plate of the vehicle related to the
+violation.*/
 sig violationReport{
 	dateViolation: one Date,
 	hour : one  HourViolation,
@@ -100,7 +104,8 @@ sig violationReport{
 	licenseplate: one LicensePlate
 }
 
-/*This contains all the streets of the same city that are considered dangerous*/
+/*This contains all the streets of the same city that are considered dangerous. All the dangerous streets of  a city are contained in
+this signature */
 sig DangerousStreetsInCity{
 	street: set Street,
 	city:one City
@@ -109,20 +114,22 @@ sig DangerousStreetsInCity{
 	street.dangerousInGeneral=DangerousInGeneral
 	#street>0
 }	
-
+/*This fact ensures that if a dangerous street exsists, then there must be a DangerousStreetsInCity that contains it with the same city*/
 fact dangerousStreetsGroupExsistence{
 	(all s:Street | (s.dangerousInGeneral=DangerousInGeneral) implies 
 	(some dsc:DangerousStreetsInCity | s in dsc.street ))
 }
-
+/*This fact ensures the fact that there cannot exsist 2 DangerousStreetsInCity with the same city and the intersection of the streets of 2 different 
+DangerousStreetsInCity is the empty set.  */
 fact uniquenessOfDangerousStreetsInCity{
 	(no disj dsc1,dsc2: DangerousStreetsInCity | dsc1.city=dsc2.city) and
 	(all dsc1,dsc2:DangerousStreetsInCity | (dsc1!=dsc2)implies(dsc1.street & dsc2.street = none) )
 }
 
-// this implies that if 2 streets have the same longitude and latitude, then they are in the same city
+// this implies that if 2 streets have the same longitude and latitude, then they are in the same city and they are the same city
 fact notSameCoordDifferentCity{
-	(all s1,s2:Street | (s1.place.latitude=s2.place.latitude and s1.place.longitude=s2.place.longitude) implies s1.city = s2.city)
+	(all s1,s2:Street | (s1.place.latitude=s2.place.latitude and s1.place.longitude=s2.place.longitude) implies 
+	(s1.city = s2.city and s1=s2))
 }
 
 
@@ -143,7 +150,7 @@ fun IsStreetDangerous[s: Street]: one dangerousBool{
 	{d:dangerousBool | (d=DangerousInGeneral) iff(mul[NReportInStreet[s],10]>mul[11, averageNReportPerStreet[s.city]])}
 }
 
-/*For each street it establish if it is considered dangerous or not*/
+/*For each street this fact establishes if it is considered dangerous or not*/
 fact dangerousnessOfStreet{
 	(all s:Street |(s.dangerousInGeneral=IsStreetDangerous[s])) or
     (all s1:Street | (some dc:DangerousStreetsInCity |dc.street=s1)or
@@ -159,19 +166,23 @@ fact positionStreet{
 }
 
 /*Here we want to ensure that there is a 1 to 1 corrispondence between the city and the code related
-to the municipality*/
+to the municipality. This is like to say that the code related to the municipality identifies both the municipality itself
+and the city of the municipality.*/
 fact linkBetweenCityAndCode{
 	(all mu1,mu2:MunicipalityUser|((mu1.city!=mu2.city)iff(mu1.municipalityIdCode!=mu2.municipalityIdCode)))
 }
 
 /*Here we want to ensure that there are not standalone city instance. In fact a city can be linked only to a MunicipalityUser or to a street.
-A Municipality cannot be standalone and it can be linked only to MunicipalityUser. A password can be linked to a MunicipalityUser*/
+A Municipality cannot be standalone and it can be linked only to MunicipalityUser. A password is linked to a MunicipalityUser.
+In this fact we are also ensuring the fact that there are not standalone MunicipalityIdCode and Passwords. A password is linked
+only to a MunicipalityUser or a privateUser and the MunicipalityIdCode is linked only to a MunicipalityUser*/
 fact everythingLinkedToMunUsr{
 	((all c:City|(some m1:MunicipalityUser| m1. city=c ))or
 	(all c1:City|(some s:Street|  s.city=c1))or
 	(all c2:City |(some  dc:DangerousStreetsInCity |dc.city=c2)))
 	and (all m:MunicipalityIdCode|(some m2:MunicipalityUser|m2.municipalityIdCode=m))and
-	(all p:Password|(some m2:MunicipalityUser|m2.password=p))
+	(all p:Password|(some m2:MunicipalityUser|m2.password=p)or 
+	(all p1:Password |(some u1:privateUser | u1.password=p1)))
 }
 
 /* here wa want to ensure that an email identifies a user in an unique way. It is also like this for the 
@@ -214,7 +225,7 @@ fact everythingLinkedToUser{
 	(all dg:dangerousBool|(some std:Street|std.dangerousInGeneral=dg))
 }
 
-/*Here we want to ensure that every boolDisabled is associated to a pedestrian or a cardriver*/
+/*Here we want to ensure that every boolDisabled is associated to a pedestrian or a cardriver and it cannot be standalone.*/
 fact DisabledInstancesLinkedToUser{
 	(all b:boolDisabled |(some c1:cardriver| c1.disabledChoice = b ))or
 	(all b1:boolDisabled |(some p1:pedestrian| p1.disabledChoice = b1 ))
@@ -237,6 +248,7 @@ pred showStaticViewOfUsers{
 	#MunicipalityDataAccidents=0
 	#violationReport=0
 	#DangerousStreetsInCity=0
+	#Street=0
 }
 
 pred showStaticViewOfViolationsAndStreets{
@@ -256,31 +268,10 @@ pred showStaticCompleteModel{
 }
 
 
-/*Dynamical model*/
-
-
-/*pred AddViolation[r',r:  violationReport,u:Username]{
-	//precondition: the user related to the username must be logged and the new report must be different:
-	(all u1: privateUser |u1.username=u and u1.islogged=logged )
-
-	
-	(r'=r+r')
-	//if the precondition holds then:
-	#violationReport>=1
-	
-}
-
-pred showAddViolation[r',r:violationReport, u:Username]{
-	(some u1:Username |u1=u)
-	AddViolation[r',r,u]
-}*/
-
 
 run showStaticViewOfUsers for 7
 run showStaticCompleteModel for 4
 run showStaticViewOfViolationsAndStreets for 4
-/*run showAddViolation for 10 but 2 Street, 1 privateUser, 0 MunicipalityUser, 0 MunicipalityDataAccidents, 2 violationReport
-
 
 
 
