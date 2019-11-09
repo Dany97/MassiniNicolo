@@ -303,7 +303,7 @@ Here you can find a state chart diagram of the system:
 
 \begin{figure}[h
 ]
-    \includegraphics[scale=0.4]{State_chart.png}
+    \includegraphics[scale=0.3]{State_chart.png}
 	\centering
 	\caption{System State chart diagram}
 \end{figure}
@@ -374,13 +374,7 @@ Furthermore, the application can encounter:
 	\item $[\textbf{D5}]$: The memory where the data is stored is persistent.
 	\item$[\textbf{D6}]$: The user allows the app to have access to his/her position and the camera of his/her device.
 	\item $[\textbf{D7}]$: The internet connection has to be enabled when the app needs it.
-	\item $[\textbf{D8}]$: The municipality provides the reports (sent by the users) to the authorities automatically.
-	\item $[\textbf{D9}]$: The email identifies uniquely a private user.
-	\item $[\textbf{D10}]$: Through the fiscal code it is possible to identify uniquely a private user.
-	\item $[\textbf{D11}]$: The username of a private user is a unique identifier of him/her.
-	\item $[\textbf{D12}]$: It is not possible to have streets that are in the same city and have the same name.
-	\item $[\textbf{D13}]$: A street can be identified through its name and the city in which it is located.
-	\item $[\textbf{D14}]$: A vehicle can be identified through its plate.
+	\item $[\textbf{D8}]$; The municipality must provide the reports (sent by the users) to the authorities automatically.
 	
 \end{itemize}
 \subsubsection{Constraints: }
@@ -968,7 +962,6 @@ In this cases the system sends an error message and redirect the user to the rep
 \begin{itemize}
 \item The user provides a non existing city name;
 \item The user provides a non valid number of streets he wants to receive;
-\item The system does not have enough data to answer to the request;
 \end{itemize}
 The system sends an error message and redirects the user to the most reported streets request interface (Event 2). \\ \hline
 
@@ -1005,7 +998,6 @@ The system sends an error message and redirects the user to the most reported st
 \begin{itemize}
 \item The user provides a non existing street or city;
 \item The user indicates a non valid radius;
-\item The system does not have enough data to answer to the request;
 \end{itemize}
 The system sends an error message and redirects the user to the streets safety request interface (Event 2). \\ \hline
 
@@ -1048,7 +1040,6 @@ The system sends an error message and redirects the user to the streets safety r
 \begin{itemize}
 \item The user provides a non existing street or city;
 \item The user inserts a non valid distance from which to check;
-\item The system does not have enough data to answer to the request;
 \end{itemize}
 For this exceptions the system sends to the user an error message and redirects him to the request page (Event 2). \\ \hline
 
@@ -1293,10 +1284,6 @@ The system will send to the user an error message and will redirect him in the s
  	\item $[D6]:$ The user allows the application to have access to his/her position and to the camera of his/her device.
  	\item $[D7]:$ The internet connection has to be enabled when the app needs it.
  	\item $[D8]:$ The municipality must provide the reports (sent by the users) to the authorities automatically.
- 	\item $[D11]$: The username of a private user is a unique identifier of him/her.
- 	\item $[D12]$: It is not possible to have streets that are in the same city and have the same name.
-	\item $[D13]$: A street can be identified through its name and the city in which it is located.
- 	
  	
  \end{itemize}
  \item $[G2]:$ The service allows the users to have detailed informations about the violations and the streets safety.
@@ -1306,7 +1293,6 @@ The system will send to the user an error message and will redirect him in the s
  	\item $[R11]:$ The system must allow the user to insert the city in which the violation occurred.
  	\item $[R12]:$ The system must allow the user to insert a number representing the radius within which the system must provide the condition of the streets.
  	\item $[R13]:$ The system must report the  safest streets in a map form. These streets must be highlighted on the map.
- 	\item $[R30]:$ A street is considered dangerous if and only if  the number of reports is 10\% greater than the average number of violations per street reported by the users or ,as alternative, 10\% greater than the average violation per street retrieved from the municipality DB.
  	\item $[D4]:$ The GPS signal has a relative error of 10 meters.
  	\item $[D7]:$ The internet connection has to be enabled when the app needs it.
  \end{itemize}
@@ -1318,7 +1304,6 @@ The system will send to the user an error message and will redirect him in the s
  \item $[R16]:$ The system must calculate the danger of a street according to different parameters in base of the type of the user (for example a street can be safe for a car but very dangerous for a disabled).
  \item $[R17]:$ The system must add to its database the information about the user's category in order to provide to him a good quality service.
  \item $[D5]:$ The memory where the data is stored is persistent.
- \item $[D11]$: The username of a private user is a unique identifier of him/her.
  \end{itemize}
  
  \item $[G4]:$ A driver or a motorcyclist can add to his personal profile the driving license.
@@ -1350,9 +1335,6 @@ The system will send to the user an error message and will redirect him in the s
  \item $[D3]:$ Every municipality which has an account on the system certifies its own account as valid.
  \item $[D5]:$ The memory where the data is stored is persistent.
  \item $[D7]:$ The internet connection has to be enabled when the app needs it.
- \item $[D9]$: The email identifies uniquely a private user.
-\item $[D10]$: Through the fiscal code it is possible to identify uniquely a private user.
-\item $[D11]$: The username of a private user is a unique identifier of him/her.
  \end{itemize}
  
  
@@ -1361,7 +1343,6 @@ The system will send to the user an error message and will redirect him in the s
  \item $[R27]:$ The system must allow the user to recover his password if he/she has forgotten it.
  \item $[R28]:$ The system must allow the municipality users and the private ones to access the corresponding Home Page after the log-in.
  \item $[D7]:$ The internet connection has to be enabled when the app needs it.
- \item $[D11]$: The username of a private user is a unique identifier of him/her.
  \end{itemize}
  
  
@@ -1464,7 +1445,7 @@ In this world we will show a view of how the violation reports are managed. We w
 \FloatBarrier
 As you can see in the image above, a street can be considered dangerous or not. It depends on the number of reports. It is considered dangerous if and only if the number of reports is 10\% greater than the average number of violations per street reported by the users or 10\% greater than the average violation per street retrieved from the municipality DB. This is respected in the world above.\\
 The streets which have the same name but they are different are distinguished expressing also the city of which they belongs.\\
-The system crosses also the information about accidents of the municipality in order to have better information about the safety.
+The system mine also the information about accidents of the municipality in order to have better information about the safety.
 \paragraph{World 3:}
 In this world we will show a complete view of the system in his completeness. Every aspect of the two worlds above will be shown.
 
@@ -1475,16 +1456,17 @@ In this world we will show a complete view of the system in his completeness. Ev
 \end{figure}
 \FloatBarrier
 
-All the predicates have been validated through the use of the alloy validation tool as you can see in the image below.\\
+<<<<<<< HEAD
+=======
 \begin{figure}[h]
 	\paragraph{Consistency:}
-	
 	\includegraphics[scale=1.168]{Alloy images/Consistency of the model.png}
 	\centering
 	\caption{Consistency}
 \end{figure}
 \FloatBarrier
 
+>>>>>>> f389f7a4f49e00d7096db5591507d5e75338bdac
 
 \end{document}
 
