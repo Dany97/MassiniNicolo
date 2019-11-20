@@ -48,15 +48,24 @@ The following sections are structured as below:
 \section{Architectural Design}
 \subsection{Overview}
 In the figure below it is shown the architecture of the entire system. This description has to be intended only as an overview and because of this some details are not shown.
+
 \begin{figure}[h]
 	\includegraphics[scale=0.465]{Diagrams/overview.png}
 	\caption{Architectural overview}
 \end{figure}
-\FloatBarrier In this system we have two clusters of servers and two types of servers. One is specialized in taking the requests that comes from outside the network whereas the other one is specialized in managing the reports that comes from the private users. Obviously it is necessary to define what we mean by request and reports.In this case a report for us is a report of a violation sent via smartphone application to the system. Instead, a request is any possible thing that the the private user/municipality user can ask to the system to do. Obviously a request cannot be a violation report and the other way around.\\
- The load of requests is managed by  he load balancer in order to guarantee a balanced load. The balanced load can be translated then in a better efficiency in the service. In fact thanks to duplication of components it is possible to satisfy requests in parallel and so faster. The redundancy of resources can make the system more fault tolerant.\\
- Both the clusters communicate to the database of the application. In particular the servers devoted to requests interact also with the database of the municipality to have information about the accidents. Thanks to this action it is possible to have more detailed information about the safety.\\
-The storage is managed in a cloud computing approach. Thanks to this type of approach it is possible to reduce or increase resources according to the number of request in a specific moment. This is very important in order guarantee elasticity in the resources devoted to the service.\\ 
+\FloatBarrier
+
+In this system we have two clusters of servers and two types of servers. One is specialized in taking the requests that comes from outside the network whereas the other one is specialized in managing the reports that come from the private users. Obviously it is necessary to define what we mean by request and reports.In this case a report for us is a report of a violation sent via smartphone application to the system. Instead, a request is any possible thing that the the private user/municipality user can ask to the system to do. Obviously a request cannot be a violation report and the other way around.\\
+ The load of requests is managed by the load balancer in order to guarantee a balanced load. The balanced load can be translated then in a better efficiency in the service. In fact thanks to duplication of components it is possible to satisfy requests in parallel and so faster. The redundancy of resources can make the system more fault tolerant.\\
+ Both the clusters communicate to the database of the application. In particular the servers devoted to requests interact also with the database of the municipality to have information about the accidents. Thanks to the interaction with the municipality database it is possible to have more detailed information about the safety.\\
+The storage is managed with a cloud computing approach in both the databases. Thanks to this type of approach it is possible to reduce or increase resources according to the number of requests in a specific moment. This is very important in order guarantee elasticity in the resources devoted to the service.\\ 
 
 \subsection{Component view}
-Here there is the description of the software components that will be implemented in the specific hardware. 
+Here there is the description of the software components that will be implemented in the specific hardware.
+\subsection{Deployment view}
+\begin{figure}[h]
+	\includegraphics[scale=0.465]{Diagrams/Deployment diagram.png}
+	\caption{Deployment diagram}
+\end{figure}
+\FloatBarrier
 \end{document}
