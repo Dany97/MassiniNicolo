@@ -46,10 +46,9 @@ The following sections are structured as below:
 	\item \textbf{Effort spent:} Here there is the division of the work hours of each member of the group and the description of the tasks completed and related time spent.
 \end{itemize}
 \section{Architectural Design}
-\subsection{Overview}
-In the figure below it is shown the architecture of the entire system. This description has to be intended only as an overview and because of this some details are not shown.
-
 \begin{figure}[h]
+	\subsection{Overview}
+In the figure below it is shown the architecture of the entire system. This description has to be intended only as an overview and because of this some details are not shown.
 	\includegraphics[scale=0.465]{Diagrams/overview.png}
 	\caption{Architectural overview}
 \end{figure}
@@ -59,13 +58,21 @@ In this system we have two clusters of servers and two types of servers. One is 
  The load of requests is managed by the load balancer in order to guarantee a balanced load. The balanced load can be translated then in a better efficiency in the service. In fact thanks to duplication of components it is possible to satisfy requests in parallel and so faster. The redundancy of resources can make the system more fault tolerant.\\
  Both the clusters communicate to the database of the application. In particular the servers devoted to requests interact also with the database of the municipality to have information about the accidents. Thanks to the interaction with the municipality database it is possible to have more detailed information about the safety.\\
 The storage is managed with a cloud computing approach in both the databases. Thanks to this type of approach it is possible to reduce or increase resources according to the number of requests in a specific moment. This is very important in order guarantee elasticity in the resources devoted to the service.\\ 
-
 \subsection{Component view}
 Here there is the description of the software components that will be implemented in the specific hardware.
-\subsection{Deployment view}
 \begin{figure}[h]
+	\subsection{Deployment view}
 	\includegraphics[scale=0.465]{Diagrams/Deployment diagram.png}
 	\caption{Deployment diagram}
 \end{figure}
 \FloatBarrier
+This diagram is very similar to the one in the overview. It express some aspects which have been already explained and some others are explained only here. In fact we can see all the operating systems for each server and also the protocol used in the communication between the devices.
+Here you can find a brief description of what the single components do:
+\begin{itemize}
+\item \textbf{Firewall:} Firewalls are well known for sure by the majority of the people but we think that it is important to describe their operation the same. Firewalls are placed between the internal network and the external ones.They are used to filter the incoming/outcoming packet traffic. Through a set of rules they decide if a packet can pass or (unique alternative) be blocked.  This can be very useful to guarantee a better system safety.
+\item \textbf{Load Balancer:} Load Balancers are used to improve the workloads across multiple computing resources. Thanks to load balancer the load can be balanced in an optimal way.This can make the system more performing and can also improve the fault tolerance of the system because of redundancy.
+\item \textbf{Servers:} In this architecture we can find two clusters, each one containing 2 application servers. The servers are specialized with no overlap of functionalities. One is specialized in the managing of the reports by the private users. It must update the database with the new incoming data only after having done all the checks about the validity and correctness of the report.\\
+The other server deals with the managing of the requests by the private users or municipalities. It is in charge of check the correctness and validity of the request,and then it must run all the data mining algorithms necessary to retrieve the result and finally send the results to the right private user.
+\item \textbf{Databases:} The databases are cloud databases managed thanks to an API that will be provided by the provider of the service. We have only one cloud database used to store all the Safestreets data. Another cloud database is the external one of the municipality. Safestreets has only a special view of the part of the municipality database concerning the accidents. The access to the external database will have to be possible thanks to an API provided by the municipality. This API will have to follow a standard provided by us.
+\end{itemize}
 \end{document}
