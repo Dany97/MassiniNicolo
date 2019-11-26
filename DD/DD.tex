@@ -54,12 +54,12 @@ In the figure below it is shown the architecture of the entire system. This desc
 \end{figure}
 \FloatBarrier
 
-In this system we have two clusters of servers and two types of servers. One is specialized in taking the requests that comes from outside the network whereas the other one is specialized in managing the reports that come from the private users. Obviously it is necessary to define what we mean by request and reports.In this case a report for us is a report of a violation sent via smartphone application to the system. Instead, a request is any possible thing that the the private user/municipality user can ask to the system to do. Obviously a request cannot be a violation report and the other way around.\\
- The load of requests is managed by the load balancer in order to guarantee a balanced load. The balanced load can be translated then in a better efficiency in the service. In fact thanks to duplication of components it is possible to satisfy requests in parallel and so faster. The redundancy of resources can make the system more fault tolerant.\\
- Both the clusters communicate to the database of the application. In particular the servers devoted to requests interact also with the database of the municipality to have information about the accidents. Thanks to the interaction with the municipality database it is possible to have more detailed information about the safety.\\
-The storage is managed with a cloud computing approach in both the databases. Thanks to this type of approach it is possible to reduce or increase resources according to the number of requests in a specific moment. This is very important in order guarantee elasticity in the resources devoted to the service.\\ 
+In this overview we can immediately distinguish the architectural layers. Servers manage the logic one whereas databases manage the data layer and finally the client smartphone is where the presentation layer resides. \\
+The architecture has 2 clusters. Every server contained in one cluster access the system databases whereas instead only the two databases dedicated to requests access the external one (which is the external database of the municipality). Servers which resides in different cluster don't communicate with each other to guarantee the service. Also servers of the same cluster don't communicate with each other obviously. The workload balancing between servers of the same cluster will have to work thanks to load balancers.\\
+The client in order to receive the service will speak directly and only to the firewall placed at the entrance of the system. The first firewall (the one near the SafeStreets application in the diagram) is the element that will rout the user message to the right cluster based on the type of request. In this case that firewall has not only a security function (obviously the main function of a firewall is that) but it also behaves as a gateway which routes packets. All the clusters are placed inside the DMZ (between two firewalls) for security reasons. They must be accessible from outside the internal network. The second firewall divides clusters from the system database. The database will have to be accessible only from the clusters for security reasons and because of this fact they are outside of the DMZ.\\
+The fact that we have two independent servers per cluster that offers the same services will cost more for sure but we want this system to be discreetly fault-tolerant and performing. A solution with only one server would have been too much dangerous in the terms expressed just above.
 \subsection{Component view}
-Here there is the description of the software components that will be implemented in the specific hardware.
+Here there is an high level description of the software components that will be implemented in the specific hardware.
 
 \begin{figure}[h]
 	\subsection{Deployment view}
@@ -80,6 +80,8 @@ The other server deals with the managing of the requests by the private users or
 \subsection{Runtime View}
 \subsection{Component interfaces}
 \subsection{Selected architectural styles and patterns}
+We have selected an 5 tiers architecture. In this architecture the presentation layer is present only in the smartphone of the user. This decision is due to the fact that we want the mobile application to be light and runnable with discrete performance in a lot of phones. We an application that limits as little as possible the hardware in a phone in terms of performance. The system data are stored in a database  whereas the systems uses also another database which is the one of the municipality.
+The logic is divided in two specialized clusters. One, as already explained before, is specialized in the request and the other one is specialized in the receiving of the reports and them managing. The load is spread thanks to load balancers in the 
 \subsection{Other design decisions}
 
 \begin{figure}[h]
