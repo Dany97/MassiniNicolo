@@ -45,8 +45,8 @@ The following sections are structured as below:
 	\item \textbf{Implementation, Integration and Test plan:} Here there is the description of how we will implement all the components, how we will integrate them together and finally how we will test both the single components and also the integrated system.
 	\item \textbf{Effort spent:} Here there is the division of the work hours of each member of the group and the description of the tasks completed and related time spent.
 \end{itemize}
-\section{Architectural Design}
 \begin{figure}[h]
+\section{Architectural Design}
 	\subsection{Overview}
 In the figure below it is shown the architecture of the entire system. This description has to be intended only as an overview and because of this some details are not shown.
 	\includegraphics[scale=0.465]{Diagrams/overview.png}
@@ -60,12 +60,14 @@ In this system we have two clusters of servers and two types of servers. One is 
 The storage is managed with a cloud computing approach in both the databases. Thanks to this type of approach it is possible to reduce or increase resources according to the number of requests in a specific moment. This is very important in order guarantee elasticity in the resources devoted to the service.\\ 
 \subsection{Component view}
 Here there is the description of the software components that will be implemented in the specific hardware.
+
 \begin{figure}[h]
 	\subsection{Deployment view}
 	\includegraphics[scale=0.465]{Diagrams/Deployment diagram.png}
 	\caption{Deployment diagram}
 \end{figure}
 \FloatBarrier
+
 This diagram is very similar to the one in the overview. It express some aspects which have been already explained and some others are explained only here. In fact we can see all the operating systems for each server and also the protocol used in the communication between the devices.
 Here you can find a brief description of what the single components do:
 \begin{itemize}
@@ -75,4 +77,18 @@ Here you can find a brief description of what the single components do:
 The other server deals with the managing of the requests by the private users or municipalities. It is in charge of check the correctness and validity of the request,and then it must run all the data mining algorithms necessary to retrieve the result and finally send the results to the right private user.
 \item \textbf{Databases:} The databases are cloud databases managed thanks to an API that will be provided by the provider of the service. We have only one cloud database used to store all the Safestreets data. Another cloud database is the external one of the municipality. Safestreets has only a special view of the part of the municipality database concerning the accidents. The access to the external database will have to be possible thanks to an API provided by the municipality. This API will have to follow a standard provided by us.
 \end{itemize}
+\subsection{Runtime View}
+\subsection{Component interfaces}
+\subsection{Selected architectural styles and patterns}
+\subsection{Other design decisions}
+
+\begin{figure}[h]
+	\section{User interface design}
+Here it will shown the user interfaces with the help of UX diagrams. In particular there is shown the flow that the user will follow to navigate inside the application.Some aspects concerning the user interface design have been already treated in the "Requirement Analysis and Specification Document" and if the reader wants to understand in a better and more detailed way, he/she is strongly suggested to refer to it. 
+UX diagrams:\\
+	\includegraphics[scale=0.48]{Diagrams/UX diagram.png}
+	\caption{Deployment diagram}
+\end{figure}
+\FloatBarrier
+
 \end{document}
