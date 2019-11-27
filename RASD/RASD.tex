@@ -78,7 +78,6 @@ The authorities will be informed of the violations through the municipality.
 	\end{itemize}
 \item $[goal 4]$: The user (both private user and the municipality) must be able to authenticate into the Safestreets platform.
 
-\item $[goal 5]$: The system must allow the user to check the safety of a street, a group of streets or a parking area that he/she wants.
 
 \end{itemize}
 
@@ -297,7 +296,7 @@ This is the violation class diagram:
 \end{figure}
 \FloatBarrier
 
-\subsubsection{State charts: }
+\subsubsection{State charts }
 Here you can find a state chart diagram of the system:
 
 \begin{figure}[h
@@ -653,9 +652,9 @@ Furthermore, the application can encounter:
 		
 	\end{itemize}
 	
-\subsubsection{Hardware Interfaces: }
+\subsubsection{Hardware Interfaces }
 The system doesn't offer any kind of hardware interface to the user. In fact the user can use the application simply thanks to his/her phone.
-\subsubsection{Software interfaces: }
+\subsubsection{Software interfaces }
 The system offers his service through the use of the following software interfaces:\\ \\
 \textbf{Operating systems:\\ }
 The system will have to be designed for the most common smart-phones operating system: 
@@ -665,7 +664,7 @@ The system will have to be designed for the most common smart-phones operating s
 	\item IOS
 \end{itemize}
 	
-\subsubsection{Communication interfaces: }
+\subsubsection{Communication interfaces }
 Each smart-phone that will use Safestreets will communicate with the servers thanks to the HTTPS protocol. Also the databases will communicate using the same protocol. We've chosen this protocol because thanks to it, it is possible to obtain a secure connection between nodes. Furthermore it is a very commonly used protocol for the connections over internet.
 \subsection{Functional Requirements:}
 \subsubsection{Use case diagrams: }
@@ -687,7 +686,7 @@ Use case diagrams are very important because they allow the reader to understand
 \end{figure}
 \FloatBarrier
 
-\subsubsection{Scenarios:}
+\subsubsection{Scenarios}
 \begin{center}
 \textbf{From the private user point of view:}
 \end{center}
@@ -1325,15 +1324,15 @@ The application is designed for IOS and Android, so it will have to be interchan
 In the back-end part, it has to be designed in a way that it will be independent from the OS.
 
 
-\section{Formal analysis with alloy.}
-\subsubsection{Overview of this section:}
+\section{Formal analysis with alloy}
+\subsubsection{Overview of this section}
 In this section there is a description of the system using alloy. Alloy is a declarative specification language which is used to model systems in a formal way. This model can be used to reduce ,as much as possible, the intrinsically ambiguity due to natural language used so far.
 Another very important aspect to consider is the validation of the model. Through the use of formal models we can establish if our requirements and domain assumptions are together sufficient to achieve our goals.\\
 In this model we have not shaped all aspects of the system but only the ones that we consider as very important aspects of the system.The non represented aspects are not so many. We have decided so because we didn't want to make a too much complex alloy model. A too much complex alloy model would have been too much difficult to understand for many readers and in our opinion one of the scope of this document is also to be sufficiently understandable for any interested person.
 
-\subsubsection{Code:}
+\subsubsection{Code}
 \lstinputlisting[language=alloy]{alloy Safestreets.als}
-\subsubsection{Validation:}
+\subsubsection{Validation}
 In this subsection we will show 3 different worlds. Each generated world will show an important aspect of the model and so of the system itself.
 
 \paragraph{World 1: \\}
@@ -1385,7 +1384,7 @@ In this world we will show a complete view of the system in his completeness. Ev
 \end{figure}
 \FloatBarrier
 \newpage
-\section{Effort:}
+\section{Effort}
 \begin{longtable}{| p{12 cm} | p{2 cm} |} 
 		\hline
 		{\bf Task} & {\bf Hours}\\
