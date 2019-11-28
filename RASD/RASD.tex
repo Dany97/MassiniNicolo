@@ -33,8 +33,8 @@ This document shows what are the goals and the requirements of the software.
 It has to represent how the application can be useful for the users and why they are fundamental to improve the quality of the service offered. Secondly, this document can be also used as a support for the testing of the system, for the verification activities and also the validation ones. The RASD can be also used to guide the changes in a already existing system.
 \subsection{Purpose}
 
-\subsubsection{Description of the given problem}
-SafeStreets is a mobile application useful to help people to be safer when they are on the street.\\
+\subsubsection{Description of the given problem:}
+SafeStreets is a software useful to help people to be safer when they are on the street.\\
 The users can send to the municipality pictures of violations occurring in public streets: the reporting can concern violation on the road, in a parking lot and so on.\\
 The software allows the users to send detailed information about the violation, such as the hour, the date, the type of violation and the position (they can be captured with GPS).\\
 Furthermore, the service can provide to the user information about the streets around which he/she is,
@@ -45,7 +45,7 @@ The service must be different in base of the type of user, such as municipalitie
 Finally, the users must be able to receive recommendations from the system to avoid using streets, parking lots that are risky in general or at a specific hour or date.\\
 The authorities will be informed of the violations through the municipality.
 
-\subsubsection{Goals}
+\subsubsection{Goals:}
 \begin{itemize}
 \item $[goal 1]$:  The service allows the users to report a violation to the municipality.
 \begin{itemize}
@@ -55,7 +55,7 @@ The authorities will be informed of the violations through the municipality.
 	\item $[goal 1.2]$: The user can specify the date and the 						hour when the violation has happened 							and the type of violation.
 	
 
-	\item $[goal 1.3]$: The municipality must be able to     	receive the reports.  \\
+	\item $[goal 1.3 ]$: The municipality must be able to     	receive the reports.  \\
 	
 \end{itemize}
 
@@ -69,76 +69,77 @@ The authorities will be informed of the violations through the municipality.
 		\item $[goal 2.3]$: The user, in base of his/her 				position, can be recommended to use the safest 					streets/areas, etc or avoid the dangerous ones.\\
 
       \end{itemize}
-
-\item $[goal 3]$: Safestreets must send to the municipality suggestions to improve the safety of the streets only when the municipality asks for them.
+\item $[goal 3]$: The service offers a different service according 					  to the type of user (biker, pedestrian, 						  rider, driver, disabled person).
 	\begin{itemize}
-	\item $[goal 3.1]$: Every time the municipality makes a request in order to obtain suggestions, they must receive them by Safestreets.
+	\item $[goal 3.1]$: The user that want to park his/her  							car/motorbike/bicycle can receive a                           						suggestion in order to park it in the safest area.\\
+	\end{itemize}
+
+
+
+\item $[goal 4]$: A driver or a motorcyclist can add to his 					  personal profile the driving license.\\
+
+\item $[goal 5]$: Safestreets can send to the municipality 						  suggestions to improve the safety of the 					      streets for every type of person.
+	\begin{itemize}
+	\item $[goal 5.1]$: The municipality must receive every 
+					    suggestion sent by Safestreets.\\
 					   
 	
 	\end{itemize}
-\item $[goal 4]$: The user (both private user and the municipality) must be able to authenticate into the Safestreets platform.
-
-\item $[goal 5]$: The system must allow the user to check the safety of a street, a group of streets or a parking area that he/she wants.
-
+\item $[goal 6]$: The user (both private user and the municipality) must be able to sign-up into the Safestreets platform.
+\item $[goal 7]$: The user (both private user and the municipality) must be able to log-in to the system after having done the sign-up.
+\item $[goal 8]$: The user (both private user and the municipality) must be able to log-out from the system if logged-in.
 \end{itemize}
 
-\subsection{Scope}
-SafeStreets will be developed as a mobile application and will be designed only for IOS and Android.
-The application offers to users different service, that are the possibility to make a report of a violation and send it to the municipality. The user must take a photo of the violation and the system will retrieve the license plate of the photographed vehicle using an algorithm offered by an external API. \\
-Another service offered by SafeStreets is the possibility to check the safety of the streets and the parking areas. The maps are provided by an external API and we will develop an algorithm to highlight them in a different way according to their dangerousness. \\
-The system also offers the possibility to the municipality to receive suggestions in order to improve the safety of the streets. These suggestions are created using an external data mining algorithm that retrieves the necessary data both from the users' violations and the database offered by the municipality. \\
-Furthermore, all the data about the violations, the users, the streets and the parking areas are stored in an external cloud database and in the design document we will show this in detail in a relational schema. \\
-
-
-
-With this app we engage in making the streets safer within the limits that the mobile application has, that are related to the fact that SafeStreets is not designed and developed by the authorities and so the only responsibility that we take is that the reports must be received by the municipality. So, the application does not concern the actions that the municipality will do after having received the report. \\
-
-In this section we explain what the system can control, what the external world can control and finally what is controllable by the world and observed by the system and vice versa.
-
-\paragraph{World phenomena\\}
-This events are controlled by the external world.
-\subparagraph{From the user point of view}
+\subsection{Scope:}
+In this section the so called "world and machine phenomena" is introduced.\\
+We distinguish the world and the machine. The world is related to every phenomenon that takes place outside of the region of events that the S2B (called machine) is able to control or eventually observe. Instead, the machine is related to phenomena which happen inside the machine and so they are completely controllable. Some of the totality of the phenomena can be observed by the machine but they're controlled by the world and vice versa. These are called shared phenomena.
+\paragraph{World phenomena: }
+\subparagraph{From the user point of view: }
 \begin{itemize}	
 	\item The user sees one or more violations.
 	\item The user wants to report a violation to the 					  authorities.
 	\item The user wants to know the area/streets where the 
 	     major violations occur.
 	\item The user wants to know where is safer to park his/			  her car/bike/motorcycle.
+	\item The user wants to know which are the vehicles that       		  commit the major number of violations.
 
 \end{itemize}
-\subparagraph{From the municipality point of view }
+\subparagraph{From the municipality point of view: }
 
 \begin{itemize}
 	\item The municipality wants to know what to do to 				improve the safety of the streets.
 	\item The municipality wants to discover which are the most
-	dangerous zones of the city.
-	\item The authorities receive the information about the violations directly from the municipality. 
+	dangerous zones of the city.\\
 \end{itemize}
  
-\paragraph{Shared phenomena }
+\paragraph{Shared phenomena: }
 \subparagraph{Shared phenomena controlled by the world and observed by the machine: }
 \begin{itemize}
-    \item The user authenticates into the platform.
+    \item The user signs-up into the platform.
+    \item The user logs-in to the platform.
+    \item The user logs-out from the platform.
  	\item The user sends to the system a picture of a            	violation and all the other data related to it.
- 	\item The user sends data requests to the system.
-	\item The municipality sends a data request to the system 		  in order to receive suggestions to improve the safety of the streets.
+ 	\item The user sends some data request to the system.
+	\item The municipality sends a data request to the system 		  in order to receive suggestions to improve the 				  safety 	of the streets.
+	\item The municipality sends a data request to know which 			  are the vehicles that have committed the major 				  number of violations.
 \end{itemize}
-\subparagraph{Shared phenomena controlled by the machine and  			observed by the world }
+\subparagraph{Shared phenomena controlled by the machine and  			observed by the world: }
 \begin{itemize}
-	\item The user receives, by the system, all the data 			related to the safest and most dangerous streets.
+	\item The user receives, by the system, all the data 			related to the safest and most dangerous streets .
+	\item The user receives, by the system, all the data related to the vehicles that have committed the major number of violations.
 	\item The municipality receives suggestions from SafeStreets to make the city safer.
+	\item The municipality receives the list of the most 			dangerous vehicles.
 	\item The municipality receives violations reported by the users via Safestreets.
 	
 \end{itemize}
-\subparagraph{Machine phenomena\\}
-Events controlled by the machine.
+\subparagraph{Machine phenomena: }
 \begin{itemize}
-	\item The system stores the user's data in its database.
-	\item The system stores the data about the 					municipality in its database.
-	\item The system stores all the data about the violation in its database.
-	\item The system analyses with an algorithm provided by an external API the received picture in order to retrieve the car plate.
-	\item The system checks if the street in which the 				violation occurs is an existing one with the use of an external API.
-	\item The system runs a data mining algorithm provided by an external API to retrieve suggestions from users' reports and municipality data,it collects elaborated data and provides it to the municipality.
+	\item The system stores the user's data.
+	\item The system stores the data about the 					municipality.
+	\item The system stores all the data about the violation.
+	\item The system analyses the received picture in order to 	retrieve the car plate.
+	\item The system checks if the street in which the 				violation occurs is an existing one.
+	\item The system runs an algorithm to retrieve suggestions from users' reports and municipality data,it collects elaborated data and provides it to the municipality.
 	\item The system can refuse a request by the user because of insufficient data.
 \end{itemize}
 
@@ -147,7 +148,7 @@ Events controlled by the machine.
 
 
 
-\subsubsection{Acronyms}
+\subsubsection{Acronyms:}
 
 \begin{tabular}{|l|rl|}
 \hline
@@ -163,18 +164,19 @@ Events controlled by the machine.
 \hline
 \end{tabular}
 
-\subsubsection{Definitions}
+\subsubsection{Definitions:}
 \begin{itemize}
-	\item \textbf{Violation =} Any kind of infringement of the driving code. Here we distinguish violations concerning the traffic and violation concerning parking.\\
-	\item \textbf{Personal data =} Data belonging to the user, needed in the moment of the signing-up. They are name, surname, username and e-mail.
+	\item \textbf{Violation =} Any kind of infringement of the highway code. Here we distinguish violations concerning the traffic and violation concerning parking.\\
+	\item \textbf{Personal data =} Data belonging to the user, needed in the moment of the signing-up. They are name, surname, date of birth, e-mail and FC.
 	\item \textbf{S2B =} System to be developed. It will contain all the services provided by SafeStreets.
-	\item \textbf{Report of a violation =} A user can use SafeStreets to report an infringement he has seen. In particular he can add the type of violation, the date and the hour, the street (that can also be retrieved automatically) and he must add a picture of the violation.
+	\item \textbf{Private user request =} A user can ask for information about the safety of an area or a parking lot around him/her. He/She can also request data about the most dangerous vehicles in that area.
+	\item \textbf{Report of a violation =} A user can use SafeStreets to report an infringement he has seen. In particular he can add the type of violation, the date and the hour, the street (that can also be retrieved automatically) and he can also add a picture of the violation.
 	\item \textbf{Municipality request =} The municipality can ask for the same things aforementioned for the user. They will receive more accurate information rather than a private user, including for example data about the violators. They can also request suggestions (provided by SafeStreets) to improve the quality of their service.
 	\item \textbf{Fiscal code =} It's a 16-characters code identifying an Italian citizen.
 	\item \textbf{Credentials =} username and password used by a user to log-in to the system.
 	
 \end{itemize}
-\subsubsection{Abbreviations}
+\subsubsection{Abbreviations:}
 
 \begin{itemize}
 
@@ -190,7 +192,7 @@ Events controlled by the machine.
 \end{itemize}
 
 
-\subsection{Revision History}
+\subsection{Revision History: }
 
 \begin{itemize}
 
@@ -200,14 +202,13 @@ Events controlled by the machine.
 
 \end{itemize}
 
-\subsection{Reference Documents}
+\subsection{Reference Documents:}
 \begin{itemize}
 	\item RASD Slides by professor Matteo Rossi (Polimi);
 	\item Course slides about alloy by professor Rossi;
-	\item $https://web.cs.dal.ca/~hawkey/3130/srs_template-ieee.doc.$
 	
 \end{itemize}
-\subsection{Document Structure}
+\subsection{Document Structure: }
 This document is organized in the following way:
 \begin{itemize}
 	\item \textbf{Overall Description:} This section contains a deeper analysis of the world and machine phenomena already described in the scope. It also contains class diagrams which describe the relationship between actors, state chart diagrams used to describe the state of the system from a dynamic point of view, the description of the stakeholders and their needs and finally the key functional requirements and the domain assumption.
@@ -221,30 +222,33 @@ There is another very important aspect concerning this section. Such aspect is t
 
 \section{Overall Description}
 This section is necessary to give a better and deeper description of the shared and world phenomena. In this section, the system will be described also with the help of the class diagrams and state diagrams.
-\subsection{Product Perspective}
-
-SafeStreets is a new software created from scratch. It isn't a follow-on member of an existing product family and it isn't a component of a larger system, but it interfaces with third party components, which are the external cloud database that stores SafeStreets data, the external database provided by the municipality that contains further information about the violations and the streets, a Google cloud API (Vision AI) for the image recognition to retrieve the license plates from the report images, a Google Maps API to use and display the maps, Oracle Data Mining in order to retrieve data from the databases and to provide suggestions for the municipality.\\ \\
-
-Here there is in detail the description of the shared phenomena to understand how the system interacts with the external world. In addition, there is also an explanation of the other phenomena in order to understand better how the system and the external world act. \\
-
+\subsection{Product Perspective:}
 \paragraph{The user sees one or more violations:}
-It's the situation in which the user sees a violation which can concern traffic or parking. Such violations could be for example a car/motorcycle parked in a red zone or on a sidewalk area. Another example of violation can be that the user sees a car/motorcycle parked on a pedestrian crossing. All the types of reportable violations are suggested by the municipality and each violation has an index of dangerousness that is given to SafeStreets by the municipality itself.
-\paragraph{The user wants to report a violation to the 					  authorities:}
+It's the situation in which the user sees a violation which can concern traffic or parking. The user knows what happens and also where and when. Such violations could be for example a car/motorcycle parked in a red zone or on a sidewalk area and so on.
+\paragraph{The user wants to report a violation to the 					  authorities.}
 In this case the user would like to have the possibility to report a violation of which he/she is aware. 
 \paragraph{The user wants to know the areas/streets where the 
 	      major number of violations occur.}
 In this type of phenomena the user would like to know what are the most dangerous areas in his city/town in terms of traffic or parking violations. 
 \paragraph{The user wants to know where is safer to park his/			  her car/bike/motorcycle:}
 In this case we analyse the case in which the user has a vehicle that needs to be parked. He/she would know what are the safest streets in order to decide in which area to park. He/she wants to know the safest parking areas whose distance from him/her is less than or equal to a certain value (given by the user).
+\paragraph{The user wants to know which are the vehicles that       		  commit the major number of violations:}
+The user would like to know the vehicles that commit the highest number of violations. Obviously, the user is not an authority and so he can see a limited quantity of information due to GDPR regulation.
 \paragraph{The municipality wants to know what to do to 				improve the safety of the streets: }
 In this case the municipality recognizes that in a certain area or street there is a problem with the too high number of violations. In this case the municipality would like to have some suggestions in order to provide a solution to make the number of violations decrease.
 \paragraph{The municipality wants to discover which are the most dangerous zones of the city.}
 The municipality would like to know which are the most dangerous streets in order to monitor them with more attention. This could be useful for the municipality if it wants to improve its service quality.
 \paragraph{The user signs-in to the platform: }
 In this case the user compiles all the mandatory fields which are: name, surname, username, password, fiscal code and date of birth. Driving license data are not mandatory because this system is designed for people who use the app also to ride a bike or walk.
+\paragraph{The user signs-up to the platform: }
+In this case the user compiles all the mandatory fields which are: name,surname,username,e-mail,password and FC. Driving license data are not mandatory because this system is designed for people who use the app also to ride a bike or walk.
+\paragraph{The user logs-in to the platform: }
+The user can log-in to the system by entering username and password.
+\paragraph{The user logs-out from the platform:}
+In this case the user quits the platform if he/she logs-out. The user will not be able to receive any service  by the platform until he/she does a new log-in.
 \paragraph{The user sends to the system a picture of a            	violation and all the other data related to it: }
 In this case the user sends a report of a park violation or a traffic violation to the authorities (the municipality in this case). The user must take a picture of the violation and add the mandatory information which are needed which are: the hour and the date. The place of the violation can be detected automatically or manually (it's a user's choice).
-\paragraph{The user sends data requests to the system: }
+\paragraph{The user sends some data request to the system: }
 In this case the user could want to retrieve some information from the system. Such information, could concern the most dangerous zones or who commits the major number of violations, the most safe streets where to park and so on. The system will provide these information in different ways, such as a list of the users or a map with the streets highlighted differently in relation to their level of danger.
 \paragraph{The municipality sends a data request to the 				   system  in order to receive suggestion to improve 			   the 	safety 	of the streets: }
 The municipality sends a data request to the system in order to have suggestions to improve the safety. These suggestions are simple phrases which describe what it's possible to do to overcome problems.
@@ -277,11 +281,11 @@ Safestreets will collect data from the users and also from the municipality. The
 	insufficient data:}
 	In the case that the data on the databases in insufficient the system abort and will report the fail to the 
 	user.
-\subsubsection{Class diagrams}
+\subsubsection{Class diagrams:}
 This is the user class diagram:
 \begin{figure}[h
 ]
-	\includegraphics[scale=0.332]{UML users v1.0.png}
+	\includegraphics[scale=0.3]{UML users v1.0.png}
 	\centering
 	\caption{User class diagram}
 \end{figure}
@@ -291,7 +295,7 @@ This is the user class diagram:
 This is the violation class diagram:
 \begin{figure}[h
 ]
-	\includegraphics[scale=0.4]{UML violation v1.1.png}
+	\includegraphics[scale=0.3]{UML violation v1.1.png}
 	\centering
 	\caption{Violation class diagram}
 \end{figure}
@@ -302,40 +306,40 @@ Here you can find a state chart diagram of the system:
 
 \begin{figure}[h
 ]
-    \includegraphics[scale=0.45]{State_chart.png}
+    \includegraphics[scale=0.3]{State_chart.png}
 	\centering
 	\caption{System State chart diagram}
 \end{figure}
 \FloatBarrier
 
 
-\subsection{Product functions}
+\subsection{Product functions: }
 In this section there is a description of the main functions that the system will make available to the final user.\\
 These functions are the following:
 \begin{itemize}
-	\item \textbf{Report of a violation:} Safestreets allows the user to report a violation.This function must permit the user to take a picture directly and only from the application. It must also allow to insert the hour and the date. The street where the violation occur can be detected automatically or manually. In the first case the user decides that he/she wants to be localized through the GPS coordinates and in the last case the user must insert the street and the city manually into the application. It's very important to remark the important fact that the way in which the user wants to insert the street is only a choice of the private user.
+	\item \textbf{Report of a violation:} Safestreets allows the user to report a violation. To do that he/she has to take a picture, indicate the hour and, eventually, the location where the violation occurred. The place where the violation occurred is taken automatically in case the user does not want to insert it himself, using the smart-phone GPS signal. After that the violation will be reported to the municipality that will handle the problem.
+	\item \textbf{Request of the list of vehicles that have committed the highest number of violations:}
+	The users and the authorities can make a request and ask what are the vehicles that have committed the highest number of violations. This request (if no exception happen) will show a list of license plates to the user. The request can be personalized by expressing: a maximum number of vehicles that must be showed. If the number is not given as input the system will show a fixed number of results.
 	\item \textbf{Get the list of most dangerous streets: }
-	The most dangerous streets are the ones with the highest violations and they can be retrieved specifying the maximum number of streets that the request has to show. \\
-This function must also permit the user to insert the city of which he/she wants to know the dangerous roads and also a distance (expressed in kilometres). This function will provide a map with the dangerous streets highlighted. This function must take into consideration only the streets whose distance is less or equal to the one specified in the request by the user. 
+	The most dangerous streets are the ones with the highest violations and they can be retrieved specifying the maximum number of vehicles that the request has to show. \\
+Who is making the request has also to write the area of the streets he/she wants to analyse. This is done specifying the GPS coordinates of a fixed point and a maximum distance from that point. In this way, the user specifies a set of streets that he/she wants to analyse. The result of that request will be a map with the most dangerous and the safest roads highlighted.
 	\item \textbf{Send a request to obtain suggestions to make the streets safer:}
 	This function is only designed for the municipalities. In this case the municipality has to insert the place about which it wants to have suggestions. The system will return a list containing on one side the problem and on the other side a possible solution to overcome it. Obviously, the list is not static but it will be updated over time thanks to the reported violations.
 	\item \textbf{The user send a request to know where to park his/her vehicle in a safe area:}
-	This function allows the user to explicitly ask the system to suggest places where to park his/her vehicle in a secure way. 
+	This function allows the user to explicitly ask the system to suggest places where to park his vehicle in a secure way. 
 The user must specify how far he/she wants to park from his/her position or from a position given as an input. The system will not guarantee the fact that in the proposed place there will be at least one parking lot but it only will suggest which roads are considered more secure than others to do so.
 	\item \textbf{The user will receive the suggested areas where to park:}
 	After having requested the safest areas where to park, the system will provide them to the user in a map form. In this map there will be highlighted the streets considered more secure than the others in the specified area given by the user as input.
 
 \end{itemize}
-\subsection{User characteristics}
+\subsection{User characteristics: }
 In this subsection there is a description of the application users and an analysis of their needs. We will categorize the people who use the app in order to understand their necessities in a better way.\\
 \textbf{\\Description of the users of the app:\\}
 The user of the app can be divided in a first categorization which is the following:
 \begin{itemize}
 	\item Private user;
-	\item Municipality.
-	\item Authorities.\\
+	\item Municipality.\\
 \end{itemize}
-It is very important to say that the authorities are the only ones will not directly use the Safestreets system. They will be informed of the reports of violations by the municipality. The municipality is the entity which will receive all the reports and then it will pass them to the authorities. This choice is due to the fact that the authorities are part of the municipality, which manages them and Safestreets must not change the way in which the authorities are managed and organized internally.
 \textbf{Description of the private users: }\\ 
 It is possible to divide again the private users in other classes. For every class there will be a different concept of dangerousness.
 \begin{itemize}
@@ -343,16 +347,12 @@ It is possible to divide again the private users in other classes. For every cla
 	\item Motorists;
 	\item Motorcyclists;
 	\item Cyclists.
-	\item Municipality users.
 \end{itemize}
-A private user can be also a disabled person belonging to the pedestrians category or to the car drivers one.Because of this fact these type of users will require a different type of service and a different concept of dangerousness. There are a lot of things that are not dangerous for non-disabled people and on the contrary others which are. We can make some brief examples: \\ \\
-\textbf{1)} Streets which are not equipped with facilities for disabled pedestrians are for sure dangerous than for a non-disabled one.\\ \\
-\textbf{2)} Streets with no parking lots for disabled can become impracticable for disabled car drivers. Maybe he/she would not have enough space for a wheelchair in a non-disabled car park. Instead for non-disabled ones this aspect does not generate any problem for sure. \\ \\
-For example they will have information about cars parked in a handicap parking or on ramps for disabled people.\\
+A private user can be also a disabled person belonging to the pedestrians category or to the car drivers one. Because of this fact these type of users will require a different type of service and a different concept of dangerousness. For example they will have information about cars parked in a handicap parking or on ramps for disabled people.\\
 All the private users are supposed to have downloaded the app from the store,to have done the sign-up entering all the mandatory data and finally to have accepted all the permissions.\\
 The private user, according to his category, will take advantage of a different type of service.\\
 A car driver, for example, will have information about parking lots or parking violation, that is not required in a biker service.\\
-A cyclist will have informations about bicycle paths, while pedestrians will have detailed data about sidewalks or pedestrian crossing, with all the possible violations related to them. The location of the pedestrian crossings and of the bicycle paths must be provided by the municipality.  \\
+A cyclist will have informations about bicycle paths, while pedestrians will have detailed data about sidewalks or pedestrian crossing, with all the possible violations related to them. \\
 The authorities will receive Safestreets information by the municipality that will share this data with them. We have done this choice because the authorities are part of the municipality of a city. This means that the authorities are managed by the municipality and so it is better that the system sends the data to central body.
 
 Furthermore, the application can encounter:
@@ -367,8 +367,8 @@ Furthermore, the application can encounter:
 
 
 
-\subsection{Assumptions, dependencies and constraints}
-\subsubsection{Domain assumptions }
+\subsection{Assumptions, dependencies and constraints: }
+\subsubsection{Domain assumptions: }
 \begin{itemize}
 	\item $[\textbf{D1}]$: The user is supposed to submit correct e-mail, and data matching his/her fiscal code.
 	\item $[\textbf{D2}]$: The user creates one and only one account.
@@ -384,7 +384,7 @@ Furthermore, the application can encounter:
 	\item $[\textbf{D12}]$: A street can be identified with its name and the city of which it belongs.
 	
 \end{itemize}
-\subsubsection{Constraints }
+\subsubsection{Constraints: }
 \begin{itemize}
 	\item  The system must treat the users' personal data in according to the GDPR regulation.
 	\item The system will be designed and implemented for smart-phones.
@@ -392,7 +392,7 @@ Furthermore, the application can encounter:
 	\item The pictures must be taken only through the app camera and not imported from the device gallery in order to take photos in real time.
 \end{itemize}
 
-\subsubsection{Dependencies }
+\subsubsection{Dependencies: }
 \begin{itemize}
 	\item The system will use the GPS services provided by the smart-phones.
 	\item The system will use the internet services offered by the smart-phones.\\
@@ -419,7 +419,7 @@ Furthermore, the application can encounter:
 
 	\newpage
 
-	\item \textbf{SafeStreets loading page:}
+	\item \textbf{SafeStreets loading page:}\\
 	
 	\begin{figure}[h]
 	\includegraphics[scale=0.3]{Mockups/Introduction.png}
