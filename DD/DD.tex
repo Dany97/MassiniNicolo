@@ -59,7 +59,33 @@ The architecture has 2 clusters. Every server contained in one cluster access th
 The client in order to receive the service will speak directly and only to the firewall placed at the entrance of the system. The first firewall (the one near the SafeStreets application in the diagram) is the element that will rout the user message to the right cluster based on the type of request. In this case that firewall has not only a security function (obviously the main function of a firewall is that) but it also behaves as a gateway which routes packets. All the clusters are placed inside the DMZ (between two firewalls) for security reasons. They must be accessible from outside the internal network. The second firewall divides clusters from the system database. The database will have to be accessible only from the clusters for security reasons and because of this fact they are outside of the DMZ.\\
 The fact that we have two independent servers per cluster that offers the same services will cost more for sure but we want this system to be discreetly fault-tolerant and performing. A solution with only one server would have been too much dangerous in the terms expressed just above.
 \subsection{Component view}
-Here there is an high level description of the software components that will be implemented in the specific hardware.
+Here there is a description of the software components that will be implemented in the specific hardware.
+
+\begin{figure}[h]
+	\includegraphics[scale=0.1]{Diagrams/Component diagram.png}
+	\caption{Component diagram}
+\end{figure}
+\FloatBarrier
+
+With this diagram our purpose is to show the internal architecture of SafeStreets. \\
+The main components are the user client application, the requests server application and the data management server. The external interfaces are SafeStreets cloud database, the municipality database and the GPS interface.\\
+These main components contain smaller modular components that communicate with each other and with the external interfaces to complete different functions.\\
+Now we will describe the internal components and the external interfaces in detail. \\
+
+\paragraph{\textbf{User Client Application}}
+The User Client Application is situated in the user's smartphone. It contains the Data Manager, the View and the Communication Manager:
+\begin{itemize}
+\item \textbf{Data Manager}\\
+This component is responsible of taking the user's position in the world using the GPS service offered by his smartphone. Those data will be sent to the server in case he selects a service that uses the GPS localization. \\
+\item \textbf{View}\\
+This component is the view part of the MVC pattern. It takes data provided by the controller situated in the Server and shows them to the user with its interface.
+\item \textbf{Communication Manager}\\
+The Communication Manager is responsible for the network.
+It manages all the communication from the client to the server and vice versa.\\
+\end{itemize}
+
+
+
 
 \begin{figure}[h]
 	\subsection{Deployment view}
