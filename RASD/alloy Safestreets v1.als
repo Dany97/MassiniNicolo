@@ -271,7 +271,7 @@ pred showStaticCompleteModel{
 }
 
 
-//run showStaticViewOfUsers for 7
+run showStaticViewOfUsers for 7
 run showStaticViewOfViolationsAndStreets for 4
 run showStaticCompleteModel for 4
 
