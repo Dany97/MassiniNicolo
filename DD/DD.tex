@@ -116,11 +116,13 @@ The system can be seen as an example of MVC pattern:
 In our case, in particular, it is divided in two subcomponents. One part concerns the managing of the requests and the other one concerns with the reports of the user. The first its implemented in the servers for the request and the latter in the servers for the reports.
 \end{itemize}
 \subsection{Other design decisions}
+Here it is possible to find another design decision which are not about patterns and design styles which are the following:
 \begin{itemize}
-	\item \textbf{Cloud databases:} We have chosen cloud databases to store the systems data because in this way it is possible to decrease or increase the resources according to the load of requests or reports. In this way it is possible to balance the storage space according to the load automatically. A solution based on proprietary databases would have been probably more efficient in terms of performances but surely more critical in terms of allocation or deallocation of resources. Furthermore, another important aspect of this choice is the fact that the physical maintenance of cloud database is entrusted to third parties (the owners of the physical devices which are the providers of the cloud service).
-	\item \textbf{Use of clusters:} The use of clusters has been decide in order to try to make the system possibly more performing but above all, more fault tolerate. We have discarded the idea of having a single server instead of a cluster precisely because of this aspect. If a single server is down, then, the entire service will surely be inaccessible for the user. \\
+	\item \textbf{ Use of cloud databases:} We have chosen cloud databases to store the systems data because in this way it is possible to decrease or increase the resources according to the load of requests or reports. In this way it is possible to balance the storage space according to the load automatically. A solution based on proprietary databases would have been probably more efficient in terms of performances but surely more critical in terms of allocation or deallocation of resources. Furthermore, another important aspect of this choice is the fact that the physical maintenance of cloud database is entrusted to third parties (the owners of the physical devices which are the providers of the cloud service).
+	\item \textbf{Use of clusters:} The use of clusters has been decide in order to try to make the system possibly more performing but above all, more fault tolerate. We have discarded the idea of having a single server instead of a cluster precisely because of this aspect. If the single server is down, then, the entire service will surely be inaccessible for the user. \\
 The use of clusters is excellent as it makes the system more scalable. In fact, it is also easy to add additional servers.
-	\item \textbf{Load balancers:} The use of load balancers has been decided to make the system more performing. In fact the throughput can be maximized and the response time minimized as much as possible. 
+	\item \textbf{Use of load balancers:} The use of load balancers has been decided to make the system more performing. In fact the throughput can be maximized and the response time minimized as much as possible. 
+	\item \textbf{Use of relational databases:} For this system we have chosen relational databases. On of the reason about this decision is the fact that the data that the system manages and stores is well defined and structured. We know that sometimes operations like "join" between different tables can affect the system and make it slower. However, we think that this aspect will not cause relevant problems in our system. In fact the performance constraints are large enough to not cause problems in our opinion. Furthermore, relational databases have been used for several years and they are used also nowadays for a lot of applications. Because of this, we have a strong theoretical background about them.
 	
 \end{itemize}
 
@@ -133,6 +135,6 @@ UX diagrams:\\
 \end{figure}
 \FloatBarrier
 
-
+\section{ Requirements Traceability}
 
 \end{document}
