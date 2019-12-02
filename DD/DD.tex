@@ -88,6 +88,42 @@ The Communication Manager is responsible for the network.
 It manages all the communication from the client to the server and vice versa.\\
 \end{itemize}
 
+\paragraph{\textbf{Requests Server Application}}
+This component is situated on one of the two servers and contains a Communication Manager, the User Requests component and the Municipality Suggestions Requests one:
+\begin{itemize}
+\item \textbf{Communication Manager}\\
+It has the same function of the one situated on the client. It dispatches and receives message from the client application.
+\item \textbf{User Requests}\\
+This component manages all the requests coming from the private users and the municipality, except for the suggestions requests. It contains a User Requests Manager, that elaborates the requests and asks for the necessary data to the Data Storage Manager. The User Requests component contains also the Data Storage Manager that retrieves the requested data querying the SafeStreets external database.
+\item \textbf{Municipality Suggestions Requests}\\
+This component deals with the suggestions requests made by the municipality. It contains the Municipality Suggestions Requests Manager that receives the request from the Communication Manager and asks for the needed data to the Data Mining component, situated in the other server in the Data Management Server Application. When the suggestion is ready, the Data Mining component send it back to the Municipality Suggestions Request component, especially to the Result Handler, that dispatches it to the Communication Manager that sends it to the Client Application.
+\end{itemize}
+
+\paragraph{Data Management Server Application}
+This component is situated on the other server compared to the Requests Server Application. It contains the Data Mining Component, the Reports Component and the Authentication one:
+\begin{itemize}
+\item \textbf{Data Mining}\\
+This component is responsible for the retrieval of the information needed to provide suggestions to the municipality. It receives from the Municipality Suggestions Requests Component a request for suggestions. It contains the Data Requests Manager that handle the received request and asks for data to other two components, also situated in the Data Mining Component. They are the Data Storage Manager that provides the data about the violation and the streets that SafeStreets has in its cloud database, and the other is the Municipality Data Storage Manager that provides the data, again about the violations and the streets, but now querying the Municipality external database. When all those data arrive to the Data Requests Manager, it dispatches them to the Suggestions Creation Manager, that runs a data mining algorithm provided by an Oracle API in order to merge the received data and retrieve information useful to provide suggestions to the Municipality. Finally the result is sent to the Result Handler, situated in the Municipality Suggestions Requests Component, that proceeds to give it to the User Client Application. 
+
+\item \textbf{Reports}\\
+This component is responsible for the violation reports. It receives the reports from the Communication Manager and it contains a Report Validity Manager that checks that the violation data inserted by the user are correct. Then it has the Photo Analysis Manager that retrieves the license plate of the violator from the photograph using an algorithm provided by an external API that scans the photo. Finally there is a Data Storage Manager that takes all the information about the violation (license plate, type of violation, description, position, date and hour) and stores them in the SafeStreets database.
+
+\item \textbf{Authentication}\\
+The Authentication component manages all the operation about login, sign up and logout.
+It contains a Credentials Validity Manager that checks the user's input (both in login and sign up) and checks if he is logged in whenever he wants to logout. Then it contains also a Data Storage Manager that asks for the account data that has to be checked by the Credential Validity Manager and stores the user's account data in case of sign up.
+\end{itemize}
+
+\paragraph{\textbf{External Interfaces}}
+Some of the components already described have to communicate with external interfaces in order to guarantee specific functionalities. These interfaces are:
+\begin{itemize}
+\item \textbf{SafeStreets cloud database}\\
+This component is shared with both Servers. In each of the two servers there is a component that is the only one that communicates with this database and it's the Data Storage Manager, that can both query to retrieve data and add new information into the database.
+\item \textbf{Municipality Database}\\
+This component communicates with the Data Management Server Application, in particular with the Municipality Data Storage Manager, that can only query to obtain information in order to create suggestions for the Municipality. This database is in read-only mode.
+\item \textbf{GPS}\\
+This external component is necessary for the user's automatic localization. It communicates with the User Client Application, in particular with the Data Manager that is the one specialized in retrieving the position information (city and street) from the GPS service offered by the user's smartphone.
+\end{itemize}
+
 
 
 
