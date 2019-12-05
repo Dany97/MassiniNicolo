@@ -1211,14 +1211,16 @@ The system will send to the user an error message and will redirect him/her in t
  \item $[G1]:$ The service allows the users to report a violation to the municipality:
  \begin{itemize}
  	\item $[R1]:$ The system must allow the user to take a picture.
- 	\item $[R2]:$ The system must allow the user to indicate the place where the violation occurred.
+ 	\item $[R2]:$ The system must allow the user to indicate the street where the violation occurred.
  	\item $[R3]:$ The system must allow the user to indicate the hour and the date when the violation occurred.
  	\item $[R4]:$ The system must allow the user to insert a brief description of the violation.
  	\item $[R5]:$ The system can localize his/her position automatically as alternative to the manual insertion.
  	\item $[R6]:$ The system must allow the user to finally submit the report.
  	\item $[R7]:$ The system must run an algorithm to retrieve the license plate from the violation picture.
- 	\item $[R29]:$ The chosen username must identify the private user uniquely.
- 	\item $[R30]:$ The pictures must be taken only through the app camera and not imported from the device gallery in order to take photos in real time.
+ 	\item $[R8]:$ The chosen username must identify the private user uniquely.
+ 	\item $[R9]:$ The pictures must be taken only through the app camera and not imported from the device gallery in order to take photos in real time.
+ 	\item $[R10]:$: The system must store the report if it is correct.
+ 	\item $[R11]:$: The system must check if the reported street exists in reality.
  	\item $[D4]:$ The GPS signal has a relative error of 10 meters.
  	\item $[D6]:$ The user allows the application to have access to his/her position and to the camera of his/her device.
  	\item $[D7]:$ The internet connection has to be enabled when the app needs it.
@@ -1228,35 +1230,39 @@ The system will send to the user an error message and will redirect him/her in t
  \end{itemize}
  \item $[G2]:$ The service allows the users to have detailed informations about the violations and the streets safety.
  \begin{itemize}
- 	\item $[R8]:$ The system must allow the user to insert the street around which he/she wants to check the safety.
- 	\item $[R9]:$ The system must be able to retrieve users' position data from the GPS service of their smartphones.
- 	\item $[R10]:$ The system must allow the user to insert the city in which the violation occurred.
- 	\item $[R11]:$ The system must allow the user to insert a number representing the radius within which the system must provide the condition of the streets.
- 	\item $[R12]:$ The system must report the  safest streets in a map form. These streets must be highlighted on the map.
+ 	\item $[R12]:$ The system must allow the user to insert the street around which he/she wants to check the safety.
+ 	\item $[R13]:$ The system must be able to retrieve users' position data from the GPS service of their smartphones.
+ 	\item $[R14]:$ The system must allow the user to insert the city in which the violation occurred.
+ 	\item $[R15]:$ The system must allow the user to insert a number representing the radius within which the system must provide the condition of the streets.
+ 	\item $[R16]:$ The system must report the  safest streets in a map form. These streets must be highlighted on the map.
+ 	\item $[R17]:$ The system must run a data mining algorithm to update the information (contained in the database) about the violations and the streets safety.
+ 	\item $[R18]:$ The system must retrieve the information from its database.
  	\item $[D4]:$ The GPS signal has a relative error of 10 meters.
  	\item $[D7]:$ The internet connection has to be enabled when the app needs it.
  \end{itemize}
  
  
  
- \item $[G3]:$ Safestreets must send to the municipality suggestions to improve the safety of the streets only when the municipality asks for them.
+ \item $[G3]:$ Safestreets must send to the municipality suggestions to improve the safety of the streets whenever the municipality asks for them.
  \begin{itemize}
- \item $[R20]:$ The system must retrieve the information about violations from the users' reports.
- \item $[R21]:$ The system must use both data received by the users and by the municipality.
+ \item $[R19]:$ The system must retrieve the information about violations from the users' reports.
+ \item $[R20]:$ The system must use both data received by the users and by the municipality.
+ \item $[R21]:$ The system must run a data mining algorithm to update the database of the system. It must update the suggestion for the municipality.
+ \item $[R22]:$ The system must retrieve municipality suggestions from its database.
  \item $[D5]:$ The memory where the data is stored is persistent.
  \end{itemize}
  
  
  \item $[G4]:$ The user (both private user and the municipality) must be able to authenticate into the Safestreets platform.
  \begin{itemize}
- \item $[R22]:$ The system must allow the user to choose between municipality account or private user one.
- \item $[R23]:$ The system must allow the municipality to sign-up if and only if they insert a valid ID code.
- \item $[R24]:$ The system must allow the user (both private user and the municipality) to sign-up if and only if he/she inserts a username that is not already used.
- \item $[R25]:$ The system must allow the user (both private user and the municipality) to sign-up if and only if he/she inserts a password that complies the security policy.
- \item $[R26]:$ The system must allow the user to recover his/her password if he/she has forgotten it.
- \item $[R27]:$ The system must allow the municipality users and the private ones to access the corresponding Home Page after the log-in.
- \item $[R28]:$ The system must allow the user to log-out from the platform in every moment by the exit button placed in the Home Page.
- \item $[R29]:$ The chosen username must identify the private user uniquely.
+ \item $[R23]:$ The system must allow the user to choose between municipality account or private user one.
+ \item $[R24]:$ The system must allow the municipality to sign-up if and only if they insert a valid ID code.
+ \item $[R25]:$ The system must allow the user (both private user and the municipality) to sign-up if and only if he/she inserts a username that is not already used.
+ \item $[R26]:$ The system must allow the user (both private user and the municipality) to sign-up if and only if he/she inserts a password that complies the security policy.
+ \item $[R27]:$ The system must allow the user to recover his/her password if he/she has forgotten it.
+ \item $[R28]:$ The system must allow the municipality users and the private ones to access the corresponding Home Page after the log-in.
+ \item $[R29]:$ The system must allow the user to log-out from the platform in every moment by the exit button placed in the Home Page.
+ \item $[R30]:$ The system must check that the chosen username (chosen during the sign-up phase) must be unique. 
  \item $[D1]:$ The user is supposed to submit correct e-mail, and data matching his/her FC.
  \item $[D2]:$ The user creates one and only one account.
  \item $[D3]:$ Every municipality which has an account on the system certifies its own account as valid.
