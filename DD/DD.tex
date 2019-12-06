@@ -291,4 +291,65 @@ Here it is possible to find an explanation about how the requirements in the ras
 			\item \textbf{$[R16]$:} The system must report the safest streets in a map form. These streets must be highlighted on the map. 
 		\end{itemize} \\ \hline
 \end{longtable}
+
+\section{Implementation, Integration and Test Plan}
+\subsection{Overview}
+So far, the design of the system has been described in a top-down approach. In fact the reader goes into details as he/she proceeds through the sections and subsections. From here to the end the approach for the implementation, integration and testing will be incremental and so bottom-up. We can logically divide our system in 3 subsystems which are the following:
+
+\begin{itemize}
+	\item The client device which contains only the presentation layer as already explained before.
+	\item The application servers which contains the application logic and also the interaction with the server (both external or internal)
+	\item The external systems which in our case are:
+	\begin{itemize}
+		\item the external  cloud data mining api.
+		\item The cloud api for image analysis.
+		\item The google maps service for the maps retrieving of the cities.
+	\end{itemize}
+\end{itemize} 
+
+\subsection{Implementation}
+We want to plan the implementation phase in such a way to have the maximum parallelism among groups of developers.
+The order in which we want the system to be implemented is the following:
+
+\begin{enumerate}
+
+	\item The databases will be the first to be implemented. In particular the relational schema of the system database will be implemented as first and also its constraints.
+	\item The software which will reside in each one of the application servers will have to be implemented as second. In particular we have the software related to the managing of the reports and also the one related to the managing of the user requests. Each one of these 2 software modules will be implemented in parallel since they are independent.
+	\item The client application will be the last part to be implemented.\\
+		
+\end{enumerate}
+Now there is the detailed description of the order in which the developers will have to develop the modules in the servers or client application.
+	
+On the reports application server the following modules will be implemented in this specific order:
+
+\begin{enumerate}
+	\item Communication manager.
+	\item Credentials validity manager.
+	\item Data storage manager.
+	\item Report validity manager.
+	\item Photo analysis manager.\\
+\end{enumerate}
+
+
+On the requests application server the following modules will be implemented in this specific order:
+
+\begin{enumerate}
+	\item User request manager.
+	\item Municipality suggestions request manager.
+	\item Data request manager
+	\item Municipality Data storage manager.
+	\item Suggestion creation manager.
+	\item Result handler.\\
+\end{enumerate}
+
+On the client application the following modules will be implemented in this specific order:
+\begin{enumerate}
+	\item View
+	\item Data manager
+\end{enumerate}
+
+
+\subsection{Unit tests}
+\subsection{Integration tests}
+
 \end{document}
