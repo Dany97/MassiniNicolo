@@ -143,6 +143,48 @@ The other server deals with the managing of the requests by the private users or
 \item \textbf{Databases:} The databases are cloud databases managed thanks to an API that will be provided by the provider of the service. We have only one cloud database used to store all the Safestreets data. Another cloud database is the external one of the municipality. Safestreets has only a special view of the part of the municipality database concerning the accidents. All these cloud database use SQL.
 \end{itemize}
 \subsection{Runtime View}
+\paragraph{Sign Up Runtime View\\ \\}
+With this sequence diagram we explain which components come into play and how they interact when a user signs up.
+This process is the same both for private users and municipality.\\
+When the user pushes the sign-up button, the View sends the sign up request to the Client Communication Manager that provides to dispatch it, together with the user's submitted personal data, to the Server Communication Manager, through the use of the Load Balancer in order to manage the load and assign it to one of our two servers. Then the Server Communication Manager is responsible to send all the data to the Credentials Validity Manager that checks the validity of the inserted data, controlling if the password complies our restrictions. Then it sends to the Data Storage Manager a request to query the SafeStreets Cloud Database to discover if there is already or not an existing account associated with the username inserted by the user. After having received a response from the Database, the Data Storage Manager sends the response to the Credentials Validity Manager that checks it. In case there is already an existing account, the Credentials Validity Manager sends an error message to the Server Communication Manager that propagates it to the Load Balancer and then to the Client Communication Manager informing it about a malformed request or an already-in-use account. The Communication Manager sends the message to the View that shows it to the user. \\
+In case all the verifications are ok the process is almost the same, except for the fact that the exchanged messages tell that everything has gone well.
+
+\begin{figure}[h]
+	\includegraphics[scale=0.42]{Diagrams/Sequence Diagrams/Runtime View Diagram signup.png}
+	\caption{Deployment diagram}
+\end{figure}
+\FloatBarrier
+
+\paragraph{Login Runtime View \\ \\}
+
+In this sequence diagram we explain which are the components involved and how they communicate with each other. \\
+When the user pushes the login button, the view propagates the login request to the Client Communication Manager that is responsible to dispatch it to the Server Communication Manager, also thanks to the use of the Load Balancer that has the same function explained for the signing up. \\
+Then the Server Communication Manager sends the request with the credentials to the Credentials Validity Manager, that elaborates a query to check if the credentials submitted by the user match an existing account in the database. The query is sent to the Data Storage Manager that dispatches it to the SafeStreets Cloud Database. When the Data Storage Manager receives an answer from the database, he sends the result to the Credentials Validity Manager that checks if it's valid or null. \\
+If it's null it dispatches an error message to the Server Communication Manager that sends it to the client (through the Load Balancer) as a HTTP malformed request or wrong credentials. \\
+Finally, when the Client Communication Manager receives the error message, it sends it to the View that displays it to the user.
+
+\begin{figure}[h]
+	\includegraphics[scale=0.42]{Diagrams/Sequence Diagrams/Runtime View Diagram login.png}
+	\caption{Deployment diagram}
+\end{figure}
+\FloatBarrier
+
+
+\paragraph{Report Runtime View \\ \\}
+
+In this sequence diagram we explain the process of a Violation Report. \\
+When the user submits all the violation information by pushing the report button, the View sends the report to the Client Communication Manager. It dispatches the report to the Load Balancer that sends it to the Server Communication Manager. It sends the report to the Report Validity Manager that checks the correctness of the report. To do this it checks if the violation type belongs to one of the categories suggested by the municipality.
+After that, if the report isn't correct it sends back to the Server Communication Manager an error message. The Server Communication Manager will propagate it to the client (through the Load Balancer) as invalid input.
+Then, the Client Communication Manager sends the error message to the View, that shows it to the user, that can reformulate the report and redo the same process in order to do a new submission. \\
+If the report is correct, the Report Validity Manager sends the confirmation back to the Server Communication Manager that, with the same process of the error communication, dispatches it to the client as HTTP 200 OK in order to finally make the View display the confirmation to the user. \\
+
+
+\begin{figure}[h]
+	\includegraphics[scale=0.298]{Diagrams/Sequence Diagrams/Runtime View Diagram report.png}
+	\caption{Deployment diagram}
+\end{figure}
+\FloatBarrier
+
 \subsection{Component interfaces}
 \subsection{Selected architectural styles and patterns}
 We have selected an 4 tiers architecture. The entire system is a client-server application. The smartphone of the user implements only the presentation layer. This decision is due to the fact that we want the mobile application to be lightweight. We want the app to perform discreetly even with non-modern hardware phones. We want an application that limits as little as possible the hardware in a phone in terms of performance. The system data are stored in a database  whereas the systems uses also another database which is the one of the municipality.
