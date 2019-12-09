@@ -79,7 +79,9 @@ The system offers also the possibility to receive suggestions in order to improv
 \item Document delivered on 9/12/19.
 \end{itemize}
 \subsection{Reference Documents}
-\item IEEE standard for Design Document;
+\begin{itemize}
+	\item IEEE standard for Design Document;
+\end{itemize}
 \subsection{Document Structure}
 The following sections are structured as below:
 \begin{itemize}
@@ -308,7 +310,15 @@ The use of clusters makes the system more scalable. In fact, it will be easier t
 	\item \textbf{Use of load balancers:} The use of load balancers has been decided to make the system more performing. In fact the throughput can be maximized and the response time minimized considerably. This is due to the fact that with the load balancers it's possible to perform parallel execution of different tasks and it is more likely to avoid the overload of the servers.  
 	\item \textbf{Use of relational databases:} Our system uses a relational cloud database. The interaction with the municipality database is possible with a SQL interface provided by the municipality. This interface translates the SQL language in order to be adaptable with the municipality database, even if it hasn't a SQL DBMS.\\
 One of the reasons about the decision to use relational databases is the fact that the data that the system manages and stores is well defined and structured. In fact all the data that needs to be stored can be structured in tables. The photos, that could be the only data treated by SafeStreets that can be more oriented to a non relational database, have only to be analysed to retrieve the license plate and when the analysis is done they don't need to be stored in the database.\\
-We know that operations like the "join" between different tables can slow down the system. However, we think that this aspect doesn't cause relevant problems in our system as the performance constraints aren't so restricted to need to avoid this kind of timing. Furthermore, relational databases have been used for several years and they are used also nowadays for a lot of applications. So, they have a stronger theoretical background than the non relational ones.
+We know that operations like the "join" between different tables can slow down the system. However, we think that this aspect doesn't cause relevant problems in our system as the performance constraints aren't so restricted to need to avoid this kind of timing. Furthermore, relational databases have been used for several years and they are used also nowadays for a lot of applications. So, they have a stronger theoretical background than the non relational ones.\\
+
+
+\begin{figure}[h]
+Here it is possible to find the relational schema of the system database, showed with an entity relationship diagram:\\ \\ \\
+	\includegraphics[scale=0.55]{Diagrams/ER diagram.png}
+	\caption{entity relationship diagram}
+\end{figure}
+\FloatBarrier
 	
 \end{itemize}
 
@@ -316,7 +326,7 @@ We know that operations like the "join" between different tables can slow down t
 	\section{User interface design}
 Here there will be shown the user interfaces with the help of UX diagrams. In particular there is shown the flow that the user will follow to navigate inside the application. Some aspects concerning the user interfaces design have been already treated in the "Requirement Analysis and Specification Document",if the reader wants to understand in a better and more detailed way, he/she is strongly suggested to refer also to it. In this document it is described only the flow that the user must follow to use the application.
 UX diagrams:\\
-	\includegraphics[scale=0.48]{Diagrams/UX diagram.png}
+	\includegraphics[scale=0.4]{Diagrams/UX diagram.png}
 	\caption{UX diagram}
 \end{figure}
 \FloatBarrier
