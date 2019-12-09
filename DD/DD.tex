@@ -433,16 +433,16 @@ from the Municipality external database.
 
 \section{Implementation, Integration and Test Plan}
 \subsection{Overview}
-So far, the design of the system has been described in a top-down approach. In fact the reader goes into details as he/she proceeds through the sections and subsections. From here to the end the approach for the integration and testing will be incremental and top-down. We can logically divide our system in 3 subsystems which are the following:
+So far, the design of the system has been described with a top-down approach. In fact the reader goes into details as he/she proceeds through the sections and subsections. From here to the end the approach for the integration and testing will be incremental and top-down. We can logically divide our system in 3 subsystems which are the following:
 
 \begin{itemize}
-	\item The client device which contains only the presentation layer as already explained before.
-	\item The application servers which contains the application logic and also the interaction with the databases (both external or internal)
-	\item The external systems which in our case are:
+	\item The client device which contains only the presentation layer as explained before.
+	\item The application servers which contain the application logic and also the interactions with the databases (both external or internal)
+	\item The external systems which, in our case, are:
 	\begin{itemize}
-		\item the external  cloud data mining api.
+		\item the external data mining api.
 		\item The cloud api for image analysis.
-		\item The google maps service for the maps retrieving of the cities.
+		\item The google maps service for retrieval of the maps, the cities and the streets.
 	\end{itemize}
 \end{itemize} 
 
@@ -452,14 +452,14 @@ The order in which we want the system to be implemented is the following:
 
 \begin{enumerate}
 
-	\item The databases will be the first to be implemented. In particular the relational schema of the system database will be implemented as first and also its constraints.
-	\item The software which will reside in each one of the application servers will have to be implemented as second. In particular we have the software related to the managing of the reports and also the one related to the managing of the user requests. Each one of these 2 software modules will be implemented in parallel since they are independent.
+	\item The databases will be the first to be implemented. In particular the relational schema of the system database and also its constraints will be implemented first.
+	\item The software which will reside in each one of the application servers will have be the second to be implemented. In particular we have the software related to the management of reports and authentication and also the one related to the management of the user requests. Each one of these 2 software modules will be implemented in parallel since they are independent from each other.
 	\item The client application will be the last part to be implemented.\\
 		
 \end{enumerate}
-Now there is the detailed description of the order in which the developers will have to develop the modules in the servers or client application.
+Now there is the detailed description of the order in which the developers will have to develop the modules.
 	
-On the reports application server the following modules will be implemented in this specific order:
+On the data management application server the following modules will be implemented in this specific order:
 
 \begin{enumerate}
 	\item Communication manager.
@@ -477,12 +477,12 @@ On the requests application server the following modules will be implemented in 
 	\item Municipality suggestions request manager.
 	\item Data request manager
 	\item Municipality Data storage manager.
-	\item Suggestion creation manager.
-	\item Result handler.\\
+	\item Suggestion creation manager.\\
 \end{enumerate}
 
 On the client application the following modules will be implemented in this specific order:
 \begin{enumerate}
+	\item Communication Manager
 	\item View
 	\item Data manager
 \end{enumerate}
@@ -490,19 +490,21 @@ On the client application the following modules will be implemented in this spec
 
 \subsection{Unit tests}
 In this subsection it will be explained how to do the unit tests and when.\\
-The choice of starting the testing phase during is due to the fact that we want that problems and bugs will be found as soon as possible. The unit tests will be added during the implementation every time that a module became fully implemented. The aspect of finding bugs as soon as possible can make the developing process faster and more efficient with better final results. Obviously, since almost all the modules use at least another one to work, it will be necessary to simulate the modules they depend on. This will have to be done using stubs and drives. When a software component will be tested, the modules it depends on will be simulated thanks to stubs and the modules that run functions present in the module to test will be simulated thanks to drivers.\\
-The unit testing will be supported by automatic tool to run the tests. This makes the work of running the tests easier for developers. In addition, in this way we are more sure that tests present in a previous versions of the software will be present also in the  new ones. This is very important because every modification can inadvertently modify some functionalities that maybe worked perfectly in the previous versions. Because of this aspect it is strictly necessary that the tests used in the previous versions of the software will be used and run also in the new ones. The aspect just above maybe is very trivial for some reader, but we want to emphasize it the same because it is very important and fundamental for the success of the project. Every software module must have a code coverage of at least 75\%.
+The choice of starting the testing phase during the implementation phase is due to the fact that we want that problems and bugs will be found as soon as possible. The unit tests will be added every time a module becomes fully implemented. The aspect of finding bugs as soon as possible can make the developing process faster and more efficient with better final results. Obviously, since almost all the modules use at least another one to work, it will be necessary to simulate the modules they depend on. This will have to be done using stubs and drives. When a software component will be tested, the modules it depends on will be simulated thanks to stubs and the modules that run functions present in the module to test will be simulated thanks to drivers.\\
+The unit testing will be supported by an automatic tool to run the tests. This makes the work of running the tests easier for developers. In addition, in this way we are surer that tests present in a previous versions of the software will be present also in the  new ones. This is very important because every modification can inadvertently modify some functionalities that maybe worked perfectly in the previous versions. Because of this aspect it is strictly necessary that the tests used in the previous versions of the software will be used and run also in the new ones. The aspect mentioned above could seem very trivial for some readers, but we want to emphasize it the same because it is very important and fundamental for the success of the project. Every software module must have a code coverage of at least 75\%.
 \subsection{Integration tests}
-This testing phase can be divided in: integration tests and system tests. The first consists in incrementally integrating the software modules and test their behaviour until the entire system is completely formed. The system testing consist in doing tests of the entire system. For the integration testing we have chosen a top-down approach. In this approach, testing takes place from top to down following the control flow of the software system. This approach has the advantages of testing critical modules first and make the fault detection easier,but it has the disadvantage of requiring a lot of  stubs. \\ \\
+It consists in incrementally integrating the software modules and test their behaviour until the entire system is completely formed. For the integration testing we have chosen a top-down approach. With this approach, testing takes place from top to down following the control flow of the software system. This approach has the advantages of testing critical modules first and make the fault detection easier,but it has the disadvantage of requiring a lot of  stubs. \\ \\
 Top down integration testing starts from the modules which are at the top level of the hierarchical structure (they use other modules to work but they are not used by any module) to the bottom. The stubs are replaced by the real modules as the testing proceed until the entire system is formed.
 
-Here there are diagrams which show the diagrams which represent the "use" hierarchy of the modules of the 3 subsystems (the 2 servers and the client). The modules pointed by the arrow are used by the modules from which the arrow starts. The integration and test will have to be done from left to right following the arrows in order to execute it in the right approach (explained before).\\
+Here there are three diagrams which represent the "use" hierarchy of the modules of the 3 subsystems (the 2 servers and the client). The modules pointed by the arrow are used by the modules from which the arrow starts. The integration and testing will have to be done from left to right following the arrows in order to execute it with the right approach (explained before).\\
+
+\newpage
 
 \textbf{Hierarchy of the modules of the Requests application server:}
 
 \begin{figure}[h]
 \includegraphics[scale=0.5]{Diagrams/Request application servers.png}
-	\caption{Requests application server}
+	\caption{Requests and Authentication application server}
 \end{figure}
 \FloatBarrier
 
@@ -521,12 +523,12 @@ Here there are diagrams which show the diagrams which represent the "use" hierar
 \end{figure}
 \FloatBarrier
 
-All the subsystems use the databases and so the databases (the system one and also the external one) will be the last components to be integrated into the subsystems. After the database is integrated, the subsystems will be tested again.\\
+All the subsystems use the databases and so the databases (the system one and also the external one) will be the last components to be integrated with the subsystems. After the databases are integrated, the subsystems will be tested again.\\
 
-Up to know we have integrated all the components of the subsystems (The requests application server, the reports application server and the client) and so, in order to compose the entire system, we have to integrate and test all the subsystems together. For do that we have chosen a top-down approach as before. The first subsystem to be integrated will be the client, the second will be the servers (both the servers) and the last will be the databases. After every integration the result will be tested. After that all the subsystems will be integrated, the entire system will be formed.
+Up to now we have integrated all the components of the subsystems (The requests application server, the data management application server and the client) and so, in order to compose the entire system, we have to integrate and test all the subsystems together. To do that we have chosen a top-down approach as before. The first subsystem to be integrated will be the client, the second will be the servers (both the servers) and the last will be the databases. After every integration the result will be tested. After that all the subsystems will be integrated and, consequently, the entire system will be formed. At this step the system testing will start.
 
 \subsection{System testing}
-The integrated system will have to be tested with black-box tests. This means that the code will be tested only from behavioural point of view and not structural. Functional and not functional requirements will be tested. The functional will be tested in order to test that the system meets the functional requirement. Instead, the non functional requirement can be about the performances, the load and the stress. All this aspects will have to be tested. To see what are the requirement (both functional of non functional) please, refer to the RASD to see them. 
+The integrated system will have to be tested with black-box tests. This means that the code will be tested only from a behavioural point of view and not a structural one. Functional and non functional requirements will be tested. The functional ones will be tested in order to test that the system meets the functional requirements. Instead, the non functional requirements concern the performances, the load and the stress. All these aspects will have to be tested. To see what are the requirements (both functional or non functional) you have to refer to the RASD. 
 
 \section{Effort spent}
 \end{document}
