@@ -17,7 +17,7 @@
 \title{Design Document
 \\  Safestreets}
 
-\date{release date to be defined}
+\date{9/12/2019}
 \begin{document}
 \maketitle
 \newpage 
@@ -64,14 +64,15 @@ The client in order to receive the service will speak directly and only to the f
 
 \begin{figure}[h]
 \subsection{Component view}
-Here there is a description of the software components that will be implemented in the specific hardware. The diagram is not horizontal in order to make it more readable.
+Here there is a description of the software components that will be implemented in the specific hardware. The diagram is not horizontal in order to make it more readable. 
+\\
 	\includegraphics[scale=0.133, angle=-90]{Diagrams/Component diagram.png}
 	\caption{Component diagram}
 \end{figure}
 \FloatBarrier
 
 With this diagram our purpose is to show the internal software architecture of SafeStreets. \\
-The main components are the user client application, the requests server application and the data management server. The external interfaces are SafeStreets cloud database, the municipality database and the GPS interface.\\
+The main components are the user client application, the requests server application and the data management server application. The external interfaces are SafeStreets cloud database, the municipality database and the GPS interface.\\
 These main components contain smaller modular components that communicate with each other and with the external interfaces to complete different functions.\\
 Now we will describe the internal components and the external interfaces in detail. \\
 
@@ -88,21 +89,26 @@ It manages all the communication from the client to the server and vice versa.\\
 \end{itemize}
 
 \paragraph{\textbf{Requests Server Application}}
-This component is situated on one of the two servers and contains a Communication Manager, the User Requests component and the Municipality Suggestions Requests one:
+This component is situated on one of the two servers and contains a Communication Manager, the User Requests component, the Municipality Suggestions Requests component and the Data Mining one:
 \begin{itemize}
 \item \textbf{Communication Manager}\\
 It has the same function of the one situated on the client. It dispatches and receives message from the client application.
 \item \textbf{User Requests}\\
 This component manages all the requests coming from the private users and the municipality, except for the suggestions requests. It contains a User Requests Manager, that elaborates the requests and asks for the necessary data to the Data Storage Manager. The User Requests component contains also the Data Storage Manager that retrieves the requested data querying the SafeStreets external database.
 \item \textbf{Municipality Suggestions Requests}\\
-This component deals with the suggestions requests made by the municipality. It contains the Municipality Suggestions Requests Manager that receives the request from the Communication Manager and asks for the needed data to the Data Mining component, situated in the other server in the Data Management Server Application. When the suggestion is ready, the Data Mining component send it back to the Municipality Suggestions Request component, especially to the Result Handler, that dispatches it to the Communication Manager that sends it to the Client Application.
+This component deals with the suggestions requests made by the municipality. It contains the Municipality Suggestions Requests Manager that receives the request from the Communication Manager and asks for the needed data to the Data Mining component. When the suggestion is ready, the Data Mining component send it back to the Municipality Suggestions Request component, especially to the Municipality Suggestions Requests Manager, that dispatches it to the Communication Manager that sends it to the Client Application.
+
+
+\item \textbf{Data Mining}\\
+This component is responsible for the retrieval of the information needed to provide suggestions to the municipality. It receives from the Municipality Suggestions Requests Component a request for suggestions. It contains the Data Requests Manager that handle the received request and asks for data to other two components, also situated in the Data Mining Component. They are the Data Storage Manager that provides the data about the violation and the streets that SafeStreets has in its cloud database, and the other is the Municipality Data Storage Manager that provides the data, again about the violations and the streets, but now querying the Municipality external database. When all those data arrive to the Data Requests Manager, it dispatches them to the Suggestions Creation Manager, that runs a data mining algorithm provided by an Oracle API in order to merge the received data and retrieve information useful to provide suggestions to the Municipality. Finally the result is sent back to the Data Requests Manager, that sends it to the Municipality Suggestions Requests Component. 
 \end{itemize}
 
 \paragraph{Data Management Server Application}
-This component is situated on the other server compared to the Requests Server Application. It contains the Data Mining Component, the Reports Component and the Authentication one:
+This component is situated on the other server compared to the Requests Server Application. It contains the Communication Manager, Reports Component and the Authentication one:
 \begin{itemize}
-\item \textbf{Data Mining}\\
-This component is responsible for the retrieval of the information needed to provide suggestions to the municipality. It receives from the Municipality Suggestions Requests Component a request for suggestions. It contains the Data Requests Manager that handle the received request and asks for data to other two components, also situated in the Data Mining Component. They are the Data Storage Manager that provides the data about the violation and the streets that SafeStreets has in its cloud database, and the other is the Municipality Data Storage Manager that provides the data, again about the violations and the streets, but now querying the Municipality external database. When all those data arrive to the Data Requests Manager, it dispatches them to the Suggestions Creation Manager, that runs a data mining algorithm provided by an Oracle API in order to merge the received data and retrieve information useful to provide suggestions to the Municipality. Finally the result is sent to the Result Handler, situated in the Municipality Suggestions Requests Component, that proceeds to give it to the User Client Application. 
+
+\item \textbf{Communication Manager}\\
+It has the same function than the one situated in the Requests Server Application.
 
 \item \textbf{Reports}\\
 This component is responsible for the violation reports. It receives the reports from the Communication Manager and it contains a Report Validity Manager that checks that the violation data inserted by the user are correct. Then it has the Photo Analysis Manager that retrieves the license plate of the violator from the photograph using an algorithm provided by an external API that scans the photo. Finally there is a Data Storage Manager that takes all the information about the violation (license plate, type of violation, description, position, date and hour) and stores them in the SafeStreets database.
@@ -142,16 +148,17 @@ Here you can find a brief description of what the single components do:
 The other server deals with the managing of the requests by the private users or municipalities. It is in charge of check the correctness and validity of the request,and then it must run all the data mining algorithms necessary to retrieve the result and finally send the results to the right private user.
 \item \textbf{Databases:} The databases are cloud databases managed thanks to an API that will be provided by the provider of the service. We have only one cloud database used to store all the Safestreets data. Another cloud database is the external one of the municipality. Safestreets has only a special view of the part of the municipality database concerning the accidents. All these cloud database use SQL.
 \end{itemize}
-\subsection{Runtime View}
+\newpage
+\subsection{Runtime View\\}
 \paragraph{Sign Up Runtime View\\ \\}
 With this sequence diagram we explain which components come into play and how they interact when a user signs up.
 This process is the same both for private users and municipality.\\
 When the user pushes the sign-up button, the View sends the sign up request to the Client Communication Manager that provides to dispatch it, together with the user's submitted personal data, to the Server Communication Manager, through the use of the Load Balancer in order to manage the load and assign it to one of our two servers. Then the Server Communication Manager is responsible to send all the data to the Credentials Validity Manager that checks the validity of the inserted data, controlling if the password complies our restrictions. Then it sends to the Data Storage Manager a request to query the SafeStreets Cloud Database to discover if there is already or not an existing account associated with the username inserted by the user. After having received a response from the Database, the Data Storage Manager sends the response to the Credentials Validity Manager that checks it. In case there is already an existing account, the Credentials Validity Manager sends an error message to the Server Communication Manager that propagates it to the Load Balancer and then to the Client Communication Manager informing it about a malformed request or an already-in-use account. The Communication Manager sends the message to the View that shows it to the user. \\
-In case all the verifications are ok the process is almost the same, except for the fact that the exchanged messages tell that everything has gone well.
+In case all the verifications are ok, the Credentials Validity Manager sends the account data to the Data Storage Manager, that cares about inserting it in the database. After having received the feedback from the database, the Data Storage Manager sends it to the Credentials Validity Manager that checks it. If the confirmation isn't valid the Credentials Validity Manager propagates a message error that, with the usual path, is received by the user. If the confirmation is ok the Credentials Validity Manager uses the same procedure to send to the user the confirmation message.
 
 \begin{figure}[h]
-	\includegraphics[scale=0.42]{Diagrams/Sequence Diagrams/Runtime View Diagram signup.png}
-	\caption{Deployment diagram}
+	\includegraphics[scale=0.39]{Diagrams/Sequence Diagrams/Runtime View Diagram signup.png}
+	\caption{Sign Up Sequence Diagram}
 \end{figure}
 \FloatBarrier
 
@@ -159,13 +166,13 @@ In case all the verifications are ok the process is almost the same, except for 
 
 In this sequence diagram we explain which are the components involved and how they communicate with each other. \\
 When the user pushes the login button, the view propagates the login request to the Client Communication Manager that is responsible to dispatch it to the Server Communication Manager, also thanks to the use of the Load Balancer that has the same function explained for the signing up. \\
-Then the Server Communication Manager sends the request with the credentials to the Credentials Validity Manager, that elaborates a query to check if the credentials submitted by the user match an existing account in the database. The query is sent to the Data Storage Manager that dispatches it to the SafeStreets Cloud Database. When the Data Storage Manager receives an answer from the database, he sends the result to the Credentials Validity Manager that checks if it's valid or null. \\
-If it's null it dispatches an error message to the Server Communication Manager that sends it to the client (through the Load Balancer) as a HTTP malformed request or wrong credentials. \\
-Finally, when the Client Communication Manager receives the error message, it sends it to the View that displays it to the user.
+Then the Server Communication Manager sends the request with the credentials to the Credentials Validity Manager, that elaborates a query to check if the credentials submitted by the user match an existing account in the database. The query is sent to the Data Storage Manager that dispatches it to the SafeStreets Cloud Database. When the Data Storage Manager receives an answer from the database, it sends the result to the Credentials Validity Manager that checks if it's valid or null. \\
+If it's null it dispatches an error message to the Server Communication Manager that sends it to the client (through the Load Balancer) as a HTTP malformed request or wrong credentials. Finally, when the Client Communication Manager receives the error message, it sends it to the View that displays it to the user.\\
+If the result is not null, the Credential Validity Manager sends the login confirmation message to the Server Communication Manager, that cares about sending it to the user in the usual way.
 
 \begin{figure}[h]
 	\includegraphics[scale=0.42]{Diagrams/Sequence Diagrams/Runtime View Diagram login.png}
-	\caption{Deployment diagram}
+	\caption{Login Sequence Diagram}
 \end{figure}
 \FloatBarrier
 
@@ -173,17 +180,58 @@ Finally, when the Client Communication Manager receives the error message, it se
 \paragraph{Report Runtime View \\ \\}
 
 In this sequence diagram we explain the process of a Violation Report. \\
-When the user submits all the violation information by pushing the report button, the View sends the report to the Client Communication Manager. It dispatches the report to the Load Balancer that sends it to the Server Communication Manager. It sends the report to the Report Validity Manager that checks the correctness of the report. To do this it checks if the violation type belongs to one of the categories suggested by the municipality.
+When the user submits all the violation information by pushing the report button, the View sends the report to the Client Communication Manager. It dispatches the report to the Load Balancer that sends it to the Server Communication Manager. It sends the report to the Report Validity Manager that sends the city and the streets to Google Maps in order to check if they exist. Then it checks the correctness of the report. To do this it checks if the violation type belongs to one of the categories suggested by the municipality.
 After that, if the report isn't correct it sends back to the Server Communication Manager an error message. The Server Communication Manager will propagate it to the client (through the Load Balancer) as invalid input.
 Then, the Client Communication Manager sends the error message to the View, that shows it to the user, that can reformulate the report and redo the same process in order to do a new submission. \\
 If the report is correct, the Report Validity Manager sends the confirmation back to the Server Communication Manager that, with the same process of the error communication, dispatches it to the client as HTTP 200 OK in order to finally make the View display the confirmation to the user. \\
+In the meanwhile the Report Validity Manager sends to the Photo Analysis Manager the photo appended to the report. Then the photo is sent to Google Vision that analyses it in order to retrieve the license plate. Then the Photo Analysis Manager receives the plate found by Google Vision and dispatches it to the Report Validity Manager. \\
+It send all the data about the report to the Data Storage Manager that provides to insert it in the SafeStreets Cloud Database that sends back a confirmation.
+The Data Storage Manager checks the response. If the data has not been inserted into the database, the Data Storage Manager sends an error message to the Server Communication Manager that propagates it to the user in the usual way. Otherwise, if the data has been correctly inserted into the database, the Data Storage Manager sends the confirmation to the Server Communication Manager that cares about propagating it to the user.
 
 
 \begin{figure}[h]
 	\includegraphics[scale=0.298]{Diagrams/Sequence Diagrams/Runtime View Diagram report.png}
-	\caption{Deployment diagram}
+	\caption{Report Sequence Diagram}
 \end{figure}
 \FloatBarrier
+
+\paragraph{User Request Runtime View\\ \\}
+
+With this sequence diagram we show how the process for user requests is structured.
+This process is the same both for private users and municipality and this process is the same for all the types of requests except the municipality's request for suggestions.\\
+When the user submits a request, the View dispatches it to the Client Communication Manager that cares about sending it to the Server Communication Manager (through the Load Balancer). Then the request is sent to the User Request Manager that sends the city and the street found on the request to ask Google Maps if there is an existing city and street. \\
+After having received a response, the User Request Manager checks it and if the place inserted by the user doesn't exist it provides to send an error message to the Server Communication Manager, that sends it to the Load Balancer and then to the Client Communication Manager as HTTP Malformed Request. Then the Client Communication Manager dispatches it to the View that shows it to the user.\\
+Otherwise, if the request is valid, the User Request Manager sends a data request to the Data Storage Manager, that queries the SafeStreets Cloud Database in order to receive the necessary information. After having received the result, the Data Storage Manager dispatches it to the User Request Manager that checks it. \\
+If the database has sent a null result, the User Request Manager sends an error message to the Server Communication Manager that cares about sending it to the Client Communication Manager (through the Load Balancer).
+Then the message is sent to the View that displays it to the user.
+If the database returns a not null result, the User Request Manager sends the requested data to the Server Communication Manager that, in the usual way, dispatches it to the Client Communication Manager, that sends it to the View. Finally the View displays the information to the user.
+
+
+\begin{figure}[h]
+	\includegraphics[scale=0.387]{Diagrams/Sequence Diagrams/Runtime View Diagram user request.png}
+	\caption{User Request Sequence Diagram}
+\end{figure}
+\FloatBarrier
+
+
+\paragraph{Municipality Suggestions Request Runtime View\\}
+
+This sequence diagram explains the process with which the municipality requests and receives suggestion to make the streets safer. \\
+When the municipality user submits the request for suggestions, the View shall forward it to the Client Communication Manager. It dispatches the request to the Load Balancer that sends it to the Server Communication Manager. It sends the request to the Municipality Suggestions Request Manager, that searches through Google Maps if the user has inserted an existing city. After having received a response, the Municipality Suggestions Request Manager checks it and checks also if the city matches with the Municipality. If the city doesn't exist or isn't correct, The Municipality Suggestions Request Manager sends an error message to the Server Communication Manager, that propagates it to the user in the usual way.\\
+If the city is correct the Municipality Suggestions Request Manager asks the Data Request Manager for the necessary data. it sends a request to the Data Storage Manager, that queries the SafeStreets Cloud Database. After having received a result from the Database, the Data Storage Manager sends it to the Data Request Manager. It does the same procedure for the Municipality data, making a request and sending it to the Municipality Data Storage Manager that queries the Municipality Database.\\
+After having collected all the information, the Data Request Manager sends the data to the Suggestions Creation Manager, that cares about sending it to the External Data Mining API offered by Oracle. It is responsible for merging all the information and creating suggestion from the result, through the use of a data mining algorithm. \\
+After that it returns the suggestions to the Suggestions Creation Manager that dispatches them to the Result Handler. This component sends the created suggestions to the Server Communication Manager that, in the usual way, cares about sending the data to the View, that will display it to the Municipality User.
+\newpage
+
+
+
+\begin{figure}[h]
+	\includegraphics[scale=0.206]{Diagrams/Sequence Diagrams/Runtime View Diagram suggestions.png}
+	\caption{Municipality Suggestions Request Sequence Diagram}
+\end{figure}
+\FloatBarrier
+
+
 
 \subsection{Component interfaces}
 \subsection{Selected architectural styles and patterns}
