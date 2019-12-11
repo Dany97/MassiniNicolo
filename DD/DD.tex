@@ -7,6 +7,8 @@
 \usepackage{longtable}
 \usepackage{tabularx}
 \usepackage{graphicx}
+\usepackage{hyperref}
+
 
 
 
@@ -168,6 +170,18 @@ This component is shared with both Servers. In each of the two servers there is 
 This component communicates with the Requests Server Application, in particular with the Municipality Data Storage Manager, that can only query to obtain information in order to create suggestions for the Municipality. This database is in read-only mode.
 \item \textbf{GPS}\\
 This external component is necessary for the user's automatic localization. It communicates with the User Client Application, in particular with the Data Manager that is the one specialized in retrieving the position information (city and street) from the GPS service offered by the user's smartphone.
+\item \textbf{External Data Mining Oracle API}\\
+This external component is responsible for the merging and the data mining of the data from which the suggestions for the municipality are created. \\
+This component communicates with the Suggestions Creation Manager that sends to the external component the data about the violations and the streets condition retrieved both from the SafeStreets Cloud Database and the Municipality Database. \\
+The result is sent to the Suggestions Creation Manager that will forward it in order to make it available to the Municipality User.
+\item \textbf{Google Vision AI}\\
+This component is a cloud external API that is responsible for the analysis of the photo sent with the report in order to retrieve the license plate. \\
+This component communicates with the Photo Analysis Manager that sends the image attached to the report that it has received from the client. 
+\item \textbf{Google Maps API}\\
+This component isn't represented in our component diagram because it communicates with different internal component and we have preferred not to insert it, together with all its links, only in order to keep the entire diagram clearer. \\
+This external component cares about providing all the needed data concerning the maps, the cities and the streets. \\
+It communicates with the Municipality Suggestions Requests Manager in order to provide the information about the city that the Municipality user has inserted so that the Municipality Suggestions Requests Manager can check if the inserted city exists and it's the one of competence of the applicant Municipality. \\
+It also communicates with the Report Validity Manager and the User Requests Manager in order to provide the requested information about the city and the street that the user has specified so that these applicant components can check if the inserted place exists or not.
 \end{itemize}
 
 
