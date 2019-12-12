@@ -367,7 +367,7 @@ Furthermore, the application can encounter:
 	\item $[\textbf{D2}]$: The user creates one and only one account.
 	\item $[\textbf{D3}]$: Every municipality which has an account on the system certifies its own account as valid.
 	\item $[\textbf{D4}]$: The GPS signal has a relative error of 10 meters.
-	\item $[\textbf{D5}]$: The memory where the data is stored is persistent.
+	\item $[\textbf{D5}]$: The physical memory of SafeStreets database where the data about violations and streets is stored is persistent.
 	\item$[\textbf{D6}]$: The user allows the app to have access to his/her position and the camera of his/her device.
 	\item $[\textbf{D7}]$: The internet connection has to be enabled when the app needs it.
 	\item $[\textbf{D8}]$: The municipality must provide the reports (sent by the users) to the authorities automatically.
@@ -456,7 +456,7 @@ Furthermore, the application can encounter:
 	
 	\item \textbf{SafeStreets private user sign-up (second part):}\\
 	
-	This is the second and last part of the private user's sign-up in the SafeStreets platform. Here the user has to fill the fields with his/her personal e-mail and his/her FC. Furthermore he/she has to choose  which category he(she belongs to (car driver, cyclist, motorcyclist, pedestrian, and so on) and he/she can also indicate if this account will be created for a disabled person or not. Finally he/she can add the id of his/her drive license if he/she drives a vehicle that needs it (It's not mandatory). After doing that the sign-up is complete and the user will be redirected to the log-in page.
+	This is the second and last part of the private user's sign-up in the SafeStreets platform. Here the user has to fill the fields with his/her personal e-mail and his/her FC. Furthermore he/she has to choose  which category he(she belongs to (car driver, cyclist, motorcyclist, pedestrian, and so on) and he/she can also indicate if this account will be created for a disabled person or not. Finally he/she can add the ID of his/her driving license if he/she drives a vehicle that needs it (It's not mandatory). After doing that the sign-up is complete and the user will be redirected to the log-in page.
 	
 	\begin{figure}[h]
 	\includegraphics[scale=0.8]{Mockups/second sign up.png}
@@ -661,7 +661,7 @@ The system will have to be designed for the most common smart-phones operating s
 \end{itemize}
 	
 \subsubsection{Communication interfaces }
-Each smart-phone that will use Safestreets will communicate with the servers thanks to the HTTPS protocol. Also the databases will communicate using the same protocol. We've chosen this protocol because thanks to it, it is possible to obtain a secure connection between nodes. Furthermore it is a very commonly used protocol for the connections over internet.
+Each smart-phone that will use Safestreets will communicate with the servers thanks to the HTTPS protocol. Also the databases will communicate with the server using the same protocol. We've chosen this protocol because thanks to it, it is possible to obtain a secure connection between nodes. Furthermore it is a very commonly used protocol for the connections over internet.
 \subsection{Functional Requirements:}
 \subsubsection{Use case diagrams: }
 Use case diagrams are very important because they allow the reader to understand the flow of events between actors and the system itself. We have done two different use case diagrams to make them more explanatory and less confusing.
@@ -694,7 +694,7 @@ Thanks to this mobile application he is now able to save time in reporting viola
 He notices an interesting application on the market called Safestreets. He is particularly interested in the function which suggest the safest streets around the user from a point of view of the category in which the user has signed-up. This interest is caused by the idea of ​​being able to choose a route that minimizes the danger of making an accident against a car taking in consideration the suggested streets given by the application.\\
 Now, he is finally able to go to work by bicycle in a secure way.
 \paragraph{Scenario 3:}Andrea is a disabled person who strolls very often in his district. Unfortunately not all the roads are equipped with facilities for disabled people and also a lot of people park their cars there.\\
-He has downloaded the application which suggest him the streets which are the most secure to be travelled for a person with his problem. The app allows Andrea to avoid roads where it is more probable to have cars parked on disabled facilities. He can compute himself the route from a place to another taking in consideration the suggestions given by the application. When he sees a violation he can report it to the authorities. Thanks to this feature Andrea is able to report violations, to do his strolls in the city almost in an autonomous way.
+He has downloaded the application which suggests him the streets which are the most secure to be travelled for a person with his problem. The app allows Andrea to avoid roads where it is more probable to have cars parked on disabled facilities. When he sees a violation he can report it to the authorities. Thanks to this feature Andrea is able to report violations, to do his strolls in the city almost in an autonomous way. 
 \paragraph{Scenario 4:} An employee of an insurance has the task of understanding which are the most dangerous areas of Milan in order to change the price of insurance. He does not know where to find the data necessary to do this task.Furthermore it has just been decided by the boss that funding a research would be too costly.\\
 Fortunately the insurance company has just downloaded the Safestreets applications which can be used to retrieve dangerous areas. Thanks to Safestreets the company saved a lot of money by doing a free data search.\newpage
 \begin{center}
@@ -1219,7 +1219,7 @@ The system will send to the user an error message and will redirect him/her in t
  	\item $[R11]:$: The system must check if the reported street exists in reality.
  	\item $[R13]:$ The system must be able to retrieve users' position data from the GPS service of their smartphones.
  	\item $[D4]:$ The GPS signal has a relative error of 10 meters.
- 	\item $[D5]:$ The memory where the data is stored is persistent.
+ 	\item $[D5]:$ The physical memory of SafeStreets database where the data about violations and streets is stored is persistent.
  	\item $[D6]:$ The user allows the application to have access to his/her position and to the camera of his/her device.
  	\item $[D7]:$ The internet connection has to be enabled when the app needs it.
  	\item $[D8]:$ The municipality must provide the reports (sent by the users) to the authorities automatically.
@@ -1237,7 +1237,7 @@ The system will send to the user an error message and will redirect him/her in t
  	\item $[R16]:$ The system must return the  safest streets in a map form. These streets must be highlighted on the map.
  	\item $[R18]:$ The system must retrieve the information about the streets safety and the violation from its cloud database.
  	\item $[D4]:$ The GPS signal has a relative error of 10 meters.
- 	\item $[D5]:$ The memory where the data is stored is persistent.
+ 	\item $[D5]:$ The physical memory of SafeStreets database where the data about violations and streets is stored is persistent.
  	\item $[D6]:$ The user allows the application to have access to his/her position and to the camera of his/her device.
  	\item $[D7]:$ The internet connection has to be enabled when the app needs it.
  	\item $[D11]:$ It is impossible that two roads that are in the same city have also the same name.
@@ -1254,7 +1254,7 @@ The system will send to the user an error message and will redirect him/her in t
  \item $[R20]:$ The system must use both data received by the users and by the municipality.
  \item $[R21]:$ The Data Mining API must create suggestions from the data sent by the system and analysed.
  \item $[R22]:$ The system must provide the suggestions created and dispatched by the Data Mining API to the Municipality.
- \item $[D5]:$ The memory where the data is stored is persistent.
+ \item $[D5]:$ The physical memory of SafeStreets database where the data about violations and streets is stored is persistent.
  \item $[D7]:$ The internet connection has to be enabled when the app needs it.
  \end{itemize}
  
@@ -1274,7 +1274,7 @@ The system will send to the user an error message and will redirect him/her in t
  \item $[D1]:$ The user is supposed to submit a correct e-mail.
  \item $[D2]:$ The user creates one and only one account.
  \item $[D3]:$ Every municipality which has an account on the system certifies its own account as valid.
- \item $[D5]:$ The memory where the data is stored is persistent.
+ \item $[D5]:$ The physical memory of SafeStreets database where the data about violations and streets is stored is persistent.
  \item $[D7]:$ The internet connection has to be enabled when the app needs it.
  \item $[D9]$: The email identifies uniquely a private user.
  \item $[D10]$: The fiscal code identifies uniquely a person.
@@ -1296,8 +1296,7 @@ In this part we will indicate the performance requirements of SafeStreets. Perfo
 \begin{itemize}
 	\item A response time (from the point of view of the user) of at most 2 seconds for the violation reporting.
 	\item A response time (from the point of view of the user) of at most 3 seconds to answer to a user request. 
-	\item The state of the streets (dangerous or not) must be updated at least every 24 hours.
-	\item The municipality suggestions must be updated at least every 2 days.
+	\item The state of the streets (dangerous or not) must be updated at least every 8 hours for each city.
 \end{itemize}
 
 \subsection{Design Constraints}
@@ -1318,17 +1317,19 @@ A user, to be able to use SafeStreets with all its functionalities, must run the
  
 \subsection{Software System Attributes}
 \subsubsection{Reliability}
-The Reliability of the system must be high, because the system has to provide to the users a service that has to be as much as possible fast and correct. So the fault tolerance and the tolerance when a component of the system goes down has to be very low. 
+We want a Mean Time To Failure (MTTF) of the entire system of approximately 3 years, that corresponds to a Reliability of approximately 0,846 after a time scope of 6 months.
 
 
 \subsubsection{Availability}
-The system, in order to provide an efficient service, must be available at a good level. We think that it must have the target value of 95\%, because we want that the app will be sufficiently available to every user.
+We want a Mean Time To Repair (MTTR) of the entire system of 1,5 days, so that the Availability (Considering the MTTF of 3 years) is approximately 0,9986.
 
 \subsubsection{Security}
 The security is fundamental in our system, as it contains the users' sensitive data. In particular:
 \begin{itemize}
-\item The system uses HTTPS in order to allow to communicate with users, municipality and the DBMS in safety;
+
 \item The sensitive data, such as passwords, has to be encrypted before being stored in the DB.
+\item The passwords are hashed before being stored in the DB.
+\item The software has to be developed avoiding to use unknown or untrusted libraries, because trusted and well known libraries are less likely subject to be exploitable.
 \end{itemize}
 
 
