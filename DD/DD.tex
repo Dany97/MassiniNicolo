@@ -110,6 +110,7 @@ In the figure below the architecture of the entire system is shown. This descrip
 In the diagram above we can immediately distinguish 3 layers that make up the entire architecture. Servers manage the logic layer whereas databases manage the data layer and finally the client smartphone is where the presentation layer takes place. \\
 The architecture has 2 clusters of application servers and two "types" of servers which deal with different tasks. One type of server handles the request by the user and the other one manages the reports by the private users and the authentication. Every cluster contains 2 servers of the same typology. Every server contained in one cluster access the system database whereas instead only the two servers dedicated to requests access the external one (which is the external database of the municipality). Servers which reside in different clusters don't communicate with each other to guarantee the service. Also servers of the same cluster don't communicate with each other. The workload balancing between servers of the same cluster is managed by to load balancers.\\
 The client, in order to receive the service, will speak directly and only to the firewall placed at the entrance of the system. The first firewall (the one near the SafeStreets application in the diagram) is the element that will route the user messages to the right cluster based on the type of the request. In this case that firewall has not only a security function but it also behaves as a gateway which routes packets. All the clusters are placed inside the DMZ (between two firewalls) for security reasons. They must be accessible from the external network. The second firewall divides clusters from the system database. The database will have to be accessible only from the clusters for security reasons and because of this fact they are outside of the DMZ. \\
+The authorities will be informed about the reports of the violations thanks to the municipality which has only a read access to safestreets cloud database. In this way the municipality back-end can inform the authorities about the violations. In the overview diagram this aspect is represented. The municipality will be able to read only information about the violations with the addition of the fiscal code of the safestreets user who has reported the violation.
 
 \begin{figure}[h]
 \subsection{Component view}
@@ -337,7 +338,7 @@ Here it is possible to find the relational schema of the system database, shown 
 
 
 \begin{figure}[h]
-	\includegraphics[scale=0.55]{Diagrams/ER diagram.png}
+	\includegraphics[scale=0.43]{Diagrams/ER diagram.png}
 	\caption{Entity-Relationship Diagram}
 \end{figure}
 \FloatBarrier
