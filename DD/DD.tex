@@ -213,7 +213,9 @@ For all the other types of requests, the system takes the necessary information 
 \item \textbf{Databases:} They are cloud databases managed thanks to an API that will be given by the provider of the service. We have only one cloud database used to store all the Safestreets data. Another cloud database is the external one of the municipality. Safestreets has only a special view of the part of the municipality database concerning the accidents. All these cloud databases use SQL.
 \end{itemize}
 \newpage
-\subsection{Runtime View\\}
+\subsection{Runtime View}
+Here we show how the components interact with each other and how their flow of events and communication is structured. \\
+In some of the flows of events (that are the ones which need the streets and the cities as input) there could be the interaction with the GPS service and the client. We decided not to show it in our sequence diagrams because they are thought to start in the moment when the user finally pushes the button to complete a request or a report. So, in that moment, the possible interaction with the GPS service has already been completed. \\ \\
 \paragraph{Sign Up Runtime View\\ \\}
 With this sequence diagram we explain which components come into play and how they interact when a user signs up.
 This process is the same both for private users and municipality.\\
